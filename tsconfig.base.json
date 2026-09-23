@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "isolatedModules": true,
-    "composite": true
+    "composite": true,
+    "types": ["node"]
   }
 }
