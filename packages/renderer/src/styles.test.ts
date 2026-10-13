@@ -27,6 +27,17 @@ describe("stylesText", () => {
     }
   });
 
+  it("colours spheres from the theme's fill and shortfall colours", () => {
+    const rule = (selector: string) =>
+      stylesText.split(`\n${selector} {\n`)[1]?.split("\n}")[0];
+    expect(rule(".vcv-sphere")).toContain(
+      "--vcv-sphere-color: var(--vcv-fill-color);",
+    );
+    expect(rule(".vcv-sphere--missed")).toContain(
+      "--vcv-sphere-color: var(--vcv-shortfall-color);",
+    );
+  });
+
   it("switches animations off under prefers-reduced-motion", () => {
     const block = stylesText.match(
       /@media \(prefers-reduced-motion: reduce\) \{([\s\S]*?)\n\}/,
