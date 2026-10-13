@@ -63,6 +63,32 @@ export interface RendererTheme extends Theme {
     controlBackground: string;
     controlBorder: string;
   };
+  sphere: {
+    /** Default diameter; a sphere can be given its own. */
+    size: string;
+    /** The clear glass behind the liquid. */
+    glass: string;
+    shadow: string;
+    ringWidth: string;
+    ringOpacity: string;
+    /** Ring of a sphere with no data. */
+    emptyRing: string;
+    /** Glow radius as a fraction of the diameter. */
+    glowScale: string;
+    glowOpacity: string;
+    /** The colour the liquid and meniscus are lightened towards. */
+    tint: string;
+    /** How far the top of the liquid is lightened towards the tint. */
+    liquidTint: string;
+    liquidTopOpacity: string;
+    liquidBottomOpacity: string;
+    meniscusTint: string;
+    meniscusOpacity: string;
+    /** Meniscus height as a fraction of the diameter. */
+    meniscusScale: string;
+    highlight: string;
+    highlightLow: string;
+  };
   radii: {
     card: string;
     popover: string;
@@ -189,6 +215,27 @@ export const defaultTheme: RendererTheme = {
     controlBackground: "rgba(255, 255, 255, 0.14)",
     controlBorder: "rgba(255, 255, 255, 0.32)",
   },
+  sphere: {
+    size: "72px",
+    glass:
+      "radial-gradient(circle at 34% 26%, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.07) 48%, rgba(255, 255, 255, 0.03) 72%, rgba(255, 255, 255, 0.12))",
+    shadow:
+      "inset 0 -10px 18px rgba(0, 25, 55, 0.28), inset 0 5px 10px rgba(255, 255, 255, 0.16), 0 10px 22px rgba(0, 20, 45, 0.3)",
+    ringWidth: "2px",
+    ringOpacity: "92%",
+    emptyRing: "rgba(255, 255, 255, 0.38)",
+    glowScale: "0.3",
+    glowOpacity: "28%",
+    tint: "#ffffff",
+    liquidTint: "35%",
+    liquidTopOpacity: "80%",
+    liquidBottomOpacity: "66%",
+    meniscusTint: "55%",
+    meniscusOpacity: "85%",
+    meniscusScale: "0.1",
+    highlight: "rgba(255, 255, 255, 0.62)",
+    highlightLow: "rgba(255, 255, 255, 0.28)",
+  },
   radii: {
     card: "24px",
     popover: "22px",
@@ -242,6 +289,7 @@ export function resolveTheme(
     colors: mergeGroup(base.colors, overrides.colors),
     ocean: mergeGroup(base.ocean, overrides.ocean),
     glass: mergeGroup(base.glass, overrides.glass),
+    sphere: mergeGroup(base.sphere, overrides.sphere),
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),

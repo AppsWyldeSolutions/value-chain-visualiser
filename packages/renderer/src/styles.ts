@@ -1,6 +1,6 @@
 /**
- * Custom properties the shell sets on individual elements (one ray, one wave,
- * one bubble) rather than on the root. Everything else the stylesheet reads
+ * Custom properties set on individual elements (one ray, one wave, one bubble,
+ * one sphere) rather than on the root. Everything else the stylesheet reads
  * comes from `themeToCssVars`.
  */
 export const ELEMENT_CSS_VARS = [
@@ -14,6 +14,8 @@ export const ELEMENT_CSS_VARS = [
   "--vcv-bubble-top",
   "--vcv-bubble-size",
   "--vcv-bubble-delay",
+  "--vcv-sphere-color",
+  "--vcv-sphere-level",
 ] as const;
 
 /**
@@ -155,6 +157,118 @@ export const stylesText = `
   grid-template-columns: repeat(var(--vcv-layout-columns), minmax(0, 1fr));
   column-gap: var(--vcv-layout-column-gap);
   row-gap: var(--vcv-layout-row-gap);
+}
+
+.vcv-sphere {
+  --vcv-sphere-color: var(--vcv-fill-color);
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: var(--vcv-sphere-size);
+  height: var(--vcv-sphere-size);
+  overflow: hidden;
+  border-radius: 50%;
+  border: var(--vcv-sphere-ring-width) solid
+    color-mix(
+      in srgb,
+      var(--vcv-sphere-color) var(--vcv-sphere-ring-opacity),
+      transparent
+    );
+  background: var(--vcv-sphere-glass);
+  box-shadow:
+    var(--vcv-sphere-shadow),
+    0 0 calc(var(--vcv-sphere-size) * var(--vcv-sphere-glow-scale))
+      color-mix(
+        in srgb,
+        var(--vcv-sphere-color) var(--vcv-sphere-glow-opacity),
+        transparent
+      );
+}
+.vcv-sphere--missed {
+  --vcv-sphere-color: var(--vcv-shortfall-color);
+}
+.vcv-sphere--no-data {
+  border-style: dashed;
+  border-color: var(--vcv-sphere-empty-ring);
+  box-shadow: var(--vcv-sphere-shadow);
+}
+.vcv-sphere__liquid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--vcv-sphere-level);
+  background: linear-gradient(
+    180deg,
+    color-mix(
+      in srgb,
+      color-mix(
+          in srgb,
+          var(--vcv-sphere-tint) var(--vcv-sphere-liquid-tint),
+          var(--vcv-sphere-color)
+        )
+        var(--vcv-sphere-liquid-top-opacity),
+      transparent
+    ),
+    color-mix(
+      in srgb,
+      var(--vcv-sphere-color) var(--vcv-sphere-liquid-bottom-opacity),
+      transparent
+    )
+  );
+}
+.vcv-sphere--no-data .vcv-sphere__liquid {
+  display: none;
+}
+.vcv-sphere__meniscus {
+  display: none;
+  position: absolute;
+  left: -8%;
+  width: 116%;
+  top: calc(var(--vcv-sphere-size) * var(--vcv-sphere-meniscus-scale) / -2);
+  height: calc(var(--vcv-sphere-size) * var(--vcv-sphere-meniscus-scale));
+  border-radius: 50%;
+  background: color-mix(
+    in srgb,
+    color-mix(
+        in srgb,
+        var(--vcv-sphere-tint) var(--vcv-sphere-meniscus-tint),
+        var(--vcv-sphere-color)
+      )
+      var(--vcv-sphere-meniscus-opacity),
+    transparent
+  );
+}
+.vcv-sphere--partial .vcv-sphere__meniscus {
+  display: block;
+}
+.vcv-sphere__highlight {
+  position: absolute;
+  left: 15%;
+  top: 9%;
+  width: 36%;
+  height: 22%;
+  border-radius: 50%;
+  transform: rotate(-32deg);
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    var(--vcv-sphere-highlight),
+    transparent 72%
+  );
+}
+.vcv-sphere__highlight--low {
+  left: auto;
+  top: auto;
+  right: 10%;
+  bottom: 9%;
+  width: 26%;
+  height: 11%;
+  transform: rotate(-38deg);
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    var(--vcv-sphere-highlight-low),
+    transparent 72%
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {

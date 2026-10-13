@@ -57,6 +57,12 @@ describe("themeToCssVars", () => {
     );
   });
 
+  it("exposes the sphere tokens", () => {
+    expect(vars["--vcv-sphere-size"]).toBe("72px");
+    expect(vars["--vcv-sphere-ring-opacity"]).toBe("92%");
+    expect(vars["--vcv-sphere-meniscus-scale"]).toBe("0.1");
+  });
+
   it("emits only string values and leaves list tokens out", () => {
     for (const [name, value] of Object.entries(vars)) {
       expect(name).toMatch(/^--vcv-[a-z0-9-]+$/);
