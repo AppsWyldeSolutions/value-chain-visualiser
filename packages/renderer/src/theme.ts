@@ -89,6 +89,29 @@ export interface RendererTheme extends Theme {
     highlight: string;
     highlightLow: string;
   };
+  card: {
+    padding: string;
+    /** Space between the header and the rows, and between rows. */
+    gap: string;
+    minHeight: string;
+    headerHeight: string;
+    eyebrowSize: string;
+    titleSize: string;
+    pillSize: string;
+    rowLabelSize: string;
+    primarySphereSize: string;
+    /** Widest a primary KPI may be; it shrinks when the row is full. */
+    primarySlot: string;
+    primaryPercentSize: string;
+    primaryLabelSize: string;
+    primaryValueSize: string;
+    satelliteSphereSize: string;
+    satelliteSlot: string;
+    satelliteGap: string;
+    satellitePercentSize: string;
+    satelliteLabelSize: string;
+    satelliteValueSize: string;
+  };
   radii: {
     card: string;
     popover: string;
@@ -236,6 +259,27 @@ export const defaultTheme: RendererTheme = {
     highlight: "rgba(255, 255, 255, 0.62)",
     highlightLow: "rgba(255, 255, 255, 0.28)",
   },
+  card: {
+    padding: "20px",
+    gap: "14px",
+    minHeight: "608px",
+    headerHeight: "64px",
+    eyebrowSize: "12px",
+    titleSize: "21px",
+    pillSize: "12px",
+    rowLabelSize: "12px",
+    primarySphereSize: "132px",
+    primarySlot: "382px",
+    primaryPercentSize: "28px",
+    primaryLabelSize: "15px",
+    primaryValueSize: "13px",
+    satelliteSphereSize: "72px",
+    satelliteSlot: "90px",
+    satelliteGap: "6px",
+    satellitePercentSize: "16px",
+    satelliteLabelSize: "12px",
+    satelliteValueSize: "11.5px",
+  },
   radii: {
     card: "24px",
     popover: "22px",
@@ -290,6 +334,7 @@ export function resolveTheme(
     ocean: mergeGroup(base.ocean, overrides.ocean),
     glass: mergeGroup(base.glass, overrides.glass),
     sphere: mergeGroup(base.sphere, overrides.sphere),
+    card: mergeGroup(base.card, overrides.card),
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),
