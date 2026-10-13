@@ -4,9 +4,9 @@ Vanilla DOM/SVG/CSS only. The renderer builds elements with `createElement`
 and `textContent`, never `innerHTML`, and makes no network calls. The look
 follows `docs/prototype/Main.dc.html`.
 
-This file currently covers the shell (issue #6) and the sphere (issue #7).
-Cards, connectors, popovers and header controls are added by their own
-issues.
+This file currently covers the shell (issue #6), the sphere (issue #7) and
+the card (issue #8). The Score Card, connectors, popovers and header
+controls are added by their own issues.
 
 ## Theme
 
@@ -14,18 +14,19 @@ issues.
 every other colour, size and font the renderer uses. `defaultTheme` holds the
 prototype's values.
 
-| Group    | Tokens                                                                                                                                                                                                                                           |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| (top)    | `fillColor`, `shortfallColor`                                                                                                                                                                                                                    |
-| `fonts`  | `body`, `display`                                                                                                                                                                                                                                |
-| `colors` | `text`, `textSoft`, `textMuted`, `textLabel`, `focusRing`                                                                                                                                                                                        |
-| `ocean`  | `base`, `gradient`, `rayColor`, `rayTop`, `rayAngle`, `rays[]`, `waveColor`, `waveHeight`, `waveOpacities[]`, `bubbleBorder`, `bubbleBorderWidth`, `bubbleFill`, `bubbles[]`                                                                     |
-| `glass`  | `cardBackground`, `cardBorder`, `cardShadow`, `blur`, `saturate`, `line`, `pillBackground`, `pillBorder`, `controlBackground`, `controlBorder`                                                                                                   |
-| `sphere` | `size`, `glass`, `shadow`, `ringWidth`, `ringOpacity`, `emptyRing`, `glowScale`, `glowOpacity`, `tint`, `liquidTint`, `liquidTopOpacity`, `liquidBottomOpacity`, `meniscusTint`, `meniscusOpacity`, `meniscusScale`, `highlight`, `highlightLow` |
-| `radii`  | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                    |
-| `layout` | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `columnGap`, `rowGap`                                                                                                            |
-| `type`   | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                       |
-| `motion` | `bubbleDuration`, `bubbleRise`, `flowDuration`                                                                                                                                                                                                   |
+| Group    | Tokens                                                                                                                                                                                                                                                                                                                              |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (top)    | `fillColor`, `shortfallColor`                                                                                                                                                                                                                                                                                                       |
+| `fonts`  | `body`, `display`                                                                                                                                                                                                                                                                                                                   |
+| `colors` | `text`, `textSoft`, `textMuted`, `textLabel`, `focusRing`                                                                                                                                                                                                                                                                           |
+| `ocean`  | `base`, `gradient`, `rayColor`, `rayTop`, `rayAngle`, `rays[]`, `waveColor`, `waveHeight`, `waveOpacities[]`, `bubbleBorder`, `bubbleBorderWidth`, `bubbleFill`, `bubbles[]`                                                                                                                                                        |
+| `glass`  | `cardBackground`, `cardBorder`, `cardShadow`, `blur`, `saturate`, `line`, `pillBackground`, `pillBorder`, `controlBackground`, `controlBorder`                                                                                                                                                                                      |
+| `sphere` | `size`, `glass`, `shadow`, `ringWidth`, `ringOpacity`, `emptyRing`, `glowScale`, `glowOpacity`, `tint`, `liquidTint`, `liquidTopOpacity`, `liquidBottomOpacity`, `meniscusTint`, `meniscusOpacity`, `meniscusScale`, `highlight`, `highlightLow`                                                                                    |
+| `card`   | `padding`, `gap`, `minHeight`, `headerHeight`, `eyebrowSize`, `titleSize`, `pillSize`, `rowLabelSize`, `primarySphereSize`, `primarySlot`, `primaryPercentSize`, `primaryLabelSize`, `primaryValueSize`, `satelliteSphereSize`, `satelliteSlot`, `satelliteGap`, `satellitePercentSize`, `satelliteLabelSize`, `satelliteValueSize` |
+| `radii`  | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                       |
+| `layout` | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `columnGap`, `rowGap`                                                                                                                                                                                               |
+| `type`   | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                          |
+| `motion` | `bubbleDuration`, `bubbleRise`, `flowDuration`                                                                                                                                                                                                                                                                                      |
 
 ```ts
 export function resolveTheme(
@@ -166,3 +167,60 @@ percentage, metric name and values beside it belong to the card.
   in JavaScript on hex values.
 - Glow radius and meniscus height scale with the diameter
   (`sphere.glowScale`, `sphere.meniscusScale`).
+
+## Card
+
+```ts
+export function createCard(doc: Document, node: NodeModel): Card;
+export interface Card {
+  element: HTMLElement;
+}
+
+export function nodeHeading(node: string): { eyebrow: string; title: string };
+```
+
+`createCard` takes one node of core's `ValueChainVisualiserModel` and builds
+the glass card for a process:
+
+```
+article.vcv-card              aria-labelledby its title
+  .vcv-card__header
+    .vcv-card__heading        eyebrow + h2 title (2 lines at most)
+    .vcv-card__pill           "3 of 5 on target"
+  .vcv-card__rows
+    .vcv-kpi-row--primary     label "Primary KPI" / "Primary KPIs"
+      .vcv-kpi--primary       sphere, percentage, metric name, actual / budget
+    .vcv-kpi-row--satellite   label "Satellite KPIs", ruled off above
+      .vcv-kpi--satellite
+```
+
+- **Heading.** `nodeHeading` splits the node name:
+  `BU1 - P2: Product Development` gives `BU1 · P2` / `Product Development`,
+  `Process 1 – Intake` gives `Process 1` / `Intake`, and any other name is
+  shown whole under the eyebrow `Link`.
+- **Count pill.** Counts the primary and satellite KPIs that have data and how
+  many of them are on target. With no data at all it reads `No data`.
+  Transfer points are not on the card and are not counted; they belong to the
+  connector popover.
+- **Rows.** A row with no KPIs is left out. Primary KPIs use the large sphere
+  (`card.primarySphereSize`), satellites the small one
+  (`card.satelliteSphereSize`). Each KPI is at most its slot wide
+  (`card.primarySlot`, `card.satelliteSlot`) and shrinks to share the row
+  when there are many.
+- **KPI text.** The percentage is core's `label`, the name is the metric, and
+  the figures are core's `pair`. A KPI without data shows `No data`, an empty
+  dashed sphere and no figures.
+- **Tooltip.** Each KPI's `title` holds the full detail, one fact per line:
+  metric, period and year, actual, budget, the rule
+  (`actual at or above budget` or `actual at or under budget`) and the status
+  (`Target met`, `Below budget`, `Over budget`, or
+  `No data for this period`).
+- **Accessibility.** The spheres are `aria-hidden` because the text beside
+  them carries the same information.
+
+### Differences from the prototype
+
+- Cards are at least `card.minHeight` (608px) tall instead of exactly that,
+  so a card with more text grows, and cards in one grid row share a height.
+- Long words in a metric name wrap (`overflow-wrap: break-word`) instead of
+  being cut off at the edge of a narrow satellite slot.
