@@ -1,0 +1,12 @@
+{
+  "name": "vcv-consumer-express",
+  "private": true,
+  "description": "Smoke test: an Express app using the packed @appswyldesolutions/vcv-web-component tarball. Not a workspace.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}

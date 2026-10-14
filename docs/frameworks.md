@@ -1,4 +1,4 @@
-# Using the visual in React, Vue and Angular
+# Using the visual in React, Vue, Angular and Express
 
 The visual is one custom element, `<value-chain-visualiser>`, from
 `@appswyldesolutions/vcv-web-component` (see the "Web component" section of
@@ -6,6 +6,8 @@ The visual is one custom element, `<value-chain-visualiser>`, from
 
 - **React** has a typed wrapper, `@appswyldesolutions/vcv-react`.
 - **Vue and Angular** use the tag directly, after a line of setup each, below.
+- **Express** (or any server with no front-end framework) serves the
+  single-file browser build and a JSON endpoint; see the last section.
 
 Two rules hold in every framework:
 
@@ -118,6 +120,44 @@ export function Chain({ rows }: { rows: KpiRow[] }) {
 }
 ```
 
+#### Data in the API's shape
+
+`rows` takes `KpiRow[]`. If your data is in the shape the element fetches
+through `data-src` (`{ "records": [...] }` of long rows, or wide records),
+convert it with `rowsFromJson`. That lives in the web component package, which
+cannot load on the server (rule 2), so pass the raw JSON to your client
+component and convert it in an effect:
+
+```tsx
+// app/chain/chain.tsx
+"use client";
+import { useEffect, useState } from "react";
+import {
+  ValueChainVisualiser,
+  type KpiRow,
+} from "@appswyldesolutions/vcv-react";
+
+export function Chain({ data }: { data: unknown }) {
+  const [rows, setRows] = useState<KpiRow[]>([]);
+  useEffect(() => {
+    let mounted = true;
+    void import("@appswyldesolutions/vcv-web-component").then(
+      ({ rowsFromJson }) => {
+        if (mounted) setRows(rowsFromJson(data));
+      },
+    );
+    return () => {
+      mounted = false;
+    };
+  }, [data]);
+  return <ValueChainVisualiser rows={rows} />;
+}
+```
+
+Install `@appswyldesolutions/vcv-web-component` alongside the wrapper when
+you import it yourself like this. `apps/consumers/next` is a working example,
+and the consumer smoke tests run it.
+
 ## Vue 3
 
 Tell Vue's template compiler that the tag is a custom element, so it does not
@@ -229,3 +269,60 @@ export class ChainComponent {
   Load it in the browser only, for example
   `afterNextRender(() => import("@appswyldesolutions/vcv-web-component/define"))`,
   and bind `rows` only once that promise has resolved.
+
+## Express
+
+No bundler and no front-end framework: serve the web component's single-file
+browser build as a static file, serve the KPI data from a JSON endpoint, and
+point `data-src` at it.
+
+```sh
+npm install express @appswyldesolutions/vcv-web-component
+```
+
+```js
+// server.js
+import { createRequire } from "node:module";
+import path from "node:path";
+import express from "express";
+
+const require = createRequire(import.meta.url);
+// The folder holding vcv.iife.js, found through the package's "./browser"
+// export, so it does not depend on where node_modules is.
+const vcvDist = path.dirname(
+  require.resolve("@appswyldesolutions/vcv-web-component/browser"),
+);
+
+const app = express();
+app.use("/vcv", express.static(vcvDist, { maxAge: "1h" }));
+
+app.get("/api/kpis", async (request, response) => {
+  response.json({ records: await loadKpiRecords() }); // your data
+});
+
+app.use(express.static("public"));
+app.listen(3000);
+```
+
+```html
+<!-- public/index.html -->
+<script src="/vcv/vcv.iife.js" defer></script>
+<value-chain-visualiser data-src="/api/kpis"></value-chain-visualiser>
+```
+
+- **What the endpoint returns.** Any shape `data-src` accepts:
+  `{ "records": [...] }` or a bare array of long rows (one row per KPI and
+  year, with `link`, `group`, `subGroup`, `metric`, `kpiOperator`,
+  `metricValueType`, `kpiSymbol`, `year`, `january`…`december` and
+  `januaryBudget`…`decemberBudget`; see `fixtures/bobos-big-block.json`), or
+  the prototype's wide records (`fixtures/main-dc-prototype.json`).
+- **Same origin.** The element fetches `data-src` from the browser. Serve the
+  endpoint from the page's origin, as here, or send CORS headers from it.
+- **Errors.** A failed fetch or unreadable data fires `vcv-error` on the
+  element; listen for it to show your own message.
+- **The script.** `vcv.iife.js` registers the element and puts the package's
+  exports on `window.ValueChainVisualiser`. It makes no network requests of
+  its own beyond `data-src`.
+
+`apps/consumers/express` is a working example, and the consumer smoke tests
+run it.

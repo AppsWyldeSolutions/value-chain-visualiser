@@ -4,3 +4,5 @@ package-lock.json
 docs/prototype/**
 fixtures/**
 **/*.generated.ts
+.consumers
+**/.next

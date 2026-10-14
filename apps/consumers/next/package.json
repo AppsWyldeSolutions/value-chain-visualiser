@@ -1,0 +1,20 @@
+{
+  "name": "vcv-consumer-next",
+  "private": true,
+  "description": "Smoke test: a Next.js App Router app using the packed @appswyldesolutions/vcv-react tarball. Not a workspace.",
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^16.4.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^6.0.3"
+  }
+}
