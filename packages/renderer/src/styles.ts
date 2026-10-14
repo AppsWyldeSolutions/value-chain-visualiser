@@ -254,6 +254,9 @@ input[type="color"].vcv-control__input {
         transparent
       );
 }
+.vcv-root--selectable .vcv-kpi .vcv-sphere {
+  cursor: pointer;
+}
 .vcv-sphere--missed {
   --vcv-sphere-color: var(--vcv-shortfall-color);
 }

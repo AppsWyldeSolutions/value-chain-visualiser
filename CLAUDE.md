@@ -14,8 +14,11 @@ web component (any Node.js web app) and Power BI custom visual.
 1. packages/core has no DOM, no framework, no Power BI imports.
 2. packages/renderer uses vanilla DOM/SVG/CSS only. No React, no Power BI imports.
 3. Only web-component, react and powerbi-visual know their host.
-4. No network calls at runtime, no eval, no innerHTML with data-derived strings
-   (Power BI sandbox and certification rules). Use textContent and createElement.
+4. No network calls at runtime in core, renderer or the Power BI/Tableau
+   wrappers. The one exception is packages/web-component, which may fetch the
+   URL its host page names in data-src. No eval, no innerHTML with data-derived
+   strings (Power BI sandbox and certification rules). Use textContent and
+   createElement.
 5. All colours, sizes and fonts come from the theme object, never hard-coded in logic.
 
 ## Domain rules

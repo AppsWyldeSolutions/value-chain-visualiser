@@ -11,6 +11,9 @@
     },
     {
       "path": "../../packages/renderer"
+    },
+    {
+      "path": "../../packages/web-component"
     }
   ]
 }
