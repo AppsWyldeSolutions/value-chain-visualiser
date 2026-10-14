@@ -7,6 +7,8 @@ export default tseslint.config(
     ignores: [
       "**/dist/**",
       "**/node_modules/**",
+      "**/.next/**",
+      ".consumers/**",
       "docs/prototype/**",
       "fixtures/**",
       "**/*.md",

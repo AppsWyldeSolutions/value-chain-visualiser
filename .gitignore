@@ -145,3 +145,7 @@ vite.config.ts.timestamp-*
 # Playwright
 test-results/
 playwright-report/
+
+# Consumer smoke tests: packed tarballs and Next.js generated files
+.consumers/
+apps/consumers/next/next-env.d.ts
