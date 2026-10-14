@@ -82,7 +82,13 @@ function text(tag: string, className: string, content: string): HTMLElement {
 export function renderSpheres(app: HTMLElement): void {
   const shell = createShell(app, {
     subtitle: "Sphere states",
-    theme: { layout: { columns: String(EXAMPLES.length), rowGap: "40px" } },
+    theme: {
+      layout: {
+        columns: String(EXAMPLES.length),
+        cardMinWidth: "0px",
+        rowGap: "40px",
+      },
+    },
   });
 
   for (const { name, size } of SIZES) {

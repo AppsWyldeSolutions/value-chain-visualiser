@@ -106,11 +106,28 @@ export interface RendererTheme extends Theme {
     primaryLabelSize: string;
     primaryValueSize: string;
     satelliteSphereSize: string;
+    /** Widest a satellite KPI may be. */
     satelliteSlot: string;
+    /** Narrowest it may be before the row wraps onto another line. */
+    satelliteMinSlot: string;
     satelliteGap: string;
     satellitePercentSize: string;
     satelliteLabelSize: string;
     satelliteValueSize: string;
+  };
+  /** The arrows between cards. Lengths must be in px: they are measured. */
+  connector: {
+    stroke: string;
+    strokeWidth: string;
+    dash: string;
+    head: string;
+    headLength: string;
+    headWidth: string;
+    cornerRadius: string;
+    /** Space between a card and the start of the arrow leaving it. */
+    startGap: string;
+    /** How far down a card the arrow to its right-hand neighbour sits. */
+    rowAnchor: string;
   };
   radii: {
     card: string;
@@ -127,7 +144,10 @@ export interface RendererTheme extends Theme {
     headerHeight: string;
     headerGap: string;
     controlsGap: string;
+    /** The most columns the grid will use, however wide it gets. */
     columns: string;
+    /** A column is dropped once cards would be narrower than this. */
+    cardMinWidth: string;
     columnGap: string;
     rowGap: string;
   };
@@ -275,10 +295,22 @@ export const defaultTheme: RendererTheme = {
     primaryValueSize: "13px",
     satelliteSphereSize: "72px",
     satelliteSlot: "90px",
+    satelliteMinSlot: "70px",
     satelliteGap: "6px",
     satellitePercentSize: "16px",
     satelliteLabelSize: "12px",
     satelliteValueSize: "11.5px",
+  },
+  connector: {
+    stroke: "rgba(255, 255, 255, 0.88)",
+    strokeWidth: "2.5px",
+    dash: "8 6",
+    head: "rgba(255, 255, 255, 0.95)",
+    headLength: "14px",
+    headWidth: "16px",
+    cornerRadius: "10px",
+    startGap: "2px",
+    rowAnchor: "187px",
   },
   radii: {
     card: "24px",
@@ -296,6 +328,7 @@ export const defaultTheme: RendererTheme = {
     headerGap: "28px",
     controlsGap: "18px",
     columns: "3",
+    cardMinWidth: "340px",
     columnGap: "56px",
     rowGap: "64px",
   },
@@ -335,6 +368,7 @@ export function resolveTheme(
     glass: mergeGroup(base.glass, overrides.glass),
     sphere: mergeGroup(base.sphere, overrides.sphere),
     card: mergeGroup(base.card, overrides.card),
+    connector: mergeGroup(base.connector, overrides.connector),
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),
