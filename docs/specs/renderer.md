@@ -5,9 +5,9 @@ and `textContent`, never `innerHTML`, and makes no network calls. The look
 follows `docs/prototype/Main.dc.html`.
 
 This file currently covers the shell (issue #6), the sphere (issue #7), the
-card (issue #8), the responsive grid and connectors (issue #9) and the
-transfer points popover (issue #10). The Score Card and header controls are
-added by their own issues.
+card (issue #8), the responsive grid and connectors (issue #9), the transfer
+points popover (issue #10) and the Score Card (issue #11). The header
+controls are added by their own issue.
 
 ## Theme
 
@@ -26,6 +26,7 @@ prototype's values.
 | `card`      | `padding`, `gap`, `minHeight`, `headerHeight`, `eyebrowSize`, `titleSize`, `pillSize`, `rowLabelSize`, `primarySphereSize`, `primarySlot`, `primaryPercentSize`, `primaryLabelSize`, `primaryValueSize`, `satelliteSphereSize`, `satelliteSlot`, `satelliteMinSlot`, `satelliteGap`, `satellitePercentSize`, `satelliteLabelSize`, `satelliteValueSize` |
 | `connector` | `stroke`, `strokeWidth`, `dash`, `head`, `headLength`, `headWidth`, `cornerRadius`, `startGap`, `rowAnchor`, `hitPadding`                                                                                                                                                                                                                               |
 | `popover`   | `width`, `padding`, `background`, `border`, `shadow`, `blur`, `offset`, `margin`, `titleSize`, `tagSize`                                                                                                                                                                                                                                                |
+| `score`     | `padding`, `gap`, `minHeight`, `primarySlot`, `primaryMinSlot`, `primaryGap`, `panelMinWidth`, `panelPadding`, `panelBackground`, `panelSphereSize`, `panelSlot`, `panelMinSlot`, `panelGap`, `panelPercentSize`, `panelLabelSize`, `panelValueSize`                                                                                                    |
 | `radii`     | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                                           |
 | `layout`    | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `cardMinWidth`, `columnGap`, `rowGap`                                                                                                                                                                                                   |
 | `type`      | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                                              |
@@ -352,3 +353,53 @@ is nothing extra for a host to call.
   handled in script.
 - The prototype's turn arrow responds over a fixed 960px strip; here the
   target follows the measured arrow.
+
+## Score Card
+
+```ts
+export function isScoreCard(node: NodeModel): boolean;
+export function createScoreCard(doc: Document, node: NodeModel): Card;
+```
+
+The Score Card closes the chain. A host builds each node with
+`isScoreCard(node) ? createScoreCard(doc, node) : createCard(doc, node)`.
+
+```
+article.vcv-card.vcv-card--score     spans every column of the grid
+  .vcv-card__header                  eyebrow "Outcome", title, count pill
+  .vcv-card__rows
+    .vcv-kpi-row--primary            "Primary KPIs", large spheres
+    .vcv-card__panels
+      .vcv-kpi-row--panel            one per sub-group, labelled with its name
+        .vcv-kpi--panel
+```
+
+- **Recognised by its data, not its name.** A node is a Score Card when any
+  of its KPIs has a group or sub-group ending in `Scorecard`, as in the
+  prototype.
+- **No satellite row.** Satellites are shown in panels, one per sub-group,
+  in the order the sub-groups first appear. A satellite with no sub-group is
+  not shown and not counted.
+- **Older data shape.** Rows whose group is itself the scorecard name
+  (`Financial Scorecard`) also form a panel. Core files such rows under
+  `transferPoints`, so they are picked up from there.
+- **Count pill.** Counts the primary KPIs and the KPIs in the panels.
+- **Heading.** The eyebrow is `Outcome` and the title is the node's name.
+- **Sizes** come from the theme's `score` group: primary KPIs use the card's
+  large sphere, panel KPIs an 84px one (`score.panelSphereSize`).
+- **Responsive.** The card always spans the grid. Panels sit side by side
+  while each can be at least `score.panelMinWidth` wide and stack otherwise;
+  the primary row and each panel wrap before their spheres would overlap.
+- Because it is a `.vcv-card`, `createConnectors` ends the chain's last arrow
+  on it: straight down from the last process, whose transfer points popover
+  reads `BU5 · P3 → Score Card`.
+
+### Differences from the prototype
+
+- The prototype sizes panels and their spheres in script from a fixed 1334px
+  width, dropping to 72px spheres when a panel is crowded. Here the layout is
+  CSS: panel spheres are always 84px and a crowded panel wraps.
+- The card is at least `score.minHeight` (640px) tall instead of exactly
+  that.
+- The prototype's "How to read a sphere" key, which sits in the grid beside
+  the last row of cards, is not part of this issue and is not built.

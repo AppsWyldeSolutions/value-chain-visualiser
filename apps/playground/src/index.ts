@@ -1,4 +1,5 @@
 import { createShell } from "@AppsWyldeSolutions/vcv-renderer";
+import { renderFull, renderScoreCard } from "./views/scorecard.js";
 import { renderChain } from "./views/chain.js";
 import { renderCards } from "./views/cards.js";
 import { renderSpheres } from "./views/spheres.js";
@@ -11,6 +12,8 @@ const VIEWS: Record<string, (app: HTMLElement) => void> = {
   spheres: renderSpheres,
   cards: renderCards,
   chain: renderChain,
+  scorecard: renderScoreCard,
+  full: renderFull,
 };
 
 const app = document.getElementById("app");
