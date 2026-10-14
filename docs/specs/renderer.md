@@ -516,6 +516,9 @@ register when they choose.
 ></value-chain-visualiser>
 ```
 
+For React (with a typed wrapper, `@AppsWyldeSolutions/vcv-react`), Next.js,
+Vue and Angular, see `docs/frameworks.md`.
+
 The element wraps `createVisual` in an open shadow root, so its styles and
 the page's do not meet. Only the `@font-face` rules go in the page's head,
 because browsers ignore them inside a shadow root.

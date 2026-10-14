@@ -1,0 +1,23 @@
+{
+  // tsup's declaration bundling: not a composite project, and the web
+  // component's types come from its source, so this builds before or after it
+  // (the root build runs workspaces alphabetically). The import stays external.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "jsx": "react-jsx",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "@AppsWyldeSolutions/vcv-web-component": [
+        "../web-component/src/index.ts"
+      ],
+      "@AppsWyldeSolutions/vcv-web-component/define": [
+        "../web-component/src/define.ts"
+      ],
+      "@AppsWyldeSolutions/vcv-core": ["../core/src/index.ts"],
+      "@AppsWyldeSolutions/vcv-renderer": ["../renderer/src/index.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}
