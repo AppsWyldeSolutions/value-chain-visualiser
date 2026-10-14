@@ -26,6 +26,15 @@ export type {
   ConnectorShape,
 } from "./connectorShape.js";
 export { createScoreCard, isScoreCard } from "./scoreCard.js";
+export { createControls } from "./controls.js";
+export type { Controls, ControlsOptions, ControlsValue } from "./controls.js";
+export { createVisual, defaultSelection, PERIODS } from "./visual.js";
+export type {
+  Selection,
+  Visual,
+  VisualOptions,
+  VisualState,
+} from "./visual.js";
 export { createSphere } from "./sphere.js";
 export type { Sphere, SphereOptions, SphereState } from "./sphere.js";
 export { createShell, installFonts, installStyles } from "./shell.js";

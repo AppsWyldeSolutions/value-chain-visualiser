@@ -25,6 +25,24 @@ function panelOf(kpi: EvaluatedKpi): string {
   return "";
 }
 
+/** Each panel's KPIs, keyed by name, in the order the names first appear. */
+function panelsOf(node: NodeModel): Map<string, EvaluatedKpi[]> {
+  const panels = new Map<string, EvaluatedKpi[]>();
+  for (const kpi of [...node.satellite, ...node.transferPoints]) {
+    const name = panelOf(kpi);
+    if (!name) continue;
+    const kpis = panels.get(name);
+    if (kpis) kpis.push(kpi);
+    else panels.set(name, [kpi]);
+  }
+  return panels;
+}
+
+/** The KPIs a Score Card shows: its primary KPIs, then each panel's. */
+export function scoreCardKpis(node: NodeModel): EvaluatedKpi[] {
+  return [...node.primary, ...Array.from(panelsOf(node).values()).flat()];
+}
+
 /**
  * Whether a node is the chain's Score Card rather than a process. As in the
  * prototype it is recognised by its data, not its name: some KPI's group or
@@ -42,21 +60,13 @@ export function isScoreCard(node: NodeModel): boolean {
  * satellite outside every sub-group is not shown. It spans the grid's width.
  */
 export function createScoreCard(doc: Document, node: NodeModel): Card {
-  // Panels in the order their names first appear.
-  const panels = new Map<string, EvaluatedKpi[]>();
-  for (const kpi of [...node.satellite, ...node.transferPoints]) {
-    const name = panelOf(kpi);
-    if (!name) continue;
-    const kpis = panels.get(name);
-    if (kpis) kpis.push(kpi);
-    else panels.set(name, [kpi]);
-  }
+  const panels = panelsOf(node);
 
   const { element, rows } = createFrame(doc, node, {
     modifier: "score",
     eyebrow: "Outcome",
     title: node.node,
-    counted: [...node.primary, ...Array.from(panels.values()).flat()],
+    counted: scoreCardKpis(node),
   });
 
   if (node.primary.length > 0) {

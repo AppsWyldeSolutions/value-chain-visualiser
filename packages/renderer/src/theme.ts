@@ -168,6 +168,18 @@ export interface RendererTheme extends Theme {
     panelLabelSize: string;
     panelValueSize: string;
   };
+  /** The Year and Period selects and the colour pickers in the header. */
+  control: {
+    height: string;
+    fontSize: string;
+    labelSize: string;
+    yearMinWidth: string;
+    periodMinWidth: string;
+    swatchWidth: string;
+    /** A select's open list, which browsers draw on a light background. */
+    optionColor: string;
+    optionBackground: string;
+  };
   radii: {
     card: string;
     popover: string;
@@ -384,6 +396,16 @@ export const defaultTheme: RendererTheme = {
     panelLabelSize: "13px",
     panelValueSize: "12px",
   },
+  control: {
+    height: "44px",
+    fontSize: "15px",
+    labelSize: "12px",
+    yearMinWidth: "110px",
+    periodMinWidth: "150px",
+    swatchWidth: "64px",
+    optionColor: "#0b3350",
+    optionBackground: "#eaf6fb",
+  },
   radii: {
     card: "24px",
     popover: "22px",
@@ -443,6 +465,7 @@ export function resolveTheme(
     connector: mergeGroup(base.connector, overrides.connector),
     popover: mergeGroup(base.popover, overrides.popover),
     score: mergeGroup(base.score, overrides.score),
+    control: mergeGroup(base.control, overrides.control),
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),
