@@ -11,6 +11,13 @@ export default defineConfig({
       "@AppsWyldeSolutions/vcv-renderer": fileURLToPath(
         new URL("packages/renderer/src/index.ts", import.meta.url),
       ),
+      // Before the root alias, which would otherwise match ".../define" first.
+      "@AppsWyldeSolutions/vcv-web-component/define": fileURLToPath(
+        new URL("packages/web-component/src/define.ts", import.meta.url),
+      ),
+      "@AppsWyldeSolutions/vcv-web-component": fileURLToPath(
+        new URL("packages/web-component/src/index.ts", import.meta.url),
+      ),
     },
   },
   test: {

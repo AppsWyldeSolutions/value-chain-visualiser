@@ -1,6 +1,7 @@
 import { createShell } from "@AppsWyldeSolutions/vcv-renderer";
 import { renderFull, renderScoreCard } from "./views/scorecard.js";
 import { renderElement } from "./views/element.js";
+import { renderReact } from "./views/react.js";
 import { renderVisual } from "./views/visual.js";
 import { renderChain } from "./views/chain.js";
 import { renderCards } from "./views/cards.js";
@@ -18,6 +19,7 @@ const VIEWS: Record<string, (app: HTMLElement) => void> = {
   full: renderFull,
   visual: renderVisual,
   element: renderElement,
+  react: renderReact,
 };
 
 const app = document.getElementById("app");
