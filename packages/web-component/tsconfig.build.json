@@ -1,0 +1,15 @@
+{
+  // tsup's declaration bundling: not a composite project, and the internal
+  // packages resolve to source so their types are inlined without a prior tsc -b.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "@AppsWyldeSolutions/vcv-core": ["../core/src/index.ts"],
+      "@AppsWyldeSolutions/vcv-renderer": ["../renderer/src/index.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}

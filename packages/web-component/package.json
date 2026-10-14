@@ -1,29 +1,57 @@
 {
   "name": "@AppsWyldeSolutions/vcv-web-component",
   "version": "1.0.0",
-  "description": "",
-  "main": "./dist/index.js",
+  "description": "<value-chain-visualiser>: a glass-and-spheres KPI visual for business-process value chains, as a web component.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "unpkg": "./dist/vcv.iife.js",
+  "jsdelivr": "./dist/vcv.iife.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./define": {
+      "import": {
+        "types": "./dist/define.d.ts",
+        "default": "./dist/define.js"
+      },
+      "require": {
+        "types": "./dist/define.d.cts",
+        "default": "./dist/define.cjs"
+      }
+    },
+    "./browser": "./dist/vcv.iife.js",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
   "sideEffects": [
-    "./dist/index.js"
+    "./dist/define.js",
+    "./dist/define.cjs"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\" && tsup",
+    "prepack": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "kpi",
+    "value-chain"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
+  "devDependencies": {
     "@AppsWyldeSolutions/vcv-core": "^1.0.0",
     "@AppsWyldeSolutions/vcv-renderer": "^1.0.0"
   }

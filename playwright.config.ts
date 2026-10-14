@@ -5,6 +5,7 @@ const baseURL = `http://localhost:${port}`;
 
 export default defineConfig({
   testDir: "apps/playground/e2e",
+  globalSetup: "./apps/playground/e2e/global-setup.ts",
   fullyParallel: true,
   // The blurred glass is costly to rasterise; more workers than this and
   // screenshots start timing out on a busy machine.

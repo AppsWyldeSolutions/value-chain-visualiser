@@ -1,4 +1,4 @@
-import "@AppsWyldeSolutions/vcv-web-component";
+import "@AppsWyldeSolutions/vcv-web-component/define";
 
 // <value-chain-visualiser> loading a fixture over HTTP: the playground serves
 // fixtures/ as static files. ?src=<file> picks which one.

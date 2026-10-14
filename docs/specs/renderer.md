@@ -501,12 +501,14 @@ from.
 
 ## Web component
 
-Package `@AppsWyldeSolutions/vcv-web-component`. Importing it registers
-`<value-chain-visualiser>` (or call `defineValueChainVisualiser()`).
+Package `@AppsWyldeSolutions/vcv-web-component`. Importing its `./define`
+entry registers `<value-chain-visualiser>`. The root entry registers nothing:
+it exports the element class and `defineValueChainVisualiser()` for hosts that
+register when they choose.
 
 ```html
 <script type="module">
-  import "@AppsWyldeSolutions/vcv-web-component";
+  import "@AppsWyldeSolutions/vcv-web-component/define";
 </script>
 <value-chain-visualiser
   data-src="/data/bobos-big-block.json"
@@ -548,3 +550,32 @@ because browsers ignore them inside a shadow root.
 
 All three bubble and cross the shadow boundary (`composed`), so a listener on
 the document hears them.
+
+### Package
+
+`npm install @AppsWyldeSolutions/vcv-web-component` is the only install. The
+build (tsup) bundles core and the renderer in, so the package has no runtime
+dependencies.
+
+| Entry       | Files                                                         | Registers the element |
+| ----------- | ------------------------------------------------------------- | --------------------- |
+| `.`         | `dist/index.js` (ESM), `dist/index.cjs` (CJS), `.d.ts/.d.cts` | No                    |
+| `./define`  | `dist/define.js`, `dist/define.cjs`, `.d.ts/.d.cts`           | Yes                   |
+| `./browser` | `dist/vcv.iife.js`, one minified file for a `<script>` tag    | Yes                   |
+
+- **Tree-shaking.** `sideEffects` lists only `dist/define.js` and
+  `dist/define.cjs`, so a bundler can drop whatever a host imports from `.`
+  and does not use. `./define` imports the root entry rather than a copy of
+  it, so both entries share one element class.
+- **Script tag.** The IIFE build registers the element and puts the exports on
+  `window.ValueChainVisualiser`:
+
+  ```html
+  <script src="https://unpkg.com/@AppsWyldeSolutions/vcv-web-component/dist/vcv.iife.js"></script>
+  <value-chain-visualiser data-src="/data.json"></value-chain-visualiser>
+  ```
+
+- **Fonts.** The renderer embeds its fonts, so their licences ship in
+  `dist/licenses`.
+- **Browsers only.** Loading any entry needs `HTMLElement`, so the package
+  does not load in Node without a DOM such as jsdom.
