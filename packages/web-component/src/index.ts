@@ -1,5 +1,5 @@
-import { defineValueChainVisualiser } from "./element.js";
-
+// Side-effect free: importing this registers nothing. Import "./define" (the
+// package's "./define" entry) or call defineValueChainVisualiser() for that.
 export {
   defineValueChainVisualiser,
   rowsFromJson,
@@ -7,6 +7,3 @@ export {
   ValueChainVisualiserElement,
 } from "./element.js";
 export type { VcvChangeDetail, VcvSelectDetail } from "./element.js";
-
-// Importing the package is enough to use <value-chain-visualiser>.
-defineValueChainVisualiser();
