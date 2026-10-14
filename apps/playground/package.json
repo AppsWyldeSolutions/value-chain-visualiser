@@ -11,10 +11,10 @@
   "private": "true",
   "type": "module",
   "dependencies": {
-    "@AppsWyldeSolutions/vcv-core": "^1.0.0",
-    "@AppsWyldeSolutions/vcv-react": "^1.0.0",
-    "@AppsWyldeSolutions/vcv-renderer": "^1.0.0",
-    "@AppsWyldeSolutions/vcv-web-component": "^1.0.0",
+    "@appswyldesolutions/vcv-core": "^1.0.0",
+    "@appswyldesolutions/vcv-react": "^1.0.0",
+    "@appswyldesolutions/vcv-renderer": "^1.0.0",
+    "@appswyldesolutions/vcv-web-component": "^1.0.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

@@ -8,7 +8,7 @@ import {
   type KpiRow,
   type NodeModel,
   type ValueChainVisualiserModel,
-} from "@AppsWyldeSolutions/vcv-core";
+} from "@appswyldesolutions/vcv-core";
 import { describe, expect, it } from "vitest";
 import { cardNode } from "./card.js";
 import { createScoreCard, isScoreCard } from "./scoreCard.js";

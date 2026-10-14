@@ -1,4 +1,4 @@
-import type { Theme } from "@AppsWyldeSolutions/vcv-core";
+import type { Theme } from "@appswyldesolutions/vcv-core";
 
 /** One light ray slanting down from the surface. */
 export interface OceanRay {

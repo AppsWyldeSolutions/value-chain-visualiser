@@ -49,7 +49,7 @@ describe("the npm package", () => {
     expect(outputs.length).toBeGreaterThanOrEqual(BUILT.length);
     for (const file of outputs) {
       expect(readFileSync(dist(file), "utf8"), file).not.toMatch(
-        /@AppsWyldeSolutions\/vcv-/,
+        /@appswyldesolutions\/vcv-/i,
       );
     }
   });

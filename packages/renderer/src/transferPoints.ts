@@ -1,4 +1,4 @@
-import type { NodeModel } from "@AppsWyldeSolutions/vcv-core";
+import type { NodeModel } from "@appswyldesolutions/vcv-core";
 import { nodeShortName, onTargetText } from "./card.js";
 import type { Box } from "./connectorShape.js";
 import { createKpi } from "./kpi.js";

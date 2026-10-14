@@ -3,7 +3,7 @@ import type { Plugin } from "esbuild";
 import { defineConfig } from "tsup";
 
 // Core and the renderer are bundled in, so consumers install one package.
-const noExternal = [/^@AppsWyldeSolutions\/vcv-/];
+const noExternal = [/^@appswyldesolutions\/vcv-/];
 
 // The define entry imports the root entry's built file rather than bundling
 // its own copy, so "." and "./define" share one element class in ESM and CJS.

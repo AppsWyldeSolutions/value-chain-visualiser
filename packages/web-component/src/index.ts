@@ -8,4 +8,4 @@ export {
 } from "./element.js";
 export type { VcvChangeDetail, VcvSelectDetail } from "./element.js";
 // So hosts and wrappers can type the rows property without installing core.
-export type { KpiRow } from "@AppsWyldeSolutions/vcv-core";
+export type { KpiRow } from "@appswyldesolutions/vcv-core";

@@ -3,7 +3,7 @@ import {
   type EvaluatedKpi,
   type KpiRow,
   type NodeModel,
-} from "@AppsWyldeSolutions/vcv-core";
+} from "@appswyldesolutions/vcv-core";
 import { createCard } from "./card.js";
 import { createConnectors } from "./connectors.js";
 import { createControls, type ControlsValue } from "./controls.js";

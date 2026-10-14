@@ -1,4 +1,4 @@
-import type { EvaluatedKpi, NodeModel } from "@AppsWyldeSolutions/vcv-core";
+import type { EvaluatedKpi, NodeModel } from "@appswyldesolutions/vcv-core";
 import { createFrame, createRow, primaryRowLabel, type Card } from "./card.js";
 
 const SCORECARD = /Scorecard$/;

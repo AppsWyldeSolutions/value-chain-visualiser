@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import type {
   KpiRow,
   ValueChainVisualiserElement,
-} from "@AppsWyldeSolutions/vcv-web-component";
+} from "@appswyldesolutions/vcv-web-component";
 import { ValueChainVisualiser } from "./index.js";
 
 const ROWS: KpiRow[] = [];

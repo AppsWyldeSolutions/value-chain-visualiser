@@ -1,5 +1,5 @@
 {
-  "name": "@AppsWyldeSolutions/vcv-react",
+  "name": "@appswyldesolutions/vcv-react",
   "version": "1.0.0",
   "description": "React wrapper for <value-chain-visualiser>: a glass-and-spheres KPI visual for business-process value chains.",
   "type": "module",
@@ -24,7 +24,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\" && tsup",
+    "build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true,maxRetries:10,retryDelay:200})\" && tsup",
     "prepack": "npm run build"
   },
   "keywords": [
@@ -36,7 +36,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@AppsWyldeSolutions/vcv-web-component": "^1.0.0"
+    "@appswyldesolutions/vcv-web-component": "^1.0.0"
   },
   "peerDependencies": {
     "react": ">=18"

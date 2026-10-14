@@ -1,16 +1,16 @@
 # Using the visual in React, Vue and Angular
 
 The visual is one custom element, `<value-chain-visualiser>`, from
-`@AppsWyldeSolutions/vcv-web-component` (see the "Web component" section of
+`@appswyldesolutions/vcv-web-component` (see the "Web component" section of
 `docs/specs/renderer.md` for its attributes, events and package entries).
 
-- **React** has a typed wrapper, `@AppsWyldeSolutions/vcv-react`.
+- **React** has a typed wrapper, `@appswyldesolutions/vcv-react`.
 - **Vue and Angular** use the tag directly, after a line of setup each, below.
 
 Two rules hold in every framework:
 
 1. **Register the element before the framework sets `rows`.** Import
-   `@AppsWyldeSolutions/vcv-web-component/define` before the app mounts. If
+   `@appswyldesolutions/vcv-web-component/define` before the app mounts. If
    `rows` is set on the tag before it is registered, it lands as a plain
    property on the element, hiding the element's own `rows` setter, and
    nothing draws. The React wrapper takes care of this itself.
@@ -22,7 +22,7 @@ Two rules hold in every framework:
 ## React
 
 ```sh
-npm install @AppsWyldeSolutions/vcv-react
+npm install @appswyldesolutions/vcv-react
 ```
 
 `react` (18 or later) is a peer dependency. The wrapper depends on the web
@@ -33,7 +33,7 @@ import {
   ValueChainVisualiser,
   type KpiRow,
   type VcvSelectDetail,
-} from "@AppsWyldeSolutions/vcv-react";
+} from "@appswyldesolutions/vcv-react";
 
 export function Chain({ rows }: { rows: KpiRow[] }) {
   return (
@@ -80,7 +80,7 @@ and draws the visual.
 import {
   ValueChainVisualiser,
   type KpiRow,
-} from "@AppsWyldeSolutions/vcv-react";
+} from "@appswyldesolutions/vcv-react";
 import { getKpiRows } from "@/lib/kpis"; // your data, as KpiRow[]
 
 export default async function Page() {
@@ -105,7 +105,7 @@ import { useRouter } from "next/navigation";
 import {
   ValueChainVisualiser,
   type KpiRow,
-} from "@AppsWyldeSolutions/vcv-react";
+} from "@appswyldesolutions/vcv-react";
 
 export function Chain({ rows }: { rows: KpiRow[] }) {
   const router = useRouter();
@@ -145,7 +145,7 @@ Register the element before mounting (rule 1):
 
 ```ts
 // main.ts
-import "@AppsWyldeSolutions/vcv-web-component/define";
+import "@appswyldesolutions/vcv-web-component/define";
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -160,7 +160,7 @@ others as `data-*` attributes:
 import type {
   KpiRow,
   VcvSelectDetail,
-} from "@AppsWyldeSolutions/vcv-web-component";
+} from "@appswyldesolutions/vcv-web-component";
 
 defineProps<{ rows: KpiRow[] }>();
 function onSelect(event: Event) {
@@ -191,11 +191,11 @@ Allow unknown elements in the component that uses the tag with
 ```ts
 // chain.component.ts
 import { Component, CUSTOM_ELEMENTS_SCHEMA, input } from "@angular/core";
-import "@AppsWyldeSolutions/vcv-web-component/define";
+import "@appswyldesolutions/vcv-web-component/define";
 import type {
   KpiRow,
   VcvSelectDetail,
-} from "@AppsWyldeSolutions/vcv-web-component";
+} from "@appswyldesolutions/vcv-web-component";
 
 @Component({
   selector: "app-chain",
@@ -227,5 +227,5 @@ export class ChainComponent {
   declares the component instead.
 - With Angular SSR, the top-level import breaks the server build (rule 2).
   Load it in the browser only, for example
-  `afterNextRender(() => import("@AppsWyldeSolutions/vcv-web-component/define"))`,
+  `afterNextRender(() => import("@appswyldesolutions/vcv-web-component/define"))`,
   and bind `rows` only once that promise has resolved.

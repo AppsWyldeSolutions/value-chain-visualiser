@@ -1,4 +1,4 @@
-import { createCard, createShell } from "@AppsWyldeSolutions/vcv-renderer";
+import { createCard, createShell } from "@appswyldesolutions/vcv-renderer";
 import { loadProcesses, SELECTION } from "./processes.js";
 
 export function renderCards(app: HTMLElement): void {

@@ -5,7 +5,7 @@ import {
   buildModel,
   fromLongRows,
   type NodeModel,
-} from "@AppsWyldeSolutions/vcv-core";
+} from "@appswyldesolutions/vcv-core";
 import { afterEach, describe, expect, it } from "vitest";
 import { createCard } from "./card.js";
 import { createConnectors } from "./connectors.js";
