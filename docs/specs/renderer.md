@@ -5,8 +5,9 @@ and `textContent`, never `innerHTML`, and makes no network calls. The look
 follows `docs/prototype/Main.dc.html`.
 
 This file currently covers the shell (issue #6), the sphere (issue #7), the
-card (issue #8) and the responsive grid and connectors (issue #9). The
-Score Card, popovers and header controls are added by their own issues.
+card (issue #8), the responsive grid and connectors (issue #9) and the
+transfer points popover (issue #10). The Score Card and header controls are
+added by their own issues.
 
 ## Theme
 
@@ -23,7 +24,8 @@ prototype's values.
 | `glass`     | `cardBackground`, `cardBorder`, `cardShadow`, `blur`, `saturate`, `line`, `pillBackground`, `pillBorder`, `controlBackground`, `controlBorder`                                                                                                                                                                                                          |
 | `sphere`    | `size`, `glass`, `shadow`, `ringWidth`, `ringOpacity`, `emptyRing`, `glowScale`, `glowOpacity`, `tint`, `liquidTint`, `liquidTopOpacity`, `liquidBottomOpacity`, `meniscusTint`, `meniscusOpacity`, `meniscusScale`, `highlight`, `highlightLow`                                                                                                        |
 | `card`      | `padding`, `gap`, `minHeight`, `headerHeight`, `eyebrowSize`, `titleSize`, `pillSize`, `rowLabelSize`, `primarySphereSize`, `primarySlot`, `primaryPercentSize`, `primaryLabelSize`, `primaryValueSize`, `satelliteSphereSize`, `satelliteSlot`, `satelliteMinSlot`, `satelliteGap`, `satellitePercentSize`, `satelliteLabelSize`, `satelliteValueSize` |
-| `connector` | `stroke`, `strokeWidth`, `dash`, `head`, `headLength`, `headWidth`, `cornerRadius`, `startGap`, `rowAnchor`                                                                                                                                                                                                                                             |
+| `connector` | `stroke`, `strokeWidth`, `dash`, `head`, `headLength`, `headWidth`, `cornerRadius`, `startGap`, `rowAnchor`, `hitPadding`                                                                                                                                                                                                                               |
+| `popover`   | `width`, `padding`, `background`, `border`, `shadow`, `blur`, `offset`, `margin`, `titleSize`, `tagSize`                                                                                                                                                                                                                                                |
 | `radii`     | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                                           |
 | `layout`    | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `cardMinWidth`, `columnGap`, `rowGap`                                                                                                                                                                                                   |
 | `type`      | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                                              |
@@ -301,3 +303,52 @@ from where the two cards actually are.
   positions. Here the column count is responsive and the arrows are measured.
 - Every arrow starts `connector.startGap` (2px) clear of the card it leaves.
   The prototype did this for the across arrows only.
+
+## Transfer points popover
+
+An arrow leaving a card that `createCard` built, whose node has transfer
+points, shows them in a popover. `createConnectors` sets this up itself; there
+is nothing extra for a host to call.
+
+```
+.vcv-transfers                 layer over the grid, beside the arrows' SVG
+  .vcv-transfer                hover and focus target over one arrow
+    .vcv-popover               hidden until the target is hovered or focused
+      .vcv-popover__panel
+        .vcv-popover__header   "Transfer points", "BU1 · P2 → BU2 · P3", pill
+        .vcv-popover__items    one .vcv-kpi--satellite per transfer point,
+                               with its sub-group as a .vcv-kpi__tag heading
+```
+
+- **Target.** A `tabindex="0"` element with `role="group"` and the name
+  `Transfer points from BU1 · P2 to BU2 · P3`. It covers the arrow's whole
+  run, `connector.hitPadding` (16px) either side of it: the column gap for an
+  across arrow, the row gap for a down or turn arrow. Targets are in chain
+  order for the Tab key.
+- **Names.** A link is referred to by its code when its name has one
+  (`BU1 · P2`) and by its whole name otherwise (`Score Card`);
+  `nodeShortName` does this.
+- **Opening.** The popover shows while the target is hovered or has keyboard
+  focus. The popover is inside the target and touches it, so the pointer can
+  move from the arrow onto the popover without closing it.
+- **Escape** closes it, whether it was opened by hover or by focus, and it
+  stays closed until the target is entered or focused again. Focus does not
+  move.
+- **Position.** Centred below the target; above it when there is no room
+  below; and always at least `popover.margin` (8px) inside both the viewport
+  and the visual's own box, which clips its overflow. `popoverPosition` holds
+  this rule with no DOM. The position is recalculated on scroll, on resize and
+  when the arrows are redrawn.
+- **Contents.** The pill counts the transfer points on target, as the card's
+  pill does for its KPIs. Each transfer point is drawn like a satellite KPI
+  with its sub-group (`CornerStones`, `Unit Rate`, ...) above the sphere.
+- A target, with its open state and focus, survives a redraw of the arrows.
+  It is rebuilt only if the arrow comes to point at a different card.
+
+### Differences from the prototype
+
+- The prototype shows the popover with CSS `:hover` and `:focus` alone, so
+  Escape does nothing and the popover can run off the screen. Here both are
+  handled in script.
+- The prototype's turn arrow responds over a fixed 960px strip; here the
+  target follows the measured arrow.

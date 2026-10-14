@@ -15,6 +15,8 @@ export interface ConnectorMetrics {
   headLength: number;
   headWidth: number;
   cornerRadius: number;
+  /** How far the hover and focus target extends either side of an arrow. */
+  hitPadding: number;
 }
 
 /**
@@ -32,6 +34,8 @@ export interface ConnectorShape {
   head: string;
   /** Where the arrow head touches the next card's edge. */
   tip: { x: number; y: number };
+  /** The area around the arrow that responds to hover and focus. */
+  hit: Box;
 }
 
 // Half a pixel of slack when comparing edges that layout rounded differently.
@@ -55,6 +59,8 @@ export function connectorShape(
     return null;
   }
   const { rowAnchor, startGap, headLength, headWidth, cornerRadius } = metrics;
+  // Either side of the arrow's own width.
+  const reach = headWidth / 2 + metrics.hitPadding;
   const fromRight = from.left + from.width;
   const fromBottom = from.top + from.height;
   const toRight = to.left + to.width;
@@ -77,6 +83,12 @@ export function connectorShape(
       line: `M${n(fromRight + startGap)} ${n(y)} H${n(baseX)}`,
       head: `${n(baseX)},${n(y - halfHead)} ${n(tipX)},${n(y)} ${n(baseX)},${n(y + halfHead)}`,
       tip: { x: n(tipX), y: n(y) },
+      hit: {
+        left: n(fromRight),
+        top: n(y - reach),
+        width: n(to.left - fromRight),
+        height: n(reach * 2),
+      },
     };
   }
 
@@ -92,6 +104,13 @@ export function connectorShape(
   const baseY = tipY - headLength;
   const head = `${n(endX - halfHead)},${n(baseY)} ${n(endX + halfHead)},${n(baseY)} ${n(endX)},${n(tipY)}`;
   const tip = { x: n(endX), y: n(tipY) };
+  // The row gap, as wide as the arrow's whole run.
+  const hit = {
+    left: n(Math.min(startX, endX) - reach),
+    top: n(fromBottom),
+    width: n(Math.abs(endX - startX) + reach * 2),
+    height: n(to.top - fromBottom),
+  };
 
   if (Math.abs(endX - startX) < EPSILON) {
     return {
@@ -99,6 +118,7 @@ export function connectorShape(
       line: `M${n(startX)} ${n(startY)} V${n(baseY)}`,
       head,
       tip,
+      hit,
     };
   }
 
@@ -123,5 +143,6 @@ export function connectorShape(
       `Q${n(endX)} ${n(midY)} ${n(endX)} ${n(midY + radius)} V${n(baseY)}`,
     head,
     tip,
+    hit,
   };
 }

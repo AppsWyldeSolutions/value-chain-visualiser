@@ -12,6 +12,15 @@ export interface NodeHeading {
 
 let nextTitleId = 0;
 
+// The node each card was built from, so the connectors can show the
+// transfer points handed from one card to the next.
+const cardNodes = new WeakMap<Element, NodeModel>();
+
+/** The node a card element was built from, if `createCard` built it. */
+export function cardNode(card: Element): NodeModel | undefined {
+  return cardNodes.get(card);
+}
+
 /**
  * Splits a node name into the small line above a card's title and the title:
  * "BU1 - P2: Product Development" -> "BU1 · P2" / "Product Development",
@@ -29,8 +38,17 @@ export function nodeHeading(node: string): NodeHeading {
   return { eyebrow: "Link", title: node };
 }
 
+/**
+ * The short way to refer to a node in running text: its code when the name
+ * has one ("BU1 · P2"), otherwise the whole name ("Score Card").
+ */
+export function nodeShortName(node: string): string {
+  const { eyebrow, title } = nodeHeading(node);
+  return title === node ? node : eyebrow;
+}
+
 /** "3 of 5 on target", counting only KPIs that have data. */
-function onTargetText(kpis: EvaluatedKpi[]): string {
+export function onTargetText(kpis: EvaluatedKpi[]): string {
   const measured = kpis.filter((kpi) => kpi.hasData);
   if (measured.length === 0) return "No data";
   const met = measured.filter((kpi) => kpi.met).length;
@@ -94,5 +112,6 @@ export function createCard(doc: Document, node: NodeModel): Card {
   const element = el(doc, "article", "vcv-card");
   element.setAttribute("aria-labelledby", titleEl.id);
   element.append(header, rows);
+  cardNodes.set(element, node);
   return { element };
 }
