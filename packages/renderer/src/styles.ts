@@ -320,7 +320,8 @@ export const stylesText = `
 .vcv-card__heading {
   min-width: 0;
 }
-.vcv-card__eyebrow {
+.vcv-card__eyebrow,
+.vcv-popover__eyebrow {
   font-size: var(--vcv-card-eyebrow-size);
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -338,7 +339,8 @@ export const stylesText = `
   line-height: 1.15;
   font-weight: 700;
 }
-.vcv-card__pill {
+.vcv-card__pill,
+.vcv-popover__pill {
   flex-shrink: 0;
   padding: 5px 11px;
   border: 1px solid var(--vcv-glass-pill-border);
@@ -457,6 +459,89 @@ export const stylesText = `
 }
 .vcv-connector__head {
   fill: var(--vcv-connector-head);
+}
+
+.vcv-transfers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.vcv-transfer {
+  position: absolute;
+  border-radius: 8px;
+  cursor: help;
+  pointer-events: auto;
+}
+.vcv-transfer--open {
+  z-index: 1;
+}
+.vcv-popover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: var(--vcv-popover-width);
+  max-width: calc(100vw - 2 * var(--vcv-popover-margin));
+  padding: var(--vcv-popover-offset) 0;
+  cursor: default;
+}
+.vcv-popover[hidden] {
+  display: none;
+}
+.vcv-popover__panel {
+  box-sizing: border-box;
+  padding: var(--vcv-popover-padding);
+  border: 1px solid var(--vcv-popover-border);
+  border-radius: var(--vcv-radii-popover);
+  color: var(--vcv-colors-text);
+  background: var(--vcv-popover-background);
+  -webkit-backdrop-filter: blur(var(--vcv-popover-blur))
+    saturate(var(--vcv-glass-saturate));
+  backdrop-filter: blur(var(--vcv-popover-blur))
+    saturate(var(--vcv-glass-saturate));
+  box-shadow: var(--vcv-popover-shadow);
+}
+.vcv-popover__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.vcv-popover__heading {
+  min-width: 0;
+}
+.vcv-popover__title {
+  margin-top: 4px;
+  font-family: var(--vcv-fonts-display);
+  font-size: var(--vcv-popover-title-size);
+  line-height: 1.15;
+  font-weight: 700;
+}
+.vcv-popover__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--vcv-card-gap) var(--vcv-card-satellite-gap);
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--vcv-glass-line);
+}
+.vcv-kpi__tag {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  width: 100%;
+  /* Two lines, so the spheres line up whether a tag wraps or not. */
+  min-height: 2.5em;
+  font-size: var(--vcv-popover-tag-size);
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--vcv-colors-text-label);
 }
 
 @media (prefers-reduced-motion: reduce) {

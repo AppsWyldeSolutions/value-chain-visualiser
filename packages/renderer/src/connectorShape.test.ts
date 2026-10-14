@@ -8,6 +8,7 @@ const METRICS = {
   headLength: 14,
   headWidth: 16,
   cornerRadius: 10,
+  hitPadding: 16,
 };
 
 function card(left: number, top: number, width = 424, height = 608): Box {
@@ -17,7 +18,7 @@ function card(left: number, top: number, width = 424, height = 608): Box {
 describe("connectorShape", () => {
   it("runs across the gap to the next card in the same row", () => {
     const shape = connectorShape(card(0, 0), card(480, 0), METRICS);
-    expect(shape).toEqual({
+    expect(shape).toMatchObject({
       kind: "across",
       line: "M426 187 H466",
       head: "466,179 480,187 466,195",
@@ -37,7 +38,7 @@ describe("connectorShape", () => {
 
   it("turns back to the first card of the next row", () => {
     const shape = connectorShape(card(960, 0), card(0, 672), METRICS);
-    expect(shape).toEqual({
+    expect(shape).toMatchObject({
       kind: "turn",
       line: "M1172 610 V630 Q1172 640 1162 640 H222 Q212 640 212 650 V658",
       head: "204,658 220,658 212,672",
@@ -56,7 +57,7 @@ describe("connectorShape", () => {
 
   it("drops straight down to the card below in a single column", () => {
     const shape = connectorShape(card(0, 0), card(0, 672), METRICS);
-    expect(shape).toEqual({
+    expect(shape).toMatchObject({
       kind: "down",
       line: "M212 610 V658",
       head: "204,658 220,658 212,672",
@@ -66,7 +67,7 @@ describe("connectorShape", () => {
 
   it("drops straight down onto a card that spans the row below", () => {
     const shape = connectorShape(card(480, 0), card(0, 672, 1384), METRICS);
-    expect(shape).toEqual({
+    expect(shape).toMatchObject({
       kind: "down",
       line: "M692 610 V658",
       head: "684,658 700,658 692,672",
@@ -82,6 +83,30 @@ describe("connectorShape", () => {
       "M692 610 V622 Q692 628 686 628 H218 Q212 628 212 634 V634",
     );
     expect(shape?.tip).toEqual({ x: 212, y: 648 });
+  });
+
+  it("gives each arrow a hit area around its whole run", () => {
+    // Across: the column gap, the arrow head's 16px plus 16px either side.
+    expect(connectorShape(card(0, 0), card(480, 0), METRICS)?.hit).toEqual({
+      left: 424,
+      top: 163,
+      width: 56,
+      height: 48,
+    });
+    // Down: the row gap, 48px wide about the arrow.
+    expect(connectorShape(card(0, 0), card(0, 672), METRICS)?.hit).toEqual({
+      left: 188,
+      top: 608,
+      width: 48,
+      height: 64,
+    });
+    // Turn: the row gap, from one end of the run to the other.
+    expect(connectorShape(card(960, 0), card(0, 672), METRICS)?.hit).toEqual({
+      left: 188,
+      top: 608,
+      width: 1008,
+      height: 64,
+    });
   });
 
   it("draws nothing between cards that overlap or run backwards", () => {

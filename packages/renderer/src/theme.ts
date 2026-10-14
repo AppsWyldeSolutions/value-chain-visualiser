@@ -128,6 +128,23 @@ export interface RendererTheme extends Theme {
     startGap: string;
     /** How far down a card the arrow to its right-hand neighbour sits. */
     rowAnchor: string;
+    /** How far the hover and focus target extends either side of an arrow. */
+    hitPadding: string;
+  };
+  /** The transfer points popover shown from an arrow. */
+  popover: {
+    width: string;
+    padding: string;
+    background: string;
+    border: string;
+    shadow: string;
+    blur: string;
+    /** Clear space between the arrow's target and the panel. */
+    offset: string;
+    /** Least distance kept from the edge of the viewport. Must be in px. */
+    margin: string;
+    titleSize: string;
+    tagSize: string;
   };
   radii: {
     card: string;
@@ -311,6 +328,21 @@ export const defaultTheme: RendererTheme = {
     cornerRadius: "10px",
     startGap: "2px",
     rowAnchor: "187px",
+    hitPadding: "16px",
+  },
+  popover: {
+    width: "420px",
+    padding: "18px",
+    background:
+      "linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)), rgba(6, 44, 78, 0.93)",
+    border: "rgba(255, 255, 255, 0.28)",
+    shadow:
+      "0 30px 60px -12px rgba(0, 20, 45, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.26)",
+    blur: "24px",
+    offset: "8px",
+    margin: "8px",
+    titleSize: "18px",
+    tagSize: "11px",
   },
   radii: {
     card: "24px",
@@ -369,6 +401,7 @@ export function resolveTheme(
     sphere: mergeGroup(base.sphere, overrides.sphere),
     card: mergeGroup(base.card, overrides.card),
     connector: mergeGroup(base.connector, overrides.connector),
+    popover: mergeGroup(base.popover, overrides.popover),
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),

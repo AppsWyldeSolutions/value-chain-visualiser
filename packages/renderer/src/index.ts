@@ -12,10 +12,12 @@ export type {
 } from "./theme.js";
 export { stylesText } from "./styles.js";
 export { fontFaceCss } from "./fonts.generated.js";
-export { createCard, nodeHeading } from "./card.js";
+export { createCard, nodeHeading, nodeShortName } from "./card.js";
 export type { Card, NodeHeading } from "./card.js";
 export { createConnectors } from "./connectors.js";
 export type { Connectors } from "./connectors.js";
+export { popoverPosition } from "./popoverPosition.js";
+export type { PopoverPosition } from "./popoverPosition.js";
 export { connectorShape } from "./connectorShape.js";
 export type {
   Box,
