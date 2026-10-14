@@ -4,9 +4,9 @@ Vanilla DOM/SVG/CSS only. The renderer builds elements with `createElement`
 and `textContent`, never `innerHTML`, and makes no network calls. The look
 follows `docs/prototype/Main.dc.html`.
 
-This file currently covers the shell (issue #6), the sphere (issue #7) and
-the card (issue #8). The Score Card, connectors, popovers and header
-controls are added by their own issues.
+This file currently covers the shell (issue #6), the sphere (issue #7), the
+card (issue #8) and the responsive grid and connectors (issue #9). The
+Score Card, popovers and header controls are added by their own issues.
 
 ## Theme
 
@@ -14,19 +14,20 @@ controls are added by their own issues.
 every other colour, size and font the renderer uses. `defaultTheme` holds the
 prototype's values.
 
-| Group    | Tokens                                                                                                                                                                                                                                                                                                                              |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| (top)    | `fillColor`, `shortfallColor`                                                                                                                                                                                                                                                                                                       |
-| `fonts`  | `body`, `display`                                                                                                                                                                                                                                                                                                                   |
-| `colors` | `text`, `textSoft`, `textMuted`, `textLabel`, `focusRing`                                                                                                                                                                                                                                                                           |
-| `ocean`  | `base`, `gradient`, `rayColor`, `rayTop`, `rayAngle`, `rays[]`, `waveColor`, `waveHeight`, `waveOpacities[]`, `bubbleBorder`, `bubbleBorderWidth`, `bubbleFill`, `bubbles[]`                                                                                                                                                        |
-| `glass`  | `cardBackground`, `cardBorder`, `cardShadow`, `blur`, `saturate`, `line`, `pillBackground`, `pillBorder`, `controlBackground`, `controlBorder`                                                                                                                                                                                      |
-| `sphere` | `size`, `glass`, `shadow`, `ringWidth`, `ringOpacity`, `emptyRing`, `glowScale`, `glowOpacity`, `tint`, `liquidTint`, `liquidTopOpacity`, `liquidBottomOpacity`, `meniscusTint`, `meniscusOpacity`, `meniscusScale`, `highlight`, `highlightLow`                                                                                    |
-| `card`   | `padding`, `gap`, `minHeight`, `headerHeight`, `eyebrowSize`, `titleSize`, `pillSize`, `rowLabelSize`, `primarySphereSize`, `primarySlot`, `primaryPercentSize`, `primaryLabelSize`, `primaryValueSize`, `satelliteSphereSize`, `satelliteSlot`, `satelliteGap`, `satellitePercentSize`, `satelliteLabelSize`, `satelliteValueSize` |
-| `radii`  | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                       |
-| `layout` | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `columnGap`, `rowGap`                                                                                                                                                                                               |
-| `type`   | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                          |
-| `motion` | `bubbleDuration`, `bubbleRise`, `flowDuration`                                                                                                                                                                                                                                                                                      |
+| Group       | Tokens                                                                                                                                                                                                                                                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (top)       | `fillColor`, `shortfallColor`                                                                                                                                                                                                                                                                                                                           |
+| `fonts`     | `body`, `display`                                                                                                                                                                                                                                                                                                                                       |
+| `colors`    | `text`, `textSoft`, `textMuted`, `textLabel`, `focusRing`                                                                                                                                                                                                                                                                                               |
+| `ocean`     | `base`, `gradient`, `rayColor`, `rayTop`, `rayAngle`, `rays[]`, `waveColor`, `waveHeight`, `waveOpacities[]`, `bubbleBorder`, `bubbleBorderWidth`, `bubbleFill`, `bubbles[]`                                                                                                                                                                            |
+| `glass`     | `cardBackground`, `cardBorder`, `cardShadow`, `blur`, `saturate`, `line`, `pillBackground`, `pillBorder`, `controlBackground`, `controlBorder`                                                                                                                                                                                                          |
+| `sphere`    | `size`, `glass`, `shadow`, `ringWidth`, `ringOpacity`, `emptyRing`, `glowScale`, `glowOpacity`, `tint`, `liquidTint`, `liquidTopOpacity`, `liquidBottomOpacity`, `meniscusTint`, `meniscusOpacity`, `meniscusScale`, `highlight`, `highlightLow`                                                                                                        |
+| `card`      | `padding`, `gap`, `minHeight`, `headerHeight`, `eyebrowSize`, `titleSize`, `pillSize`, `rowLabelSize`, `primarySphereSize`, `primarySlot`, `primaryPercentSize`, `primaryLabelSize`, `primaryValueSize`, `satelliteSphereSize`, `satelliteSlot`, `satelliteMinSlot`, `satelliteGap`, `satellitePercentSize`, `satelliteLabelSize`, `satelliteValueSize` |
+| `connector` | `stroke`, `strokeWidth`, `dash`, `head`, `headLength`, `headWidth`, `cornerRadius`, `startGap`, `rowAnchor`                                                                                                                                                                                                                                             |
+| `radii`     | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                                           |
+| `layout`    | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `cardMinWidth`, `columnGap`, `rowGap`                                                                                                                                                                                                   |
+| `type`      | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                                              |
+| `motion`    | `bubbleDuration`, `bubbleRise`, `flowDuration`                                                                                                                                                                                                                                                                                                          |
 
 ```ts
 export function resolveTheme(
@@ -205,8 +206,8 @@ article.vcv-card              aria-labelledby its title
 - **Rows.** A row with no KPIs is left out. Primary KPIs use the large sphere
   (`card.primarySphereSize`), satellites the small one
   (`card.satelliteSphereSize`). Each KPI is at most its slot wide
-  (`card.primarySlot`, `card.satelliteSlot`) and shrinks to share the row
-  when there are many.
+  (`card.primarySlot`, `card.satelliteSlot`). Primary KPIs shrink to share
+  the row; satellites shrink to `card.satelliteMinSlot` and then wrap.
 - **KPI text.** The percentage is core's `label`, the name is the metric, and
   the figures are core's `pair`. A KPI without data shows `No data`, an empty
   dashed sphere and no figures.
@@ -224,3 +225,79 @@ article.vcv-card              aria-labelledby its title
   so a card with more text grows, and cards in one grid row share a height.
 - Long words in a metric name wrap (`overflow-wrap: break-word`) instead of
   being cut off at the edge of a narrow satellite slot.
+
+## Grid
+
+The shell's `.vcv-grid` chooses its own column count from its width, in CSS
+alone:
+
+- It fits as many columns as it can while keeping cards at least
+  `layout.cardMinWidth` (340px) wide, up to `layout.columns` (3).
+- A container narrower than one minimum-width card gets a single column as
+  wide as the container.
+- The count follows the container, not the window, so it works the same in a
+  Power BI visual, a web component or a full page.
+
+| Viewport | Content width | Columns | Card width |
+| -------- | ------------- | ------- | ---------- |
+| 1440px   | 1384px        | 3       | 424px      |
+| 900px    | 844px         | 2       | 394px      |
+| 480px    | 424px         | 1       | 424px      |
+
+Inside a card, a satellite row wraps onto another line once its KPIs would
+be narrower than `card.satelliteMinSlot` (70px), so the spheres never
+overlap: five satellites sit on one line in a 424px card and break 4 + 1 in
+a 394px one.
+
+## Connectors
+
+```ts
+export function createConnectors(grid: HTMLElement): Connectors;
+export interface Connectors {
+  element: SVGSVGElement; // the overlay the arrows are drawn in
+  update(): void; // re-measure and redraw
+  destroy(): void;
+}
+
+// The geometry on its own, with no DOM:
+export function connectorShape(
+  from: Box,
+  to: Box,
+  metrics: ConnectorMetrics,
+): ConnectorShape | null;
+```
+
+`createConnectors` adds an `aria-hidden` SVG overlay to the grid and draws
+one arrow from each `.vcv-card` child to the next, in document order. Because
+the columns come from CSS, the arrows are measured: each one is worked out
+from where the two cards actually are.
+
+| Kind     | When                                               | Path                                                              |
+| -------- | -------------------------------------------------- | ----------------------------------------------------------------- |
+| `across` | The next card is to the right in the same row      | Across the column gap, `connector.rowAnchor` down the card        |
+| `down`   | The next card is below and covers this one's width | Straight down the row gap from this card's centre                 |
+| `turn`   | The next card is below, in another column          | Down, along the middle of the row gap, down to that card's centre |
+
+- Every arrow head ends exactly on the next card's edge: its left edge for
+  `across`, its top edge for `down` and `turn`.
+- A `down` arrow is what a single-column layout uses, and what the last
+  process will use to reach a card that spans the row (the Score Card).
+- No arrow is drawn when a card has no size yet, the two cards overlap, or
+  the next card comes before this one.
+- The overlay redraws when the grid or any card changes size
+  (`ResizeObserver`) and when cards are added or removed
+  (`MutationObserver`). Call `update()` after any other change that moves
+  cards.
+- Measurements are divided by any CSS scale a host applies to the visual, so
+  the arrows stay on the edges when it is zoomed.
+- Arrow sizes come from the theme's `connector` group and must be pixel
+  lengths, because they are read back as numbers.
+- The dashes flow along the line (`vcv-flow`) and stop under
+  `prefers-reduced-motion: reduce`.
+
+### Differences from the prototype
+
+- The prototype is three fixed columns with arrows at hand-placed pixel
+  positions. Here the column count is responsive and the arrows are measured.
+- Every arrow starts `connector.startGap` (2px) clear of the card it leaves.
+  The prototype did this for the across arrows only.

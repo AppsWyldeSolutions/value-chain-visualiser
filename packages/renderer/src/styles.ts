@@ -153,8 +153,29 @@ export const stylesText = `
   gap: var(--vcv-layout-controls-gap);
 }
 .vcv-grid {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(var(--vcv-layout-columns), minmax(0, 1fr));
+  /* As many columns as fit cards of at least card-min-width, up to
+     layout-columns of them. The 0.1px keeps rounding from dropping one. */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      min(
+        100%,
+        max(
+          var(--vcv-layout-card-min-width),
+          calc(
+            (
+                100% - (var(--vcv-layout-columns) - 1) *
+                  var(--vcv-layout-column-gap)
+              ) /
+              var(--vcv-layout-columns) - 0.1px
+          )
+        )
+      ),
+      1fr
+    )
+  );
   column-gap: var(--vcv-layout-column-gap);
   row-gap: var(--vcv-layout-row-gap);
 }
@@ -356,7 +377,8 @@ export const stylesText = `
   align-items: flex-start;
 }
 .vcv-kpi-row--satellite .vcv-kpi-row__items {
-  gap: var(--vcv-card-satellite-gap);
+  flex-wrap: wrap;
+  gap: var(--vcv-card-gap) var(--vcv-card-satellite-gap);
 }
 
 .vcv-kpi {
@@ -373,7 +395,8 @@ export const stylesText = `
 }
 .vcv-kpi--satellite {
   --vcv-sphere-size: var(--vcv-card-satellite-sphere-size);
-  flex: 0 1 var(--vcv-card-satellite-slot);
+  flex: 1 1 var(--vcv-card-satellite-min-slot);
+  max-width: var(--vcv-card-satellite-slot);
 }
 .vcv-kpi__percent {
   margin-top: 4px;
@@ -414,6 +437,26 @@ export const stylesText = `
 }
 .vcv-kpi--satellite .vcv-kpi__value {
   font-size: var(--vcv-card-satellite-value-size);
+}
+
+.vcv-connectors {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.vcv-connector__line {
+  fill: none;
+  stroke: var(--vcv-connector-stroke);
+  stroke-width: var(--vcv-connector-stroke-width);
+  stroke-linecap: round;
+  stroke-dasharray: var(--vcv-connector-dash);
+}
+.vcv-connector__head {
+  fill: var(--vcv-connector-head);
 }
 
 @media (prefers-reduced-motion: reduce) {
