@@ -152,6 +152,55 @@ export const stylesText = `
   align-items: flex-end;
   gap: var(--vcv-layout-controls-gap);
 }
+.vcv-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--vcv-layout-controls-gap);
+}
+.vcv-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--vcv-control-label-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vcv-colors-text-muted);
+}
+.vcv-control__input {
+  box-sizing: border-box;
+  height: var(--vcv-control-height);
+  border: 1px solid var(--vcv-glass-control-border);
+  border-radius: var(--vcv-radii-control);
+  background: var(--vcv-glass-control-background);
+  color: var(--vcv-colors-text);
+  font-family: var(--vcv-fonts-body);
+  font-size: var(--vcv-control-font-size);
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  cursor: pointer;
+}
+select.vcv-control__input {
+  padding: 0 12px;
+  color-scheme: dark;
+}
+.vcv-control__input option {
+  color: var(--vcv-control-option-color);
+  background: var(--vcv-control-option-background);
+}
+.vcv-control--year select {
+  min-width: var(--vcv-control-year-min-width);
+}
+.vcv-control--period select {
+  min-width: var(--vcv-control-period-min-width);
+}
+input[type="color"].vcv-control__input {
+  width: var(--vcv-control-swatch-width);
+  padding: 4px;
+}
+
 .vcv-grid {
   position: relative;
   display: grid;

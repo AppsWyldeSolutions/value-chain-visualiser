@@ -19,6 +19,11 @@ const FIXTURES: Record<string, () => KpiRow[]> = {
 };
 const DEFAULT_FIXTURE = "bobos-big-block";
 
+/** Every row of a fixture, for all periods. */
+export function loadRows(fixture = DEFAULT_FIXTURE): KpiRow[] {
+  return (FIXTURES[fixture] ?? FIXTURES[DEFAULT_FIXTURE])?.() ?? [];
+}
+
 /** Every node of a fixture for the selected period, in chain order. */
 export function loadNodes(fixture = DEFAULT_FIXTURE): NodeModel[] {
   const rows = (FIXTURES[fixture] ?? FIXTURES[DEFAULT_FIXTURE])?.() ?? [];

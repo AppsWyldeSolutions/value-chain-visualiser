@@ -4,10 +4,10 @@ Vanilla DOM/SVG/CSS only. The renderer builds elements with `createElement`
 and `textContent`, never `innerHTML`, and makes no network calls. The look
 follows `docs/prototype/Main.dc.html`.
 
-This file currently covers the shell (issue #6), the sphere (issue #7), the
-card (issue #8), the responsive grid and connectors (issue #9), the transfer
-points popover (issue #10) and the Score Card (issue #11). The header
-controls are added by their own issue.
+This file covers the renderer as built in Step 4: the shell (issue #6), the
+sphere (#7), the card (#8), the responsive grid and connectors (#9), the
+transfer points popover (#10), the Score Card (#11) and the header controls
+with `createVisual`, which puts them together (#12).
 
 ## Theme
 
@@ -27,6 +27,7 @@ prototype's values.
 | `connector` | `stroke`, `strokeWidth`, `dash`, `head`, `headLength`, `headWidth`, `cornerRadius`, `startGap`, `rowAnchor`, `hitPadding`                                                                                                                                                                                                                               |
 | `popover`   | `width`, `padding`, `background`, `border`, `shadow`, `blur`, `offset`, `margin`, `titleSize`, `tagSize`                                                                                                                                                                                                                                                |
 | `score`     | `padding`, `gap`, `minHeight`, `primarySlot`, `primaryMinSlot`, `primaryGap`, `panelMinWidth`, `panelPadding`, `panelBackground`, `panelSphereSize`, `panelSlot`, `panelMinSlot`, `panelGap`, `panelPercentSize`, `panelLabelSize`, `panelValueSize`                                                                                                    |
+| `control`   | `height`, `fontSize`, `labelSize`, `yearMinWidth`, `periodMinWidth`, `swatchWidth`, `optionColor`, `optionBackground`                                                                                                                                                                                                                                   |
 | `radii`     | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                                           |
 | `layout`    | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `cardMinWidth`, `columnGap`, `rowGap`                                                                                                                                                                                                   |
 | `type`      | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                                              |
@@ -403,3 +404,87 @@ article.vcv-card.vcv-card--score     spans every column of the grid
   that.
 - The prototype's "How to read a sphere" key, which sits in the grid beside
   the last row of cards, is not part of this issue and is not built.
+
+## Header controls
+
+```ts
+export function createControls(
+  doc: Document,
+  options: {
+    years: number[];
+    periods: string[];
+    value: ControlsValue; // { year, period, fillColor, shortfallColor }
+    onChange(change: Partial<ControlsValue>): void;
+  },
+): Controls; // { element, update(value, years?) }
+```
+
+Four labelled controls, as in the prototype: **Year** and **Period** selects,
+then **Fill colour** and **Shortfall colour** pickers (named
+`Fill colour when target is met` and `Fill colour when target is missed` for
+assistive tech).
+
+- `onChange` receives only the field the viewer changed. Selects report on
+  `change`; pickers report on `input`, so spheres recolour while a colour is
+  being dragged.
+- `update` shows a new value without calling `onChange`.
+- A colour picker only takes `#rrggbb`. A three-digit hex is spelt out; any
+  other CSS colour in the theme leaves the picker showing its last value.
+- Sizes and the colours of a select's open list come from the theme's
+  `control` group; borders and backgrounds from `glass.controlBorder` and
+  `glass.controlBackground`.
+
+## Visual
+
+```ts
+export function createVisual(
+  container: HTMLElement,
+  options: {
+    rows: KpiRow[];
+    selection?: { year: number; period: string }; // default: defaultSelection(rows)
+    theme?: ThemeOverrides;
+    eyebrow?: string;
+    title?: string;
+    onChange?(state: VisualState): void; // year, period, fillColor, shortfallColor
+  },
+): Visual;
+
+export interface Visual {
+  root: HTMLElement;
+  setRows(rows: KpiRow[]): void;
+  setSelection(selection: { year: number; period: string }): void;
+  setTheme(overrides: ThemeOverrides): void;
+  state(): VisualState;
+  destroy(): void;
+}
+
+export function defaultSelection(rows: KpiRow[]): {
+  year: number;
+  period: string;
+};
+```
+
+`createVisual` puts the pieces together: the shell, the controls in its
+header, a card for every link (`createScoreCard` for the Score Card,
+`createCard` for the rest) and `createConnectors` over the grid. It is what a
+host such as the web component wraps.
+
+- **Period or Year changed**: the cards are rebuilt from `rows` with
+  `buildModel` for the new selection. The arrows redraw themselves because
+  the grid's cards changed.
+- **Colour changed**: the theme's `fillColor` or `shortfallColor` is updated.
+  Spheres take their colour from CSS custom properties, so they recolour
+  without being rebuilt.
+- **Every link is always drawn.** A KPI with no row for the selection (a
+  year the data does not cover, say) is drawn as having no data, as the
+  prototype does, rather than disappearing.
+- **Subtitle**: `August 2026 · 53 KPIs measured against budget`, counting the
+  KPIs on the cards that have data (not the transfer points), or
+  `August 2027 · No data loaded for this period`.
+- **Default selection**: the latest year in the rows and, in it, the last
+  month with any actuals. January if no month has actuals.
+- **Year choices**: the years in the rows plus one either side, as in the
+  prototype.
+- `onChange` is called only for the viewer's own changes, with the whole new
+  state. `setRows`, `setSelection` and `setTheme` update the visual and its
+  controls without calling it, so a host can feed state back in safely.
