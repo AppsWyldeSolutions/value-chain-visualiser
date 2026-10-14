@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import {
   ValueChainVisualiser,
   type VcvSelectDetail,
-} from "@AppsWyldeSolutions/vcv-react";
+} from "@appswyldesolutions/vcv-react";
 import { loadRows } from "./processes.js";
 
 const ROWS = loadRows();

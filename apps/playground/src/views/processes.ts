@@ -4,8 +4,8 @@ import {
   fromWideRecords,
   type KpiRow,
   type NodeModel,
-} from "@AppsWyldeSolutions/vcv-core";
-import { isScoreCard } from "@AppsWyldeSolutions/vcv-renderer";
+} from "@appswyldesolutions/vcv-core";
+import { isScoreCard } from "@appswyldesolutions/vcv-renderer";
 import longFixture from "@fixtures/bobos-big-block.json";
 import wideFixture from "@fixtures/main-dc-prototype.json";
 

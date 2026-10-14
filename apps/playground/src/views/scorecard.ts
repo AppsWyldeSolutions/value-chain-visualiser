@@ -4,7 +4,7 @@ import {
   createScoreCard,
   createShell,
   isScoreCard,
-} from "@AppsWyldeSolutions/vcv-renderer";
+} from "@appswyldesolutions/vcv-renderer";
 import { loadNodes, SELECTION } from "./processes.js";
 
 function fixtureName(): string | undefined {

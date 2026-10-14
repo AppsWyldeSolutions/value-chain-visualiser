@@ -206,7 +206,7 @@ describe("<value-chain-visualiser>", () => {
 
   it("takes rows set directly, without fetching", async () => {
     const element = mount();
-    const { fromLongRows } = await import("@AppsWyldeSolutions/vcv-core");
+    const { fromLongRows } = await import("@appswyldesolutions/vcv-core");
     element.rows = fromLongRows(
       (JSON.parse(LONG) as { records: unknown[] }).records,
     );

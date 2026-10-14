@@ -501,14 +501,14 @@ from.
 
 ## Web component
 
-Package `@AppsWyldeSolutions/vcv-web-component`. Importing its `./define`
+Package `@appswyldesolutions/vcv-web-component`. Importing its `./define`
 entry registers `<value-chain-visualiser>`. The root entry registers nothing:
 it exports the element class and `defineValueChainVisualiser()` for hosts that
 register when they choose.
 
 ```html
 <script type="module">
-  import "@AppsWyldeSolutions/vcv-web-component/define";
+  import "@appswyldesolutions/vcv-web-component/define";
 </script>
 <value-chain-visualiser
   data-src="/data/bobos-big-block.json"
@@ -516,7 +516,7 @@ register when they choose.
 ></value-chain-visualiser>
 ```
 
-For React (with a typed wrapper, `@AppsWyldeSolutions/vcv-react`), Next.js,
+For React (with a typed wrapper, `@appswyldesolutions/vcv-react`), Next.js,
 Vue and Angular, see `docs/frameworks.md`.
 
 The element wraps `createVisual` in an open shadow root, so its styles and
@@ -556,7 +556,7 @@ the document hears them.
 
 ### Package
 
-`npm install @AppsWyldeSolutions/vcv-web-component` is the only install. The
+`npm install @appswyldesolutions/vcv-web-component` is the only install. The
 build (tsup) bundles core and the renderer in, so the package has no runtime
 dependencies.
 
@@ -574,7 +574,7 @@ dependencies.
   `window.ValueChainVisualiser`:
 
   ```html
-  <script src="https://unpkg.com/@AppsWyldeSolutions/vcv-web-component/dist/vcv.iife.js"></script>
+  <script src="https://unpkg.com/@appswyldesolutions/vcv-web-component/dist/vcv.iife.js"></script>
   <value-chain-visualiser data-src="/data.json"></value-chain-visualiser>
   ```
 

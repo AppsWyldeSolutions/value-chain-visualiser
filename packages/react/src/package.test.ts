@@ -41,7 +41,7 @@ describe("the vcv-react package", () => {
     "imports the web component and React rather than bundling them (%s)",
     (file) => {
       const code = read(file);
-      expect(code).toContain("@AppsWyldeSolutions/vcv-web-component/define");
+      expect(code).toContain("@appswyldesolutions/vcv-web-component/define");
       // The element's own code (shadow root, fetch) stays in its package.
       expect(code).not.toContain("attachShadow");
       expect(code).toMatch(/from "react"|require\("react"\)/);
@@ -51,7 +51,7 @@ describe("the vcv-react package", () => {
   it("has React as a peer and the web component as a dependency", () => {
     expect(pkg.peerDependencies).toEqual({ react: ">=18" });
     expect(Object.keys(pkg.dependencies)).toEqual([
-      "@AppsWyldeSolutions/vcv-web-component",
+      "@appswyldesolutions/vcv-web-component",
     ]);
   });
 
@@ -72,7 +72,7 @@ describe("the vcv-react package", () => {
   it("re-exports the web component's types instead of redefining them", () => {
     const types = read("index.d.ts");
     expect(types).toMatch(
-      /from ['"]@AppsWyldeSolutions\/vcv-web-component['"]/,
+      /from ['"]@appswyldesolutions\/vcv-web-component['"]/,
     );
     expect(types).not.toMatch(/interface VcvSelectDetail/);
   });

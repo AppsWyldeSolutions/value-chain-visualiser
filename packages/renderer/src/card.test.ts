@@ -6,7 +6,7 @@ import {
   fromLongRows,
   type KpiRow,
   type NodeModel,
-} from "@AppsWyldeSolutions/vcv-core";
+} from "@appswyldesolutions/vcv-core";
 import { describe, expect, it } from "vitest";
 import { createCard, nodeHeading } from "./card.js";
 

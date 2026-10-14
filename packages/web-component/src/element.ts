@@ -3,7 +3,7 @@ import {
   fromWideRecords,
   type EvaluatedKpi,
   type KpiRow,
-} from "@AppsWyldeSolutions/vcv-core";
+} from "@appswyldesolutions/vcv-core";
 import {
   createVisual,
   defaultSelection,
@@ -12,7 +12,7 @@ import {
   type ThemeOverrides,
   type Visual,
   type VisualState,
-} from "@AppsWyldeSolutions/vcv-renderer";
+} from "@appswyldesolutions/vcv-renderer";
 
 export const TAG_NAME = "value-chain-visualiser";
 

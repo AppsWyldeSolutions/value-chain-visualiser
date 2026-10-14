@@ -1,4 +1,4 @@
-import type { EvaluatedKpi } from "@AppsWyldeSolutions/vcv-core";
+import type { EvaluatedKpi } from "@appswyldesolutions/vcv-core";
 import { createSphere } from "./sphere.js";
 
 /** Which row a KPI sits in; it decides the sphere and text sizes. */

@@ -7,4 +7,4 @@ export type {
   KpiRow,
   VcvChangeDetail,
   VcvSelectDetail,
-} from "@AppsWyldeSolutions/vcv-web-component";
+} from "@appswyldesolutions/vcv-web-component";

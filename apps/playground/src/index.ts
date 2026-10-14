@@ -1,4 +1,4 @@
-import { createShell } from "@AppsWyldeSolutions/vcv-renderer";
+import { createShell } from "@appswyldesolutions/vcv-renderer";
 import { renderFull, renderScoreCard } from "./views/scorecard.js";
 import { renderElement } from "./views/element.js";
 import { renderReact } from "./views/react.js";

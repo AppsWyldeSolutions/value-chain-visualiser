@@ -15,7 +15,7 @@ import type {
   ValueChainVisualiserElement,
   VcvChangeDetail,
   VcvSelectDetail,
-} from "@AppsWyldeSolutions/vcv-web-component";
+} from "@appswyldesolutions/vcv-web-component";
 
 // Not TAG_NAME from the web component: importing it would load the element.
 const TAG = "value-chain-visualiser";
@@ -76,7 +76,7 @@ export function ValueChainVisualiser({
 
   useEffect(() => {
     let mounted = true;
-    import("@AppsWyldeSolutions/vcv-web-component/define").then(
+    import("@appswyldesolutions/vcv-web-component/define").then(
       () => {
         if (mounted) setDefined(true);
       },

@@ -2,7 +2,7 @@ import {
   createCard,
   createConnectors,
   createShell,
-} from "@AppsWyldeSolutions/vcv-renderer";
+} from "@appswyldesolutions/vcv-renderer";
 import { loadProcesses, SELECTION } from "./processes.js";
 
 // The process cards joined by their arrows; resize the window to see the

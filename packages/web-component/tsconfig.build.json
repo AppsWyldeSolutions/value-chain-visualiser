@@ -6,8 +6,8 @@
     "composite": false,
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@AppsWyldeSolutions/vcv-core": ["../core/src/index.ts"],
-      "@AppsWyldeSolutions/vcv-renderer": ["../renderer/src/index.ts"]
+      "@appswyldesolutions/vcv-core": ["../core/src/index.ts"],
+      "@appswyldesolutions/vcv-renderer": ["../renderer/src/index.ts"]
     }
   },
   "include": ["src"],

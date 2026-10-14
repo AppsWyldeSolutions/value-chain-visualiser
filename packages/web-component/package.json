@@ -1,5 +1,5 @@
 {
-  "name": "@AppsWyldeSolutions/vcv-web-component",
+  "name": "@appswyldesolutions/vcv-web-component",
   "version": "1.0.0",
   "description": "<value-chain-visualiser>: a glass-and-spheres KPI visual for business-process value chains, as a web component.",
   "type": "module",
@@ -40,7 +40,7 @@
     "./dist/define.cjs"
   ],
   "scripts": {
-    "build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\" && tsup",
+    "build": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true,maxRetries:10,retryDelay:200})\" && tsup",
     "prepack": "npm run build"
   },
   "keywords": [
@@ -52,7 +52,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@AppsWyldeSolutions/vcv-core": "^1.0.0",
-    "@AppsWyldeSolutions/vcv-renderer": "^1.0.0"
+    "@appswyldesolutions/vcv-core": "^1.0.0",
+    "@appswyldesolutions/vcv-renderer": "^1.0.0"
   }
 }

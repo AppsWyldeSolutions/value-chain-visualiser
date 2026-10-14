@@ -8,14 +8,14 @@
     "jsx": "react-jsx",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@AppsWyldeSolutions/vcv-web-component": [
+      "@appswyldesolutions/vcv-web-component": [
         "../web-component/src/index.ts"
       ],
-      "@AppsWyldeSolutions/vcv-web-component/define": [
+      "@appswyldesolutions/vcv-web-component/define": [
         "../web-component/src/define.ts"
       ],
-      "@AppsWyldeSolutions/vcv-core": ["../core/src/index.ts"],
-      "@AppsWyldeSolutions/vcv-renderer": ["../renderer/src/index.ts"]
+      "@appswyldesolutions/vcv-core": ["../core/src/index.ts"],
+      "@appswyldesolutions/vcv-renderer": ["../renderer/src/index.ts"]
     }
   },
   "include": ["src"],

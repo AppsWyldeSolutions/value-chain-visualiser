@@ -1,4 +1,4 @@
-import { createVisual } from "@AppsWyldeSolutions/vcv-renderer";
+import { createVisual } from "@appswyldesolutions/vcv-renderer";
 import { loadRows } from "./processes.js";
 
 // The whole visual, controls included; ?fixture=<name> picks the data.

@@ -2,8 +2,8 @@ import {
   evaluate,
   formatValues,
   type KpiRow,
-} from "@AppsWyldeSolutions/vcv-core";
-import { createShell, createSphere } from "@AppsWyldeSolutions/vcv-renderer";
+} from "@appswyldesolutions/vcv-core";
+import { createShell, createSphere } from "@appswyldesolutions/vcv-renderer";
 
 interface Example {
   state: string;

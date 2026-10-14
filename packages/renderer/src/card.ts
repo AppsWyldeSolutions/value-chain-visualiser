@@ -1,4 +1,4 @@
-import type { EvaluatedKpi, NodeModel } from "@AppsWyldeSolutions/vcv-core";
+import type { EvaluatedKpi, NodeModel } from "@appswyldesolutions/vcv-core";
 import { createKpi, type KpiVariant } from "./kpi.js";
 
 export interface Card {

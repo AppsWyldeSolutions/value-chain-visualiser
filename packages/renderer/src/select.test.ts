@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { fromLongRows, type EvaluatedKpi } from "@AppsWyldeSolutions/vcv-core";
+import { fromLongRows, type EvaluatedKpi } from "@appswyldesolutions/vcv-core";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { kpiOf } from "./kpi.js";
 import { createVisual } from "./visual.js";
