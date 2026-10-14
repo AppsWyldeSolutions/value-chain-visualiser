@@ -6,8 +6,9 @@ follows `docs/prototype/Main.dc.html`.
 
 This file covers the renderer as built in Step 4: the shell (issue #6), the
 sphere (#7), the card (#8), the responsive grid and connectors (#9), the
-transfer points popover (#10), the Score Card (#11) and the header controls
-with `createVisual`, which puts them together (#12).
+transfer points popover (#10), the Score Card (#11), the header controls
+with `createVisual`, which puts them together (#12), and the web component
+that wraps it (#13).
 
 ## Theme
 
@@ -488,3 +489,62 @@ host such as the web component wraps.
 - `onChange` is called only for the viewer's own changes, with the whole new
   state. `setRows`, `setSelection` and `setTheme` update the visual and its
   controls without calling it, so a host can feed state back in safely.
+
+### Selecting a KPI
+
+`createVisual`'s `onSelect(kpi)` option is called with the `EvaluatedKpi`
+when a sphere is clicked, on a card or in a transfer points popover. Clicks
+elsewhere (the KPI's name or figures, a card title) are ignored. When
+`onSelect` is given the root gets `vcv-root--selectable` and the spheres show
+a pointer. `kpiOf(element)` returns the KPI a `.vcv-kpi` element was built
+from.
+
+## Web component
+
+Package `@AppsWyldeSolutions/vcv-web-component`. Importing it registers
+`<value-chain-visualiser>` (or call `defineValueChainVisualiser()`).
+
+```html
+<script type="module">
+  import "@AppsWyldeSolutions/vcv-web-component";
+</script>
+<value-chain-visualiser
+  data-src="/data/bobos-big-block.json"
+  data-period="July"
+></value-chain-visualiser>
+```
+
+The element wraps `createVisual` in an open shadow root, so its styles and
+the page's do not meet. Only the `@font-face` rules go in the page's head,
+because browsers ignore them inside a shadow root.
+
+| Attribute              | Meaning                                                                                                         |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `data-src`             | URL of the KPI data as JSON. Fetched when the element is on the page, and again whenever the attribute changes. |
+| `data-year`            | Year to show. Defaults to the data's latest year.                                                               |
+| `data-period`          | Month to show (`"July"`). Defaults to the latest month with actuals.                                            |
+| `data-fill-color`      | Sphere colour when a KPI is on target.                                                                          |
+| `data-shortfall-color` | Sphere colour when a KPI misses its target.                                                                     |
+
+- **Data shapes.** `data-src` may return `{ "records": [...] }` or a bare
+  array of long rows (the Power BI / API shape, as in
+  `fixtures/bobos-big-block.json`), or an array of the prototype's wide
+  records (`fixtures/main-dc-prototype.json`).
+- **Network.** `data-src` is the only network access in the project, and it
+  lives in this package alone (CLAUDE.md rule 4). Core and the renderer make
+  none. A host that already has the data sets the `rows` property to
+  `KpiRow[]` instead, and nothing is fetched.
+- **Stale replies.** If `data-src` changes, or `rows` is set, while a fetch is
+  on its way, that fetch is aborted and its reply ignored.
+- **Reconnecting.** Removing the element from the page tears the visual down.
+  Putting it back redraws from the data already loaded, without fetching
+  again.
+
+| Event        | When                                        | `detail`                                                                                      |
+| ------------ | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `vcv-select` | A sphere is clicked                         | `{ node, group, subGroup, metric, year, period, actual, budget, hasData, met, level, label }` |
+| `vcv-change` | The viewer changes Year, Period or a colour | `{ year, period, fillColor, shortfallColor }`                                                 |
+| `vcv-error`  | `data-src` cannot be fetched or read        | The `Error`                                                                                   |
+
+All three bubble and cross the shadow boundary (`composed`), so a listener on
+the document hears them.

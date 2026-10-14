@@ -11,6 +11,14 @@ function line(doc: Document, className: string, text: string): HTMLElement {
   return node;
 }
 
+// The KPI each element was built from, for hosts that react to clicks.
+const kpiElements = new WeakMap<Element, EvaluatedKpi>();
+
+/** The KPI a `.vcv-kpi` element shows, if `createKpi` built it. */
+export function kpiOf(element: Element): EvaluatedKpi | undefined {
+  return kpiElements.get(element);
+}
+
 /** The full detail of one KPI, one fact per line, for its hover tooltip. */
 export function kpiTooltip(kpi: EvaluatedKpi): string {
   const { row } = kpi;
@@ -53,5 +61,6 @@ export function createKpi(
     line(doc, "vcv-kpi__label", kpi.row.metric),
     line(doc, "vcv-kpi__value", kpi.pair),
   );
+  kpiElements.set(element, kpi);
   return element;
 }

@@ -1,11 +1,13 @@
 import {
   buildModel,
+  type EvaluatedKpi,
   type KpiRow,
   type NodeModel,
 } from "@AppsWyldeSolutions/vcv-core";
 import { createCard } from "./card.js";
 import { createConnectors } from "./connectors.js";
 import { createControls, type ControlsValue } from "./controls.js";
+import { kpiOf } from "./kpi.js";
 import { createScoreCard, isScoreCard, scoreCardKpis } from "./scoreCard.js";
 import { createShell } from "./shell.js";
 import { resolveTheme, type ThemeOverrides } from "./theme.js";
@@ -42,6 +44,11 @@ export interface VisualOptions {
   title?: string;
   /** Called when the viewer changes a control, with the whole new state. */
   onChange?(state: VisualState): void;
+  /**
+   * Called when a sphere is clicked, with the KPI it shows. When given, the
+   * spheres show a pointer.
+   */
+  onSelect?(kpi: EvaluatedKpi): void;
 }
 
 export interface Visual {
@@ -163,6 +170,18 @@ export function createVisual(
     },
   });
   shell.controls.appendChild(controls.element);
+
+  const { onSelect } = options;
+  if (onSelect) {
+    shell.root.classList.add("vcv-root--selectable");
+    // One listener for every sphere, including those in popovers.
+    shell.root.addEventListener("click", (event) => {
+      const target = event.target as Element | null;
+      const kpi = target?.closest?.(".vcv-sphere")?.closest(".vcv-kpi");
+      const selected = kpi ? kpiOf(kpi) : undefined;
+      if (selected) onSelect(selected);
+    });
+  }
 
   let cards: HTMLElement[] = [];
   const connectors = createConnectors(shell.grid);
