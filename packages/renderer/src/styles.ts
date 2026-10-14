@@ -441,6 +441,58 @@ export const stylesText = `
   font-size: var(--vcv-card-satellite-value-size);
 }
 
+.vcv-card--score {
+  grid-column: 1 / -1;
+  gap: var(--vcv-score-gap);
+  min-height: var(--vcv-score-min-height);
+  padding: var(--vcv-score-padding);
+}
+.vcv-card--score .vcv-card__rows {
+  gap: var(--vcv-score-gap);
+}
+.vcv-card--score .vcv-kpi-row--primary .vcv-kpi-row__items {
+  flex-wrap: wrap;
+  gap: var(--vcv-card-gap) var(--vcv-score-primary-gap);
+}
+.vcv-card--score .vcv-kpi--primary {
+  flex: 1 1 var(--vcv-score-primary-min-slot);
+  max-width: var(--vcv-score-primary-slot);
+}
+.vcv-card__panels {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--vcv-score-panel-min-width)), 1fr)
+  );
+  gap: var(--vcv-score-gap);
+}
+.vcv-kpi-row--panel {
+  padding: var(--vcv-score-panel-padding);
+  border: 1px solid var(--vcv-glass-line);
+  border-radius: var(--vcv-radii-panel);
+  background: var(--vcv-score-panel-background);
+}
+.vcv-kpi-row--panel .vcv-kpi-row__items {
+  flex-wrap: wrap;
+  gap: var(--vcv-card-gap) var(--vcv-score-panel-gap);
+}
+.vcv-kpi--panel {
+  --vcv-sphere-size: var(--vcv-score-panel-sphere-size);
+  flex: 1 1 var(--vcv-score-panel-min-slot);
+  max-width: var(--vcv-score-panel-slot);
+}
+.vcv-kpi--panel .vcv-kpi__percent {
+  font-size: var(--vcv-score-panel-percent-size);
+}
+.vcv-kpi--panel .vcv-kpi__label {
+  -webkit-line-clamp: 3;
+  font-size: var(--vcv-score-panel-label-size);
+  font-weight: 400;
+}
+.vcv-kpi--panel .vcv-kpi__value {
+  font-size: var(--vcv-score-panel-value-size);
+}
+
 .vcv-connectors {
   position: absolute;
   left: 0;

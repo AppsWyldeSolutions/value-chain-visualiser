@@ -2,7 +2,7 @@ import type { EvaluatedKpi } from "@AppsWyldeSolutions/vcv-core";
 import { createSphere } from "./sphere.js";
 
 /** Which row a KPI sits in; it decides the sphere and text sizes. */
-export type KpiVariant = "primary" | "satellite";
+export type KpiVariant = "primary" | "satellite" | "panel";
 
 function line(doc: Document, className: string, text: string): HTMLElement {
   const node = doc.createElement("div");

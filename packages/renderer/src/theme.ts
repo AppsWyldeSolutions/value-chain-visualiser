@@ -146,6 +146,28 @@ export interface RendererTheme extends Theme {
     titleSize: string;
     tagSize: string;
   };
+  /** The Score Card that closes the chain, where it differs from a card. */
+  score: {
+    padding: string;
+    gap: string;
+    minHeight: string;
+    /** Widest a primary KPI may be. */
+    primarySlot: string;
+    /** Narrowest it may be before the primary row wraps. */
+    primaryMinSlot: string;
+    primaryGap: string;
+    /** Panels sit side by side while each can be at least this wide. */
+    panelMinWidth: string;
+    panelPadding: string;
+    panelBackground: string;
+    panelSphereSize: string;
+    panelSlot: string;
+    panelMinSlot: string;
+    panelGap: string;
+    panelPercentSize: string;
+    panelLabelSize: string;
+    panelValueSize: string;
+  };
   radii: {
     card: string;
     popover: string;
@@ -344,6 +366,24 @@ export const defaultTheme: RendererTheme = {
     titleSize: "18px",
     tagSize: "11px",
   },
+  score: {
+    padding: "24px",
+    gap: "16px",
+    minHeight: "640px",
+    primarySlot: "300px",
+    primaryMinSlot: "160px",
+    primaryGap: "40px",
+    panelMinWidth: "300px",
+    panelPadding: "14px 12px",
+    panelBackground: "rgba(255, 255, 255, 0.06)",
+    panelSphereSize: "84px",
+    panelSlot: "150px",
+    panelMinSlot: "96px",
+    panelGap: "4px",
+    panelPercentSize: "18px",
+    panelLabelSize: "13px",
+    panelValueSize: "12px",
+  },
   radii: {
     card: "24px",
     popover: "22px",
@@ -402,6 +442,7 @@ export function resolveTheme(
     card: mergeGroup(base.card, overrides.card),
     connector: mergeGroup(base.connector, overrides.connector),
     popover: mergeGroup(base.popover, overrides.popover),
+    score: mergeGroup(base.score, overrides.score),
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),

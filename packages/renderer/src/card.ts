@@ -61,7 +61,8 @@ function el(doc: Document, tag: string, className: string): HTMLElement {
   return node;
 }
 
-function createRow(
+/** A labelled row of KPIs; the variant sets the sphere and text sizes. */
+export function createRow(
   doc: Document,
   label: string,
   kpis: EvaluatedKpi[],
@@ -76,42 +77,71 @@ function createRow(
   return row;
 }
 
+export function primaryRowLabel(primary: EvaluatedKpi[]): string {
+  return primary.length > 1 ? "Primary KPIs" : "Primary KPI";
+}
+
+/**
+ * Builds what every card shares: the glass article, its header (eyebrow,
+ * title and a pill counting how many of `counted` are on target) and an
+ * empty rows container for the caller to fill.
+ */
+export function createFrame(
+  doc: Document,
+  node: NodeModel,
+  options: {
+    eyebrow: string;
+    title: string;
+    counted: EvaluatedKpi[];
+    /** Adds `vcv-card--<modifier>` for a card with its own layout. */
+    modifier?: string;
+  },
+): { element: HTMLElement; rows: HTMLElement } {
+  const eyebrowEl = el(doc, "div", "vcv-card__eyebrow");
+  eyebrowEl.textContent = options.eyebrow;
+  const titleEl = el(doc, "h2", "vcv-card__title");
+  titleEl.id = `vcv-card-title-${++nextTitleId}`;
+  titleEl.textContent = options.title;
+  const heading = el(doc, "div", "vcv-card__heading");
+  heading.append(eyebrowEl, titleEl);
+
+  const pill = el(doc, "div", "vcv-card__pill");
+  pill.textContent = onTargetText(options.counted);
+
+  const header = el(doc, "div", "vcv-card__header");
+  header.append(heading, pill);
+  const rows = el(doc, "div", "vcv-card__rows");
+
+  const element = el(
+    doc,
+    "article",
+    options.modifier ? `vcv-card vcv-card--${options.modifier}` : "vcv-card",
+  );
+  element.setAttribute("aria-labelledby", titleEl.id);
+  element.append(header, rows);
+  cardNodes.set(element, node);
+  return { element, rows };
+}
+
 /**
  * Builds the glass card for one process: header with the on-target count,
  * the primary KPI row and the satellite KPI row. Transfer points are not
  * shown on the card; they belong to the connector's popover.
  */
 export function createCard(doc: Document, node: NodeModel): Card {
-  const { eyebrow, title } = nodeHeading(node.node);
-
-  const eyebrowEl = el(doc, "div", "vcv-card__eyebrow");
-  eyebrowEl.textContent = eyebrow;
-  const titleEl = el(doc, "h2", "vcv-card__title");
-  titleEl.id = `vcv-card-title-${++nextTitleId}`;
-  titleEl.textContent = title;
-  const heading = el(doc, "div", "vcv-card__heading");
-  heading.append(eyebrowEl, titleEl);
-
-  const pill = el(doc, "div", "vcv-card__pill");
-  pill.textContent = onTargetText([...node.primary, ...node.satellite]);
-
-  const header = el(doc, "div", "vcv-card__header");
-  header.append(heading, pill);
-
-  const rows = el(doc, "div", "vcv-card__rows");
+  const { element, rows } = createFrame(doc, node, {
+    ...nodeHeading(node.node),
+    counted: [...node.primary, ...node.satellite],
+  });
   if (node.primary.length > 0) {
-    const label = node.primary.length > 1 ? "Primary KPIs" : "Primary KPI";
-    rows.appendChild(createRow(doc, label, node.primary, "primary"));
+    rows.appendChild(
+      createRow(doc, primaryRowLabel(node.primary), node.primary, "primary"),
+    );
   }
   if (node.satellite.length > 0) {
     rows.appendChild(
       createRow(doc, "Satellite KPIs", node.satellite, "satellite"),
     );
   }
-
-  const element = el(doc, "article", "vcv-card");
-  element.setAttribute("aria-labelledby", titleEl.id);
-  element.append(header, rows);
-  cardNodes.set(element, node);
   return { element };
 }

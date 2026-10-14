@@ -25,6 +25,7 @@ export type {
   ConnectorMetrics,
   ConnectorShape,
 } from "./connectorShape.js";
+export { createScoreCard, isScoreCard } from "./scoreCard.js";
 export { createSphere } from "./sphere.js";
 export type { Sphere, SphereOptions, SphereState } from "./sphere.js";
 export { createShell, installFonts, installStyles } from "./shell.js";
