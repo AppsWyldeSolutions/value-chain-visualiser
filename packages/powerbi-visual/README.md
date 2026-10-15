@@ -34,16 +34,42 @@ npm links them to `packages/core` and `packages/renderer`, and their built
 
 ## Data
 
-For now the visual takes one data role, **KPI fields**, as a table, and maps
-it with a stub: each `KpiRow` field (`node`, `nodeOrder`, `group`,
-`subGroup`, `metric`, `operator`, `valueType`, `symbol`, `year`, `period`,
-`actual`, `budget`) is read from the column of the same name, in any case.
-The real mapping from a report's own columns replaces it.
+One data role per `KpiRow` field, mapped as a table (`capabilities.json`).
+`src/rows.ts`'s `rowsFromTable` reads each field from the column bound to
+its role, so the report's own field names and column order do not matter.
+
+| Role        | Kind     | KpiRow field | In the API's long rows      |
+| ----------- | -------- | ------------ | --------------------------- |
+| Node        | Grouping | `node`       | `link`                      |
+| Node order  | Grouping | `nodeOrder`  | (order of first appearance) |
+| Group       | Grouping | `group`      | `group`                     |
+| Sub-group   | Grouping | `subGroup`   | `subGroup`                  |
+| Metric      | Grouping | `metric`     | `metric`                    |
+| Operator    | Grouping | `operator`   | `kpiOperator`               |
+| Value type  | Grouping | `valueType`  | `metricValueType`           |
+| Unit symbol | Grouping | `symbol`     | `kpiSymbol`                 |
+| Year        | Grouping | `year`       | `year`                      |
+| Period      | Grouping | `period`     | the month                   |
+| Actual      | Measure  | `actual`     | the month's actual          |
+| Budget      | Measure  | `budget`     | the month's budget          |
+
+- **Required:** Node, Group, Metric, Year and Period. Until all five are
+  bound the visual draws an empty chain.
+- **Optional:** the rest. Unbound, Operator reads as `Equal`, Value type as
+  `Number`, Node order as 0, and Actual and Budget as no data.
+- **Value type is its own role.** It cannot be derived from the unit symbol:
+  some `%` KPIs are counted as numbers in the source data (for example
+  "90% of Corner Stones achieved by Process").
+- **Up to 30,000 rows** (`dataReductionAlgorithm.window.count`); Power BI's
+  default stops at 1,000, which a year of KPIs exceeds.
+- **`privileges` stays empty.** Asking for web access would block
+  certification.
 
 ## Tests
 
-- `src/*.test.ts` (Vitest, in the root `npm run test`): the stub mapping, and
-  the `Visual` class in jsdom.
+- `src/*.test.ts` (Vitest, in the root `npm run test`): the table mapping
+  (against `fixtures/bobos-big-block.json`), `capabilities.json`, and the
+  `Visual` class in jsdom.
 - `test/e2e/powerbi-visual.spec.ts` (the `powerbi-visual` project in the root
   `npm run e2e`): loads the packaged bundle (`.tmp/drop/visual.js`) in
   Chromium the way Power BI does, through the plugin it registers on
