@@ -45,12 +45,22 @@ const manifests = new Map(
     return [dir, JSON.parse(readFileSync(file, "utf8")) as Manifest] as const;
   }),
 );
-const packages = [...manifests];
-const dirOf = new Map(packages.map(([dir, pkg]) => [pkg.name, dir]));
+// The Power BI visual ships as a .pbiviz file, never to npm.
+const PRIVATE = ["powerbi-visual"];
+const packages = [...manifests].filter(([dir]) => !PRIVATE.includes(dir));
+const dirOf = new Map([...manifests].map(([dir, pkg]) => [pkg.name, dir]));
+
+describe("private packages", () => {
+  it.each(PRIVATE)("%s is private, so npm never publishes it", (dir) => {
+    expect(manifests.get(dir)?.private).toBe(true);
+  });
+});
 
 describe("publishable packages", () => {
   it("are released in an order that lists each package once", () => {
-    expect([...RELEASE_ORDER].sort()).toEqual([...dirs].sort());
+    expect([...RELEASE_ORDER].sort()).toEqual(
+      packages.map(([dir]) => dir).sort(),
+    );
   });
 
   it.each(packages)("%s publishes publicly", (_, pkg) => {

@@ -1,0 +1,34 @@
+{
+  "name": "@appswyldesolutions/vcv-powerbi-visual",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Value Chain Visualiser as a Power BI custom visual: a glass-and-spheres KPI visual for business-process value chains.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppsWyldeSolutions/value-chain-visualiser.git",
+    "directory": "packages/powerbi-visual"
+  },
+  "author": "Wylde Solutions Pty Ltd",
+  "license": "MIT",
+  "scripts": {
+    "pbiviz": "pbiviz",
+    "start": "pbiviz start",
+    "package": "pbiviz package",
+    "build": "pbiviz package",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@appswyldesolutions/vcv-core": "^1.0.0",
+    "@appswyldesolutions/vcv-renderer": "^1.0.0",
+    "powerbi-visuals-api": "5.11.1",
+    "powerbi-visuals-utils-formattingmodel": "6.0.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "eslint": "^9.11.1",
+    "eslint-plugin-powerbi-visuals": "^1.0.0",
+    "powerbi-visuals-tools": "^7.2.1",
+    "typescript": "^6.0.3"
+  }
+}

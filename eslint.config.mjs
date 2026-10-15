@@ -9,6 +9,7 @@ export default tseslint.config(
       "**/node_modules/**",
       "**/.next/**",
       ".consumers/**",
+      "**/.tmp/**",
       "docs/prototype/**",
       "fixtures/**",
       "**/*.md",

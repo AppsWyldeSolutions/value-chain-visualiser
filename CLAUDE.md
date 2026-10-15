@@ -12,6 +12,8 @@ web component (any Node.js web app) and Power BI custom visual.
   apps/consumers/* (Express, Next.js) and runs their Playwright smoke tests.
   Needs network access; not part of `npm run e2e`. Add `-- --registry` to
   install the released versions from public npm instead (after a release).
+- `npm start -w packages/powerbi-visual` serves the Power BI visual
+  (`pbiviz start`); see packages/powerbi-visual/README.md.
 - `npm run release` publishes to npm (maintainer only, after `npm login`).
   See docs/releasing.md.
 
