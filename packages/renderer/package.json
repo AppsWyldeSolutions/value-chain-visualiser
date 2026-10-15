@@ -1,7 +1,7 @@
 {
   "name": "@appswyldesolutions/vcv-renderer",
   "version": "1.0.0",
-  "description": "",
+  "description": "Vanilla DOM/SVG/CSS renderer for the Value Chain Visualiser: glass cards, spheres, connectors and controls drawn from the core model.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -12,14 +12,34 @@
   },
   "files": [
     "dist",
-    "licenses"
+    "licenses",
+    "CHANGELOG.md",
+    "!dist/**/*.test.*",
+    "!dist/**/testHelpers.*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node -e \"for (const p of ['dist','tsconfig.tsbuildinfo']) require('node:fs').rmSync(p,{recursive:true,force:true,maxRetries:10,retryDelay:200})\" && tsc -b",
+    "prepack": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "kpi",
+    "value-chain",
+    "svg"
+  ],
+  "author": "Wylde Solutions Pty Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppsWyldeSolutions/value-chain-visualiser.git",
+    "directory": "packages/renderer"
+  },
+  "homepage": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/tree/main/packages/renderer#readme",
+  "bugs": {
+    "url": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "dependencies": {
     "@appswyldesolutions/vcv-core": "^1.0.0"

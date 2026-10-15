@@ -20,7 +20,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "sideEffects": false,
   "scripts": {
@@ -33,8 +34,20 @@
     "kpi",
     "value-chain"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Wylde Solutions Pty Ltd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppsWyldeSolutions/value-chain-visualiser.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/tree/main/packages/react#readme",
+  "bugs": {
+    "url": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@appswyldesolutions/vcv-web-component": "^1.0.0"
   },

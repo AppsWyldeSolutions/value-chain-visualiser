@@ -20,3 +20,13 @@ app (no lockfile, nothing saved to `package.json`), builds the Next.js app and
 runs `apps/consumers/e2e` with `playwright.consumers.config.ts`. It needs
 network access to install `express` and `next`, so it is not part of
 `npm run e2e`.
+
+After a release, check what customers get from public npm instead:
+
+```sh
+npm run e2e:consumers -- --registry
+```
+
+That installs this checkout's versions from `registry.npmjs.org` with an
+empty cache and no user `.npmrc`, so no auth token, and the same smoke tests
+check each package came from the registry. See `docs/releasing.md`.
