@@ -6,3 +6,5 @@ fixtures/**
 **/*.generated.ts
 .consumers
 **/.next
+**/.tmp
+**/webpack.statistics.*.html

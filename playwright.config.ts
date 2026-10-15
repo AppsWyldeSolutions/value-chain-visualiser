@@ -24,6 +24,16 @@ export default defineConfig({
         viewport: { width: 1440, height: 900 },
       },
     },
+    {
+      // The packaged Power BI visual (packages/powerbi-visual/.tmp/drop),
+      // built by npm run build.
+      name: "powerbi-visual",
+      testDir: "test/e2e",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1440, height: 900 },
+      },
+    },
   ],
   webServer: {
     command: `npm run dev -w apps/playground -- --port ${port} --strictPort`,

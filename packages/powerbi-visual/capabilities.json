@@ -1,0 +1,21 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "KPI fields",
+      "description": "One column per KpiRow field: node, nodeOrder, group, subGroup, metric, operator, valueType, symbol, year, period, actual, budget.",
+      "name": "fields",
+      "kind": "GroupingOrMeasure"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "table": {
+        "rows": {
+          "select": [{ "for": { "in": "fields" } }],
+          "dataReductionAlgorithm": { "top": { "count": 30000 } }
+        }
+      }
+    }
+  ],
+  "privileges": []
+}

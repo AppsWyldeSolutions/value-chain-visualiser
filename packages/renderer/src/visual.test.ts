@@ -226,4 +226,40 @@ describe("createVisual", () => {
     visual.destroy();
     expect(container.childElementCount).toBe(0);
   });
+
+  describe("showControls: false", () => {
+    it("draws no Year, Period or colour controls, nor their slot", () => {
+      const { root } = mount({ showControls: false });
+      expect(root.querySelector(".vcv-controls")).toBeNull();
+      expect(root.querySelector(".vcv-header__controls")).toBeNull();
+      expect(root.querySelector(".vcv-header__title")).not.toBeNull();
+    });
+
+    it("draws the cards, arrows and spheres as it would with controls", () => {
+      const selection = { year: 2026, period: "July" };
+      const shown = mount({ selection }).root;
+      const { root } = mount({ selection, showControls: false });
+      expect(cards(root)).toHaveLength(9);
+      expect(root.querySelector(".vcv-grid > .vcv-connectors")).not.toBeNull();
+      expect(root.querySelectorAll(".vcv-sphere").length).toBe(
+        shown.querySelectorAll(".vcv-sphere").length,
+      );
+      expect(subtitle(root)).toBe(subtitle(shown));
+    });
+
+    it("still takes rows, selection and theme from the host", () => {
+      const { root, visual, onChange } = mount({ showControls: false });
+      visual.setSelection({ year: 2026, period: "March" });
+      visual.setTheme({ fillColor: "#123456" });
+      visual.setRows(ROWS.filter((row: KpiRow) => row.node.startsWith("BU1")));
+      expect(cards(root)).toHaveLength(1);
+      expect(tooltipPeriods(root)).toEqual(new Set(["March 2026"]));
+      expect(visual.state()).toMatchObject({
+        year: 2026,
+        period: "March",
+        fillColor: "#123456",
+      });
+      expect(onChange).not.toHaveBeenCalled();
+    });
+  });
 });

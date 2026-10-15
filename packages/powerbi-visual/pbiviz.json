@@ -1,0 +1,26 @@
+{
+  "visual": {
+    "name": "valueChainVisualiser",
+    "displayName": "Value Chain Visualiser",
+    "guid": "valueChainVisualiserE2BF44FFB3A34F0CB6D06A2CB79AE14B",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "A glass-and-spheres KPI visual for business-process value chains.",
+    "supportUrl": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/issues",
+    "gitHubUrl": "https://github.com/AppsWyldeSolutions/value-chain-visualiser"
+  },
+  "apiVersion": "5.11.1",
+  "author": {
+    "name": "Wylde Solutions Pty Ltd",
+    "email": "apps.wyldesolutions@gmail.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": null,
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": [],
+  "version": "1.0.0.0"
+}

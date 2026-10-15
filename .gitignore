@@ -149,3 +149,7 @@ playwright-report/
 # Consumer smoke tests: packed tarballs and Next.js generated files
 .consumers/
 apps/consumers/next/next-env.d.ts
+
+# Power BI visual: pbiviz build output and bundle reports
+packages/powerbi-visual/.tmp/
+packages/powerbi-visual/webpack.statistics.*.html
