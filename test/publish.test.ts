@@ -14,6 +14,7 @@ type Manifest = {
   version: string;
   private?: boolean;
   license?: string;
+  author?: string;
   files?: string[];
   publishConfig?: { access?: string };
   repository?: { type?: string; url?: string; directory?: string };
@@ -64,6 +65,10 @@ describe("publishable packages", () => {
     expect(readFileSync(license, "utf8")).toBe(
       readFileSync(path.join(root, "LICENSE"), "utf8"),
     );
+  });
+
+  it.each(packages)("%s names its author", (_, pkg) => {
+    expect(pkg.author).toBe("Wylde Solutions Pty Ltd");
   });
 
   it.each(packages)("%s links to its source and issues", (dir, pkg) => {
