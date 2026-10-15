@@ -59,9 +59,11 @@ as plain JSON, so the reasons are noted here rather than in comments:
 
 - `moduleResolution: "bundler"`: TypeScript 6 no longer accepts the
   scaffold's `node` (node10).
-- `strict: false`: pbiviz compiles its generated
-  `.tmp/precompile/visualPlugin.ts` with this config, and that file does not
-  pass strict checks. TypeScript 6 turns `strict` on by default.
+- `strict: true`, as in every package. pbiviz compiles its generated
+  `.tmp/precompile/visualPlugin.ts` in the same program as `src/`, with this
+  config, so strict applies to it too. That file calls `new Visual(options)`
+  with an optional argument, so `Visual`'s constructor takes `options?` (and
+  throws if it is missing) to keep the generated file compiling.
 - `skipLibCheck: true`: `powerbi-visuals-api`'s declarations use
   `module` namespaces, which TypeScript 6 rejects.
 - `types: []`: the visual runs in a browser sandbox and needs no Node types.

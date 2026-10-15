@@ -82,6 +82,12 @@ describe("Visual", () => {
     expect(element.querySelectorAll(".vcv-root")).toHaveLength(1);
   });
 
+  it("says what is wrong when Power BI gives it no options", () => {
+    expect(() => new Visual()).toThrow(
+      "Visual needs the constructor options Power BI passes",
+    );
+  });
+
   it("has a formatting model before its first update", () => {
     const { visual } = construct();
     expect(visual.getFormattingModel()).toEqual({ cards: [] });

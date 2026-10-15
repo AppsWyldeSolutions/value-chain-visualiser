@@ -23,7 +23,13 @@ export class Visual implements IVisual {
   private formattingSettings: VisualFormattingSettingsModel;
   private formattingSettingsService: FormattingSettingsService;
 
-  constructor(options: VisualConstructorOptions) {
+  // Optional because pbiviz's generated plugin (.tmp/precompile/visualPlugin.ts)
+  // passes its own optional argument straight through; typed this way, that
+  // file compiles under the package's strict settings.
+  constructor(options?: VisualConstructorOptions) {
+    if (!options) {
+      throw new Error("Visual needs the constructor options Power BI passes");
+    }
     this.events = options.host.eventService;
     this.formattingSettingsService = new FormattingSettingsService();
     // The format pane can ask for the model before the first update.
