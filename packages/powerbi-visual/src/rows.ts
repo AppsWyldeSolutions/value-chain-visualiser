@@ -3,8 +3,10 @@
 import type { KpiRow } from "@appswyldesolutions/vcv-core";
 import type powerbi from "powerbi-visuals-api";
 
-/** The KpiRow fields, as the column names the stub mapping looks for. */
-export const FIELDS: readonly (keyof KpiRow)[] = [
+/**
+ * The data roles in capabilities.json: one per KpiRow field, named after it.
+ */
+export const ROLES = [
   "node",
   "nodeOrder",
   "group",
@@ -17,36 +19,48 @@ export const FIELDS: readonly (keyof KpiRow)[] = [
   "period",
   "actual",
   "budget",
-];
+] as const satisfies readonly (keyof KpiRow)[];
 
-const text = (value: powerbi.PrimitiveValue | undefined): string =>
+type Role = (typeof ROLES)[number];
+
+/** Without these a row cannot be placed on a card for a period. */
+const REQUIRED: readonly Role[] = ["node", "group", "metric", "year", "period"];
+
+type Value = powerbi.PrimitiveValue | undefined;
+
+const text = (value: Value): string =>
   value === null || value === undefined ? "" : String(value);
 
-const numberOrNull = (
-  value: powerbi.PrimitiveValue | undefined,
-): number | null => {
+const numberOrNull = (value: Value): number | null => {
   if (value === null || value === undefined || value === "") return null;
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
 };
 
 /**
- * Stub mapping: reads the table data view as KpiRows, one per table row,
- * taking each field from the column of the same name (any case). Fields
- * with no column are blank, and blank figures are read as no data. The real
- * mapping from a report's own columns replaces this.
+ * Maps Power BI's table data view to KpiRows, one per table row. Each field
+ * comes from the column bound to its data role, so the report's own field
+ * names and column order do not matter. Until node, group, metric, year and
+ * period are all bound there are no rows. Optional fields left unbound read
+ * as blank, and blank figures as no data.
  */
 export function rowsFromTable(
   table: powerbi.DataViewTable | undefined,
 ): KpiRow[] {
-  if (!table || table.columns.length === 0) return [];
-  const column = new Map<string, number>();
-  table.columns.forEach((col, index) => {
-    column.set(col.displayName.toLowerCase(), index);
+  if (!table) return [];
+  const columnOf = new Map<Role, number>();
+  table.columns.forEach((column, index) => {
+    for (const role of ROLES) {
+      if (column.roles?.[role] && !columnOf.has(role)) {
+        columnOf.set(role, index);
+      }
+    }
   });
+  if (REQUIRED.some((role) => !columnOf.has(role))) return [];
+
   return (table.rows ?? []).map((values) => {
-    const get = (field: keyof KpiRow) => {
-      const index = column.get(field.toLowerCase());
+    const get = (role: Role): Value => {
+      const index = columnOf.get(role);
       return index === undefined ? undefined : values[index];
     };
     return {
@@ -56,7 +70,7 @@ export function rowsFromTable(
       subGroup: text(get("subGroup")),
       metric: text(get("metric")),
       operator: text(get("operator")) === "LessThan" ? "LessThan" : "Equal",
-      valueType: text(get("valueType")),
+      valueType: text(get("valueType")) || "Number",
       symbol: text(get("symbol")),
       year: numberOrNull(get("year")) ?? 0,
       period: text(get("period")),

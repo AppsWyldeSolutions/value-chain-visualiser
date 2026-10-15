@@ -16,8 +16,8 @@ const guid = (
   }
 ).visual.guid;
 
-// The fixture as a table data view, one column per KpiRow field, which is
-// what the visual's stub mapping reads.
+// The fixture as a table data view: one column per KpiRow field, each bound
+// to the data role of the same name.
 let table: { columns: object[]; rows: unknown[][] };
 
 test.beforeAll(async () => {
@@ -36,7 +36,7 @@ test.beforeAll(async () => {
       displayName: field,
       queryName: `Kpis.${field}`,
       index,
-      roles: { fields: true },
+      roles: { [field]: true },
     })),
     rows: rows.map((row) => fields.map((field) => row[field])),
   };
