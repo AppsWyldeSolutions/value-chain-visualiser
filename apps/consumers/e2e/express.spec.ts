@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
-import { expectInstalledFromTarball } from "./installed.js";
+import { expectInstalledAsPublished, SOURCE } from "./installed.js";
 import { EXPRESS_URL } from "./urls.js";
 
 test.describe("Express consumer", () => {
-  test("installs the packed web component, not workspace source", () => {
-    expectInstalledFromTarball("express", [
+  test(`installs the web component from the ${SOURCE}, not workspace source`, () => {
+    expectInstalledAsPublished("express", [
       "@appswyldesolutions/vcv-web-component",
     ]);
   });

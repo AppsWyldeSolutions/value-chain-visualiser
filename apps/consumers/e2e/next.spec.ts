@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
-import { expectInstalledFromTarball } from "./installed.js";
+import { expectInstalledAsPublished, SOURCE } from "./installed.js";
 import { NEXT_URL } from "./urls.js";
 
 test.describe("Next.js consumer", () => {
-  test("installs the packed packages, not workspace source", () => {
-    expectInstalledFromTarball("next", [
+  test(`installs the packages from the ${SOURCE}, not workspace source`, () => {
+    expectInstalledAsPublished("next", [
       "@appswyldesolutions/vcv-react",
       "@appswyldesolutions/vcv-web-component",
     ]);

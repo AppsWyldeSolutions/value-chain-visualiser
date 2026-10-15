@@ -10,7 +10,10 @@ web component (any Node.js web app) and Power BI custom visual.
 - `npm run dev -w apps/playground` local playground.
 - `npm run e2e:consumers` packs the packages, installs the tarballs into
   apps/consumers/* (Express, Next.js) and runs their Playwright smoke tests.
-  Needs network access; not part of `npm run e2e`.
+  Needs network access; not part of `npm run e2e`. Add `-- --registry` to
+  install the released versions from public npm instead (after a release).
+- `npm run release` publishes to npm (maintainer only, after `npm login`).
+  See docs/releasing.md.
 
 ## Architecture rules (never break)
 

@@ -128,7 +128,7 @@ describe("the npm package", () => {
     );
   });
 
-  it("packs only the build, the font licences and package metadata", () => {
+  it("packs only the build, the font licences, LICENSE and package metadata", () => {
     const [packed] = JSON.parse(
       execSync("npm pack --dry-run --json --ignore-scripts", {
         cwd: root,
@@ -138,7 +138,7 @@ describe("the npm package", () => {
     const files = packed.files.map((file) => file.path.replace(/\\/g, "/"));
     for (const file of files) {
       expect(file).toMatch(
-        /^(package\.json|README\.md|dist\/((index|define)\.(js|cjs|d\.ts|d\.cts)|chunk-[\w-]+\.js|vcv\.iife\.js|licenses\/[\w.-]+\.txt))$/,
+        /^(package\.json|README\.md|LICENSE|CHANGELOG\.md|dist\/((index|define)\.(js|cjs|d\.ts|d\.cts)|chunk-[\w-]+\.js|vcv\.iife\.js|licenses\/[\w.-]+\.txt))$/,
       );
     }
     expect(files).toEqual(
@@ -146,6 +146,7 @@ describe("the npm package", () => {
         ...BUILT.map((file) => `dist/${file}`),
         "dist/licenses/bricolage-grotesque-OFL.txt",
         "dist/licenses/dm-sans-OFL.txt",
+        "LICENSE",
       ]),
     );
   });

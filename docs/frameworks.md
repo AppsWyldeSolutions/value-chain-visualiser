@@ -9,6 +9,9 @@ The visual is one custom element, `<value-chain-visualiser>`, from
 - **Express** (or any server with no front-end framework) serves the
   single-file browser build and a JSON endpoint; see the last section.
 
+All four `@appswyldesolutions/vcv-*` packages are public on npm: a plain
+`npm install` works, with no auth token, `.npmrc` or registry setup.
+
 Two rules hold in every framework:
 
 1. **Register the element before the framework sets `rows`.** Import

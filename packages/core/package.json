@@ -1,7 +1,7 @@
 {
   "name": "@appswyldesolutions/vcv-core",
   "version": "1.0.0",
-  "description": "",
+  "description": "Value chain KPI logic for the Value Chain Visualiser: row ingestion, on-target evaluation and the grouped model. No DOM, no framework.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -11,13 +11,32 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md",
+    "!dist/**/*.test.*",
+    "!dist/**/testHelpers.*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node -e \"for (const p of ['dist','tsconfig.tsbuildinfo']) require('node:fs').rmSync(p,{recursive:true,force:true,maxRetries:10,retryDelay:200})\" && tsc -b",
+    "prepack": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "kpi",
+    "value-chain"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppsWyldeSolutions/value-chain-visualiser.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/AppsWyldeSolutions/value-chain-visualiser/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module"
 }

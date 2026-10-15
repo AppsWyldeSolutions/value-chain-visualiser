@@ -13,7 +13,9 @@
     "build": "npm run build --workspaces --if-present",
     "e2e": "playwright test",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "e2e:consumers": "node scripts/consumers.mjs"
+    "e2e:consumers": "node scripts/consumers.mjs",
+    "check:pack": "node scripts/check-pack.mjs",
+    "release": "npm run verify && node scripts/release.mjs"
   },
   "repository": {
     "type": "git",
