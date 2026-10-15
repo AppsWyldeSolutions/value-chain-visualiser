@@ -446,6 +446,7 @@ export function createVisual(
     theme?: ThemeOverrides;
     eyebrow?: string;
     title?: string;
+    showControls?: boolean; // default true
     onChange?(state: VisualState): void; // year, period, fillColor, shortfallColor
   },
 ): Visual;
@@ -489,6 +490,11 @@ host such as the web component wraps.
 - `onChange` is called only for the viewer's own changes, with the whole new
   state. `setRows`, `setSelection` and `setTheme` update the visual and its
   controls without calling it, so a host can feed state back in safely.
+- **`showControls: false`**: no Year, Period or colour controls, and no
+  empty slot for them; the header keeps its eyebrow, title and subtitle, and
+  the cards, spheres, arrows and Transfer Points draw as usual. For a host
+  that owns those choices itself, such as Power BI (its filters and format
+  pane), which sets them through `setSelection` and `setTheme`.
 
 ### Selecting a KPI
 

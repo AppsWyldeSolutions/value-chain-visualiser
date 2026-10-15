@@ -42,6 +42,13 @@ export interface VisualOptions {
   theme?: ThemeOverrides;
   eyebrow?: string;
   title?: string;
+  /**
+   * Draw the Year, Period and colour controls in the header. Defaults to
+   * true. A host that owns those choices itself (Power BI's filters and
+   * format pane) passes false and sets them through `setSelection` and
+   * `setTheme`.
+   */
+  showControls?: boolean;
   /** Called when the viewer changes a control, with the whole new state. */
   onChange?(state: VisualState): void;
   /**
@@ -152,24 +159,28 @@ export function createVisual(
     shortfallColor: theme.shortfallColor,
   });
 
-  const controls = createControls(doc, {
-    years: yearChoices(rows, selection.year),
-    periods: PERIODS,
-    value: state(),
-    onChange(change) {
-      const { year, period, ...colors } = change;
-      if (year !== undefined || period !== undefined) {
-        selection = {
-          year: year ?? selection.year,
-          period: period ?? selection.period,
-        };
-        render();
-      }
-      if (Object.keys(colors).length > 0) applyTheme(colors);
-      options.onChange?.(state());
-    },
-  });
-  shell.controls.appendChild(controls.element);
+  const controls =
+    (options.showControls ?? true)
+      ? createControls(doc, {
+          years: yearChoices(rows, selection.year),
+          periods: PERIODS,
+          value: state(),
+          onChange(change) {
+            const { year, period, ...colors } = change;
+            if (year !== undefined || period !== undefined) {
+              selection = {
+                year: year ?? selection.year,
+                period: period ?? selection.period,
+              };
+              render();
+            }
+            if (Object.keys(colors).length > 0) applyTheme(colors);
+            options.onChange?.(state());
+          },
+        })
+      : undefined;
+  if (controls) shell.controls.appendChild(controls.element);
+  else shell.controls.remove();
 
   const { onSelect } = options;
   if (onSelect) {
@@ -207,13 +218,13 @@ export function createVisual(
         ? `${when} · ${measured} KPIs measured against budget`
         : `${when} · No data loaded for this period`,
     );
-    controls.update(state(), yearChoices(rows, selection.year));
+    controls?.update(state(), yearChoices(rows, selection.year));
   }
 
   function applyTheme(overrides: ThemeOverrides): void {
     theme = resolveTheme(overrides, theme);
     shell.setTheme(overrides);
-    controls.update(state());
+    controls?.update(state());
   }
 
   render();
