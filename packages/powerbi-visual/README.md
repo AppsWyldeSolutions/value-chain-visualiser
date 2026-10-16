@@ -90,6 +90,10 @@ as plain JSON, so the reasons are noted here rather than in comments:
   config, so strict applies to it too. That file calls `new Visual(options)`
   with an optional argument, so `Visual`'s constructor takes `options?` (and
   throws if it is missing) to keep the generated file compiling.
+- `rootDir: "."`: TypeScript 6 wants `rootDir` set alongside `outDir`. It
+  is the package folder, not `src/`, because pbiviz compiles its generated
+  `.tmp/precompile/visualPlugin.ts` in the same program, and `rootDir` must
+  contain every file compiled.
 - `skipLibCheck: true`: `powerbi-visuals-api`'s declarations use
   `module` namespaces, which TypeScript 6 rejects.
 - `types: []`: the visual runs in a browser sandbox and needs no Node types.
