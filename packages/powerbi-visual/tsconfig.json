@@ -5,6 +5,7 @@
     "experimentalDecorators": true,
     "target": "es2022",
     "sourceMap": true,
+    "rootDir": ".",
     "outDir": "./.tmp/build/",
     "module": "es2022",
     "moduleResolution": "bundler",
