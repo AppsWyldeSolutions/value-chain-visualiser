@@ -65,6 +65,32 @@ its role, so the report's own field names and column order do not matter.
 - **`privileges` stays empty.** Asking for web access would block
   certification.
 
+## Format pane
+
+`src/settings.ts` builds the format pane with
+`powerbi-visuals-utils-formattingmodel`; `capabilities.json` declares its
+objects. On every `update()` the settings become the renderer's theme
+(`src/format.ts`), applied with `setTheme`, so a change restyles the drawn
+visual in place.
+
+| Card       | Setting          | Control                     | Default                         |
+| ---------- | ---------------- | --------------------------- | ------------------------------- |
+| Colours    | Fill colour      | colour picker               | the renderer's `fillColor`      |
+| Colours    | Shortfall colour | colour picker               | the renderer's `shortfallColor` |
+| Background | Ocean            | Ocean, Deep, Lagoon or None | Ocean                           |
+| Background | Opacity          | slider, 0–100%              | 100%                            |
+| Display    | Transfer Points  | on/off                      | on                              |
+| Display    | Sphere size      | slider, 50–150%             | 100%                            |
+
+- **Colours** replace the web component's header colour pickers: on target
+  spheres use the fill colour, missed ones the shortfall colour.
+- **Ocean** applies one of the renderer's `OCEAN_PRESETS`. **Opacity** is
+  `ocean.opacity`: it fades the ocean, not the cards.
+- **Transfer Points** off drops the rows in the Transfer Points group, so
+  the arrows between cards have no popover.
+- **Sphere size** scales every sphere (primary, satellite and the Score
+  Card's panels) and the slots they sit in.
+
 ## Tests
 
 - `src/*.test.ts` (Vitest, in the root `npm run test`): the table mapping

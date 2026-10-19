@@ -1,40 +1,218 @@
 {
   "dataRoles": [
-    { "name": "node", "displayName": "Node", "kind": "Grouping" },
-    { "name": "nodeOrder", "displayName": "Node order", "kind": "Grouping" },
-    { "name": "group", "displayName": "Group", "kind": "Grouping" },
-    { "name": "subGroup", "displayName": "Sub-group", "kind": "Grouping" },
-    { "name": "metric", "displayName": "Metric", "kind": "Grouping" },
-    { "name": "operator", "displayName": "Operator", "kind": "Grouping" },
-    { "name": "valueType", "displayName": "Value type", "kind": "Grouping" },
-    { "name": "symbol", "displayName": "Unit symbol", "kind": "Grouping" },
-    { "name": "year", "displayName": "Year", "kind": "Grouping" },
-    { "name": "period", "displayName": "Period", "kind": "Grouping" },
-    { "name": "actual", "displayName": "Actual", "kind": "Measure" },
-    { "name": "budget", "displayName": "Budget", "kind": "Measure" }
+    {
+      "name": "node",
+      "displayName": "Node",
+      "kind": "Grouping"
+    },
+    {
+      "name": "nodeOrder",
+      "displayName": "Node order",
+      "kind": "Grouping"
+    },
+    {
+      "name": "group",
+      "displayName": "Group",
+      "kind": "Grouping"
+    },
+    {
+      "name": "subGroup",
+      "displayName": "Sub-group",
+      "kind": "Grouping"
+    },
+    {
+      "name": "metric",
+      "displayName": "Metric",
+      "kind": "Grouping"
+    },
+    {
+      "name": "operator",
+      "displayName": "Operator",
+      "kind": "Grouping"
+    },
+    {
+      "name": "valueType",
+      "displayName": "Value type",
+      "kind": "Grouping"
+    },
+    {
+      "name": "symbol",
+      "displayName": "Unit symbol",
+      "kind": "Grouping"
+    },
+    {
+      "name": "year",
+      "displayName": "Year",
+      "kind": "Grouping"
+    },
+    {
+      "name": "period",
+      "displayName": "Period",
+      "kind": "Grouping"
+    },
+    {
+      "name": "actual",
+      "displayName": "Actual",
+      "kind": "Measure"
+    },
+    {
+      "name": "budget",
+      "displayName": "Budget",
+      "kind": "Measure"
+    }
   ],
   "dataViewMappings": [
     {
       "table": {
         "rows": {
           "select": [
-            { "for": { "in": "node" } },
-            { "for": { "in": "nodeOrder" } },
-            { "for": { "in": "group" } },
-            { "for": { "in": "subGroup" } },
-            { "for": { "in": "metric" } },
-            { "for": { "in": "operator" } },
-            { "for": { "in": "valueType" } },
-            { "for": { "in": "symbol" } },
-            { "for": { "in": "year" } },
-            { "for": { "in": "period" } },
-            { "for": { "in": "actual" } },
-            { "for": { "in": "budget" } }
+            {
+              "for": {
+                "in": "node"
+              }
+            },
+            {
+              "for": {
+                "in": "nodeOrder"
+              }
+            },
+            {
+              "for": {
+                "in": "group"
+              }
+            },
+            {
+              "for": {
+                "in": "subGroup"
+              }
+            },
+            {
+              "for": {
+                "in": "metric"
+              }
+            },
+            {
+              "for": {
+                "in": "operator"
+              }
+            },
+            {
+              "for": {
+                "in": "valueType"
+              }
+            },
+            {
+              "for": {
+                "in": "symbol"
+              }
+            },
+            {
+              "for": {
+                "in": "year"
+              }
+            },
+            {
+              "for": {
+                "in": "period"
+              }
+            },
+            {
+              "for": {
+                "in": "actual"
+              }
+            },
+            {
+              "for": {
+                "in": "budget"
+              }
+            }
           ],
-          "dataReductionAlgorithm": { "window": { "count": 30000 } }
+          "dataReductionAlgorithm": {
+            "window": {
+              "count": 30000
+            }
+          }
         }
       }
     }
   ],
+  "objects": {
+    "colours": {
+      "displayName": "Colours",
+      "properties": {
+        "fillColor": {
+          "displayName": "Fill colour",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "shortfallColor": {
+          "displayName": "Shortfall colour",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "background": {
+      "displayName": "Background",
+      "properties": {
+        "preset": {
+          "displayName": "Ocean",
+          "type": {
+            "enumeration": [
+              {
+                "value": "ocean",
+                "displayName": "Ocean"
+              },
+              {
+                "value": "deep",
+                "displayName": "Deep"
+              },
+              {
+                "value": "lagoon",
+                "displayName": "Lagoon"
+              },
+              {
+                "value": "none",
+                "displayName": "None"
+              }
+            ]
+          }
+        },
+        "opacity": {
+          "displayName": "Opacity",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "display": {
+      "displayName": "Display",
+      "properties": {
+        "showTransferPoints": {
+          "displayName": "Transfer Points",
+          "type": {
+            "bool": true
+          }
+        },
+        "sphereSize": {
+          "displayName": "Sphere size",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    }
+  },
   "privileges": []
 }
