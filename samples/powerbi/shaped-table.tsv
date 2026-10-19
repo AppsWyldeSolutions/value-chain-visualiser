@@ -1,0 +1,1021 @@
+node	nodeOrder	group	subGroup	metric	operator	valueType	symbol	year	period	actual	budget
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	September		9
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	October		9
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	November		8
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	December		7
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	September		95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	October		95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	November		95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	December		95
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	September		0
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	October		1
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	November		1
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	December		1
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	September		5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	October		5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	November		5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	December		5
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	September		45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	October		45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	November		45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	December		45
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	September		395
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	October		416
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	November		420
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	December		400
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		95
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	September		320
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	October		300
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	November		360
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	December		400
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	September		1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	October		1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	November		1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	December		1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	September		99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	October		99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	November		99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	December		99.5
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	September		98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	October		98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	November		98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	December		98
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	September		24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	October		24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	November		24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	December		24
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	September		60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	October		60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	November		60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	December		60
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	September		642
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	October		624
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	November		617
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	December		603
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		95
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	September		9
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	October		8
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	November		8
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	December		7
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	September		90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	October		90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	November		90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	December		90
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	September		97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	October		97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	November		97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	December		97
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	September		10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	October		10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	November		10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	December		10
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	September		15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	October		15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	November		15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	December		15
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	September		6.5
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	October		6.5
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	November		6.6
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	December		6.6
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		95
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	September		143
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	October		136
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	November		136
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	December		147
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	September		95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	October		95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	November		95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	December		95
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	September		40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	October		40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	November		40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	December		40
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	September		95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	October		95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	November		95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	December		95
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	September		18.1
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	October		19
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	November		17.8
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	December		18.2
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	September		100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	October		100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	November		100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	December		100
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		96
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	September		5200
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	October		5300
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	November		5400
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	December		5500
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	September		97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	October		97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	November		97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	December		97
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	September		99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	October		99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	November		99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	December		99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	September		3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	October		3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	November		3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	December		3
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	September		15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	October		15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	November		15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	December		15
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	September		38.7
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	October		37.6
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	November		37.8
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	December		39.2
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		95
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	September		8.5
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	October		8
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	November		8
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	December		8
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	September		99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	October		99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	November		99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	December		99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	September		3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	October		3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	November		3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	December		3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	September		95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	October		95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	November		95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	December		95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	September		25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	October		25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	November		25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	December		25
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	September		87
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	October		82.5
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	November		84.5
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	December		86.9
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		94
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	September		99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	October		99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	November		99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	December		99.5
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	September		99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	October		99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	November		99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	December		99.9
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	September		95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	October		95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	November		95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	December		95
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	September		99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	October		99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	November		99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	December		99.9
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	September		20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	October		20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	November		20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	December		20
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	September		100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	October		100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	November		100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	December		100
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	September		22.4
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	October		22.5
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	November		22.6
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	December		22.7
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		95
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	September		100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	October		100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	November		100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	December		100
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	September		48
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	October		45
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	November		45
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	December		42
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	September		90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	October		90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	November		90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	December		90
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	September		100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	October		100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	November		100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	December		100
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	September		1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	October		1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	November		1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	December		1
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	September		90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	October		90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	November		90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	December		90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	September		9.5
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	October		9.7
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	November		9.4
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	December		9.7
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	September		100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	October		100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	November		100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	December		100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	September		96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	October		96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	November		96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	December		96
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	September		15655
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	October		15819
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	November		15985
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	December		16153
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	September		2.47
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	October		2.49
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	November		2.52
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	December		2.55
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	September		90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	October		90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	November		90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	December		90
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	September		5.61
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	October		5.67
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	November		5.73
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	December		5.79
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	September		60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	October		60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	November		60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	December		60
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	September		43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	October		43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	November		43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	December		43
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	September		95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	October		95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	November		95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	December		95
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	September		12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	October		12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	November		12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	December		12
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	September		75
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	October		83
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	November		92
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	December		100
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	September		150
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	October		140
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	November		150
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	December		160
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	September		10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	October		10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	November		10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	December		10
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	September		0
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	October		1
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	November		1
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	December		1
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	January	100	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	July	100	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	January	100	99.5
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	February	100	99.9
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	June	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	July	100	100
+BU1 - P2: Product Development	0	Transfer Points	Contractual Compliance	Regulatory Filing Compliance > 100%	Equal	Percentage	%	2026	August	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	June	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	July	100	100
+BU2 - P3: Placement & Allocation	1	Transfer Points	Contractual Compliance	Underwriting Terms Compliance > 100%	Equal	Percentage	%	2026	August	100	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	January	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	February	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	March	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	April	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	May	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	June	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	July	100	100
+BU3 - P2: Relationship Management	3	Transfer Points	Contractual Compliance	Annual Mandate Reviews Completed > 100%	Equal	Percentage	%	2026	August	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	June	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	July	100	100
+BU4 - P1: Creation & Redemption	4	Transfer Points	Contractual Compliance	AP Agreement Compliance > 100%	Equal	Percentage	%	2026	August	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	June	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	July	100	100
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Contractual Compliance	Liquidity Provider Agreement Compliance > 100%	Equal	Percentage	%	2026	August	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	January	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	February	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	March	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	April	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	May	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	June	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	July	100	100
+BU5 - P1: Fund Administration	6	Satellite		Distribution Payments Made on Time > 100%	Equal	Percentage	%	2026	August	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	June	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	July	100	100
+BU5 - P1: Fund Administration	6	Transfer Points	Contractual Compliance	Custodian SLA Compliance > 100%	Equal	Percentage	%	2026	August	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	January	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	February	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	March	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	April	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	May	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	June	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	July	100	100
+BU5 - P3: Compliance & Regulatory	7	Primary		Regulatory Obligations Met on Time > 100%	Equal	Percentage	%	2026	August	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	January	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	February	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	March	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	April	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	May	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	June	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	July	100	100
+BU5 - P3: Compliance & Regulatory	7	Satellite		ASIC Reports Lodged on Time > 100%	Equal	Percentage	%	2026	August	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	January	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	February	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	March	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	April	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	May	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	June	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	July	100	100
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Contractual Compliance	AFSL Licence Conditions Compliance > 100%	Equal	Percentage	%	2026	August	100	100
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	January	397	409
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	February	432	424
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	March	407	415
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	April	435	425
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	May	444	421
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	June	403	395
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	July	417	402
+BU1 - P2: Product Development	0	Transfer Points	Unit Rate	< Budget Cost per Fund Launch ($k)	LessThan	Number	$	2026	August	432	398
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	January	600	631
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	February	607	629
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	March	608	613
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	April	619	626
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	May	634	644
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	June	628	642
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	July	640	643
+BU2 - P3: Placement & Allocation	1	Transfer Points	Unit Rate	< Budget Placement Cost per $1M Placed ($)	LessThan	Number	$	2026	August	569	616
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	January	6.5	6.2
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	February	6.8	6.2
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	March	7.1	6.6
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	April	7.3	6.5
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	May	7.4	6.6
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	June	7.3	6.6
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	July	6.5	6.4
+BU3 - P1: Client Onboarding	2	Transfer Points	Unit Rate	< Budget Cost per Onboarded Client ($k)	LessThan	Number	$	2026	August	7.1	6.2
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	June	98	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	July	96	100
+BU3 - P1: Client Onboarding	2	Transfer Points	Contractual Compliance	Mandate Documentation Compliance > 100%	Equal	Percentage	%	2026	August	97	100
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	January	17.4	18.7
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	February	18.4	18.5
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	March	18.8	18.6
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	April	18.9	18.7
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	May	18.2	17.9
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	June	18	18.3
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	July	19.9	19.1
+BU3 - P2: Relationship Management	3	Transfer Points	Unit Rate	< Budget Coverage Cost per Client ($k)	LessThan	Number	$	2026	August	19.5	18.5
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	96	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	96	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	95	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	97	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	96	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	96	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	97	96
+BU3 - P2: Relationship Management	3	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	96	96
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	January	35.2	37
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	February	36.9	37.3
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	March	37.8	38.8
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	April	38	37.7
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	May	37.7	38.3
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	June	36.2	37.2
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	July	38.5	39.4
+BU4 - P1: Creation & Redemption	4	Transfer Points	Unit Rate	< Budget Cost per Basket Processed ($)	LessThan	Number	$	2026	August	37.9	37.8
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	January	81.5	85.8
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	February	87.5	82.9
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	March	85.3	83.9
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	April	85.9	81.8
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	May	86.5	84.8
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	June	87.9	84.6
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	July	88.2	83.9
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Unit Rate	< Budget Liquidity Provision Cost per $1M Traded ($)	LessThan	Number	$	2026	August	88.7	85.5
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	94	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	96	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	95	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	95	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	95	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	94	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	95	94
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	96	94
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	January	21.1	22.8
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	February	23.1	22.6
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	March	22.4	22.7
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	April	21.4	21.4
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	May	20.6	22.3
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	June	19.6	21.3
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	July	22.2	22.5
+BU5 - P1: Fund Administration	6	Transfer Points	Unit Rate	< Budget Fund Admin Cost per Fund ($k)	LessThan	Number	$	2026	August	20.6	21.4
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	January	9.6	9.5
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	February	9.8	9.6
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	March	9.5	9.2
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	April	10	9.8
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	May	9.6	9.4
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	June	10.3	9.7
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	July	9.7	9.3
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Unit Rate	< Budget Compliance Cost per Fund ($k)	LessThan	Number	$	2026	August	9.4	9.5
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	97	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	96	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	95	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	95	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	96	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	96	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	97	96
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	96	96
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	January	5.16	5.16
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	February	5.17	5.21
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	March	5.27	5.27
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	April	5.32	5.32
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	May	5.32	5.38
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	June	5.4	5.44
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	July	5.43	5.49
+Score Card	8	Satellite	Financial Scorecard	Management Fee Revenue > RF Plan ($M)	Equal	Number	$	2026	August	5.53	5.55
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	January	59.4	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	February	61.8	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	March	60.6	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	April	59.8	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	May	60.9	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	June	61.2	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	July	60.4	60
+Score Card	8	Satellite	Financial Scorecard	Cost-to-Income Ratio < 60%	LessThan	Percentage	%	2026	August	59.7	60
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	January	42.8	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	February	42.6	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	March	43.1	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	April	42.9	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	May	42.4	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	June	42.7	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	July	42.5	43
+Score Card	8	Satellite	Financial Scorecard	Average Fee Margin > 43 bps	Equal	Number	bps	2026	August	42.6	43
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	January	9.8	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	February	9.9	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	March	10.1	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	April	10.4	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	May	10.6	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	June	10.9	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	July	11.2	12
+Score Card	8	Satellite	People & Culture Scorecard	Voluntary Turnover < 12% (rolling)	LessThan	Number	%	2026	August	11.5	12
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	January	8	8
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	February	18	17
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	March	25	25
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	April	31	33
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	May	40	42
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	June	49	50
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	July	57	58
+Score Card	8	Satellite	People & Culture Scorecard	Compliance to Regulatory Training Commitment	Equal	Percentage	%	2026	August	64	67
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	January	124	130
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	February	154	140
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	March	128	150
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	April	147	140
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	May	144	160
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	June	153	150
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	July	146	150
+Score Card	8	Satellite	Production Performance Scorecard	Net Fund Inflows > RF Plan ($M)	Equal	Percentage	%	2026	August	173	160
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	January	6.2	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	February	6.8	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	March	7.4	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	April	7.1	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	May	8.3	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	June	8.9	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	July	8.6	10
+Score Card	8	Satellite	Production Performance Scorecard	Average Tracking Difference < 10 bps	LessThan	Number	bps	2026	August	9.4	10
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	January	0	0
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	February	1	1
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	March	0	0
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	April	1	1
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	May	1	1
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	June	0	0
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	July	1	1
+Score Card	8	Satellite	Production Performance Scorecard	New Funds Launched > RF Plan	Equal	Number		2026	August	0	1
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	January	6	6
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	February	6	7
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	March	9	8
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	April	8	8
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	May	9	9
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	June	8	9
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	July	9	10
+BU1 - P2: Product Development	0	Primary		Product Launch Milestones Delivered > RF Plan	Equal	Number		2026	August	10	10
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	January	0	0
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	February	1	1
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	March	0	0
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	April	1	1
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	May	1	1
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	June	0	0
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	July	1	1
+BU1 - P2: Product Development	0	Satellite		New Funds Launched > RF Plan	Equal	Number		2026	August	0	1
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	January	4	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	February	3.5	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	March	4.3	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	April	3.7	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	May	3.7	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	June	4	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	July	5.6	5
+BU1 - P2: Product Development	0	Satellite		ASIC Filing Rework Rate < 5%	LessThan	Percentage	%	2026	August	4.2	5
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	January	41	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	February	43	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	March	42	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	April	44	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	May	43	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	June	46	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	July	47	45
+BU1 - P2: Product Development	0	Satellite		Fund Structuring Cycle Time < 45 days	LessThan	Number	days	2026	August	48	45
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	January	342	310
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	February	322	280
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	March	279	340
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	April	366	360
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	May	358	330
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	June	371	380
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	July	376	350
+BU2 - P3: Placement & Allocation	1	Primary		Capital Placed vs Mandate Target ($M)	Equal	Percentage	%	2026	August	340	340
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	January	1.45	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	February	1.34	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	March	1.4	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	April	1.51	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	May	1.41	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	June	1.63	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	July	1.47	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Bookbuild Oversubscription > 1.3x	Equal	Number	x	2026	August	1.4	1.3
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	January	99.67	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	February	99.72	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	March	99.8	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	April	99.8	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	May	99.66	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	June	99.77	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	July	99.71	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Accuracy > 99.5%	Equal	Percentage	%	2026	August	99.83	99.5
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	January	99.9	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	February	99.1	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	March	98.9	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	April	98	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	May	98.3	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	June	97.2	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	July	98.3	98
+BU2 - P3: Placement & Allocation	1	Satellite		T+2 Settlement Success > 98%	Equal	Percentage	%	2026	August	98.7	98
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	January	22.3	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	February	17.9	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	March	24.2	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	April	24.8	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	May	29.6	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	June	23.8	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	July	21.7	24
+BU2 - P3: Placement & Allocation	1	Satellite		Allocation Turnaround < 24 hrs	LessThan	Number	hrs	2026	August	28	24
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	January	73.4	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	February	63	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	March	65.5	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	April	58.1	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	May	62.7	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	June	61.8	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	July	60.8	60
+BU2 - P3: Placement & Allocation	1	Satellite		Institutional Participation > 60%	Equal	Percentage	%	2026	August	58.7	60
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	January	7	7
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	February	9	8
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	March	5	8
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	April	9	9
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	May	7	9
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	June	9	10
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	July	10	10
+BU3 - P1: Client Onboarding	2	Primary		Institutional Clients Onboarded > RF Plan	Equal	Number		2026	August	7	9
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	January	97.4	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	February	98.3	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	March	97	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	April	96.5	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	May	97	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	June	96.4	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	July	97.9	97
+BU3 - P1: Client Onboarding	2	Satellite		Account Setup Right First Time > 97%	Equal	Percentage	%	2026	August	97.1	97
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	January	11.1	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	February	7.4	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	March	10.7	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	April	10.4	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	May	9.8	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	June	10.3	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	July	13.4	10
+BU3 - P1: Client Onboarding	2	Satellite		Mandate Documentation Turnaround < 10 days	LessThan	Number	days	2026	August	11.9	10
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	January	13	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	February	15	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	March	20	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	April	21	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	May	14	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	June	15	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	July	15	15
+BU3 - P1: Client Onboarding	2	Satellite		Onboarding Backlog < 15 cases	LessThan	Number		2026	August	21	15
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	January	156	145
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	February	136	146
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	March	157	147
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	April	126	132
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	May	131	139
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	June	137	135
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	July	139	135
+BU3 - P2: Relationship Management	3	Primary		Coverage Meetings Completed > Cadence Plan	Equal	Number		2026	August	139	139
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	January	40	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	February	45	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	March	43	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	April	45	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	May	47	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	June	37	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	July	48	40
+BU3 - P2: Relationship Management	3	Satellite		Client NPS > 40	Equal	Number		2026	August	43	40
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	January	5002	4900
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	February	5054	5000
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	March	5099	5100
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	April	5598	5200
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	May	5090	5300
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	June	5325	5300
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	July	5206	5400
+BU4 - P1: Creation & Redemption	4	Primary		Creation / Redemption Units Processed vs Budget (000s)	Equal	Percentage	%	2026	August	4817	5300
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	January	97.9	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	February	96.6	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	March	97.4	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	April	98.8	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	May	98.2	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	June	96.3	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	July	98.8	97
+BU4 - P1: Creation & Redemption	4	Satellite		AP Orders Processed Straight-Through > 97%	Equal	Percentage	%	2026	August	98	97
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	January	99.91	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	February	99.97	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	March	99.94	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	April	99.87	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	May	99.92	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	June	99.95	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	July	99.92	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Basket Composition Accuracy > 99.9%	Equal	Percentage	%	2026	August	99.94	99.9
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	January	2.7	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	February	4.6	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	March	3	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	April	3.5	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	May	2.7	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	June	1.8	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	July	4.1	3
+BU4 - P1: Creation & Redemption	4	Satellite		Settlement Fails < 3 per 1,000 Trades	LessThan	Number		2026	August	4.6	3
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	January	13.3	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	February	14.3	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	March	15.1	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	April	13.3	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	May	13.9	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	June	14.4	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	July	13.4	15
+BU4 - P1: Creation & Redemption	4	Satellite		Order-to-Confirmation Time < 15 mins	LessThan	Number	mins	2026	August	14.1	15
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	January	9	9.5
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	February	9.5	9.5
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	March	9.2	9
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	April	9.5	9
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	May	8.7	9
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	June	8.3	8.5
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	July	9.2	8.5
+BU4 - P2: Market Making & Liquidity	5	Primary		Average Bid-Ask Spread < RF Plan (bps)	LessThan	Number	bps	2026	August	9.2	8.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	January	99.55	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	February	99.5	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	March	99.86	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	April	99.94	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	May	99.75	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	June	99.59	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Quoting Uptime > 99.5%	Equal	Percentage	%	2026	August	99.92	99.5
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	January	4	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	February	4	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	March	4	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	April	3	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	May	3	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	June	3	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	July	3	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Active Liquidity Providers > 3 per Fund	Equal	Number		2026	August	3	3
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	January	20	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	February	21.3	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	March	18.2	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	April	19.5	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	May	21.7	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	June	20.5	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	July	12.6	25
+BU4 - P2: Market Making & Liquidity	5	Satellite		Premium / Discount to iNAV < 25 bps	LessThan	Number	bps	2026	August	20.4	25
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	February	99.96	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	March	99.69	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	April	99.86	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	May	99.89	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	June	99.56	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	July	99.75	99.5
+BU5 - P1: Fund Administration	6	Primary		Daily NAV Published on Time > 99.5%	Equal	Percentage	%	2026	August	99.82	99.5
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	January	99.98	99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	March	99.95	99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	April	99.91	99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	May	99.87	99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	June	99.93	99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	July	99.87	99.9
+BU5 - P1: Fund Administration	6	Satellite		NAV Published Error-Free > 99.9%	Equal	Percentage	%	2026	August	99.89	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	January	99.99	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	February	99.92	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	March	99.98	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	April	99.97	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	May	99.94	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	June	99.94	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	July	99.94	99.9
+BU5 - P1: Fund Administration	6	Satellite		Unit Registry Accuracy > 99.9%	Equal	Percentage	%	2026	August	99.97	99.9
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	January	16	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	February	9	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	March	16	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	April	14	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	May	15	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	June	8	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	July	17	20
+BU5 - P1: Fund Administration	6	Satellite		Open Reconciliation Breaks < 20	LessThan	Number		2026	August	25	20
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	January	40	42
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	February	41	42
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	March	42	45
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	April	44	45
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	May	46	45
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	June	48	48
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	July	48	48
+BU5 - P3: Compliance & Regulatory	7	Satellite		Compliance Monitoring Tests Completed > RF Plan	Equal	Number		2026	August	51	48
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	January	0	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	February	0	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	March	0	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	April	1	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	May	0	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	June	0	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	July	0	1
+BU5 - P3: Compliance & Regulatory	7	Satellite		Reportable Breaches < 1	LessThan	Number		2026	August	0	1
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	January	14561	14400
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	February	14569	14551
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	March	14784	14704
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	April	14976	14858
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	May	15150	15014
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	June	15212	15172
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	July	15464	15331
+Score Card	8	Primary		Total FUM > RF Plan ($M)	Equal	Number	$	2026	August	15683	15492
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	January	2.3	2.27
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	February	2.17	2.29
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	March	2.28	2.32
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	April	2.35	2.34
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	May	2.29	2.37
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	June	2.31	2.39
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	July	2.37	2.42
+Score Card	8	Primary		Net Profit Before Tax > RF Plan ($M)	Equal	Number	$	2026	August	2.45	2.44
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	February	96	95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	March	94	95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	April	95	95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	May	95	95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	June	95	95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	July	96	95
+BU1 - P2: Product Development	0	Satellite		PDS / Prospectus Lodged on Time > 95%	Equal	Percentage	%	2026	August	97	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	94	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	96	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	97	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	96	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	96	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	96	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	94	95
+BU1 - P2: Product Development	0	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	95	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	95	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	95	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	95	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	96	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	95	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	95	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	97	95
+BU2 - P3: Placement & Allocation	1	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	96	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	94	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	95	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	95	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	93	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	94	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	92	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	94	95
+BU3 - P1: Client Onboarding	2	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	94	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	January	97.5	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	February	92.7	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	March	95.4	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	April	95.1	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	May	98.4	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	June	97.4	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	July	95.1	95
+BU3 - P2: Relationship Management	3	Satellite		Tier 1 Clients Contacted in Last 30 Days > 95%	Equal	Percentage	%	2026	August	95.5	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	January	96.1	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	February	96.3	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	March	96.4	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	April	96.4	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	May	96.8	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	June	96.3	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	July	96.4	95
+BU3 - P2: Relationship Management	3	Satellite		Client Retention (rolling 12m) > 95%	Equal	Percentage	%	2026	August	95.6	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	96	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	95	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	95	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	96	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	95	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	95	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	95	95
+BU4 - P1: Creation & Redemption	4	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	94	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	January	97.2	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	February	96	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	March	96.5	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	April	97.8	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	May	93.5	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	June	96.3	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	July	94.1	95
+BU4 - P2: Market Making & Liquidity	5	Satellite		Surveillance Alerts Closed within SLA > 95%	Equal	Percentage	%	2026	August	96.1	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	January	95.5	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	February	99.1	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	March	96.2	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	April	95.9	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	May	94.8	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	June	97.4	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	July	97.7	95
+BU5 - P1: Fund Administration	6	Satellite		Custodian Reconciliation Breaks Cleared T+1 > 95%	Equal	Percentage	%	2026	August	98	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	January	94	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	February	95	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	March	97	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	April	96	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	May	96	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	June	95	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	July	95	95
+BU5 - P1: Fund Administration	6	Transfer Points	Labour Management	Monthly attendance > Budget	Equal	Percentage	%	2026	August	96	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	January	95.6	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	February	94.8	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	March	95.2	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	April	94.1	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	May	95.4	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	June	95.9	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	July	94.6	95
+Score Card	8	Satellite	People & Culture Scorecard	Attendance Rate > 95%	Equal	Percentage	%	2026	August	95.1	95
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	January	90.7	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	February	92.1	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	March	90.6	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	April	91	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	May	84.6	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	June	88	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	July	83.3	90
+BU3 - P1: Client Onboarding	2	Satellite		KYC / AML Cleared within 5 Days > 90%	Equal	Percentage	%	2026	August	88.1	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	January	89.1	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	February	89.7	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	March	94.1	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	April	90.5	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	May	88.5	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	June	86.9	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	July	89.9	90
+BU5 - P3: Compliance & Regulatory	7	Satellite		Breaches Closed within 10 Days > 90%	Equal	Percentage	%	2026	August	98	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	January	95	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	February	96	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	March	93	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	April	92	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	May	91	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	June	91	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	July	92	90
+Score Card	8	Primary		90% Compliance - C'Stones Risk & Compliance	Equal	Number	%	2026	August	90	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	93	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	93	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	93	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	92	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	89	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	93	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	86	90
+BU1 - P2: Product Development	0	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	95	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	94	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	93	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	90	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	95	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	92	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	95	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	90	90
+BU2 - P3: Placement & Allocation	1	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	95	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	93	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	93	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	91	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	88	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	91	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	84	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	85	90
+BU3 - P1: Client Onboarding	2	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	85	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	92	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	95	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	97	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	92	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	95	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	93	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	94	90
+BU3 - P2: Relationship Management	3	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	95	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	94	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	95	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	95	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	92	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	95	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	89	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	96	90
+BU4 - P1: Creation & Redemption	4	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	95	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	95	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	96	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	94	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	92	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	90	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	93	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	92	90
+BU4 - P2: Market Making & Liquidity	5	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	91	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	96	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	94	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	98	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	95	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	98	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	94	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	99	90
+BU5 - P1: Fund Administration	6	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	94	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	January	96	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	February	95	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	March	94	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	April	93	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	May	96	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	June	95	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	July	97	90
+BU5 - P3: Compliance & Regulatory	7	Transfer Points	CornerStones	90% of Corner Stones achieved by Process	Equal	Number	%	2026	August	92	90
