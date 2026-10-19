@@ -10,6 +10,8 @@ export type {
   RendererTheme,
   ThemeOverrides,
 } from "./theme.js";
+export { OCEAN_PRESETS } from "./oceanPresets.js";
+export type { OceanPreset, OceanPresetName } from "./oceanPresets.js";
 export { stylesText } from "./styles.js";
 export { fontFaceCss } from "./fonts.generated.js";
 export { createCard, nodeHeading, nodeShortName } from "./card.js";

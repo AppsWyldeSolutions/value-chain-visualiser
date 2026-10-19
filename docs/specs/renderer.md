@@ -21,7 +21,7 @@ prototype's values.
 | (top)       | `fillColor`, `shortfallColor`                                                                                                                                                                                                                                                                                                                           |
 | `fonts`     | `body`, `display`                                                                                                                                                                                                                                                                                                                                       |
 | `colors`    | `text`, `textSoft`, `textMuted`, `textLabel`, `focusRing`                                                                                                                                                                                                                                                                                               |
-| `ocean`     | `base`, `gradient`, `rayColor`, `rayTop`, `rayAngle`, `rays[]`, `waveColor`, `waveHeight`, `waveOpacities[]`, `bubbleBorder`, `bubbleBorderWidth`, `bubbleFill`, `bubbles[]`                                                                                                                                                                            |
+| `ocean`     | `opacity`, `base`, `gradient`, `rayColor`, `rayTop`, `rayAngle`, `rays[]`, `waveColor`, `waveHeight`, `waveOpacities[]`, `bubbleBorder`, `bubbleBorderWidth`, `bubbleFill`, `bubbles[]`                                                                                                                                                                 |
 | `glass`     | `cardBackground`, `cardBorder`, `cardShadow`, `blur`, `saturate`, `line`, `pillBackground`, `pillBorder`, `controlBackground`, `controlBorder`                                                                                                                                                                                                          |
 | `sphere`    | `size`, `glass`, `shadow`, `ringWidth`, `ringOpacity`, `emptyRing`, `glowScale`, `glowOpacity`, `tint`, `liquidTint`, `liquidTopOpacity`, `liquidBottomOpacity`, `meniscusTint`, `meniscusOpacity`, `meniscusScale`, `highlight`, `highlightLow`                                                                                                        |
 | `card`      | `padding`, `gap`, `minHeight`, `headerHeight`, `eyebrowSize`, `titleSize`, `pillSize`, `rowLabelSize`, `primarySphereSize`, `primarySlot`, `primaryPercentSize`, `primaryLabelSize`, `primaryValueSize`, `satelliteSphereSize`, `satelliteSlot`, `satelliteMinSlot`, `satelliteGap`, `satellitePercentSize`, `satelliteLabelSize`, `satelliteValueSize` |
@@ -52,6 +52,21 @@ export function applyTheme(element: HTMLElement, theme: RendererTheme): void;
 - The stylesheet (`stylesText`) contains no colour, size or font literals of
   its own. It only reads `--vcv-*` properties, so a host restyles the visual
   by changing the theme, not the CSS.
+
+### Ocean opacity and presets
+
+- `ocean.opacity` (`"0"` to `"1"`, default `"1"`) fades the whole ocean
+  layer: its base colour, gradient, rays, waves and bubbles. The base colour
+  is painted on the ocean layer, not the root, so below 1 the page behind
+  the visual shows through. The cards are not faded.
+- `OCEAN_PRESETS` holds four background looks for `theme.ocean`: `ocean`
+  (the default theme's), `deep` (darker navy, dimmer rays), `lagoon`
+  (lighter teal) and `none` (no ocean: every ocean colour transparent and
+  the gradient `none`). Each sets the same colour tokens (`base`,
+  `gradient`, `rayColor`, `waveColor`, `bubbleBorder`, `bubbleFill`),
+  so applying one fully replaces another, and only string tokens, so
+  `setTheme({ ocean: OCEAN_PRESETS.deep })` restyles a drawn visual without
+  rebuilding its rays and bubbles.
 
 ## Fonts
 
