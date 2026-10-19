@@ -178,6 +178,13 @@ test("each format pane setting updates the drawn visual, with no reload", async 
     .toBeCloseTo(198, 0);
   await expect(transfers).toHaveCount(0);
 
+  // No ocean at all: the page behind shows through.
+  await update(page, { background: { preset: "none" } });
+  // Two background layers (gradient, base colour), neither an image.
+  await expect(ocean).toHaveCSS("background-image", "none, none");
+  await expect(ocean).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await expect(root).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+
   // Back to the defaults: Transfer Points return, spheres and ocean reset.
   await update(page);
   await expect(transfers).toHaveCount(transferCount);
