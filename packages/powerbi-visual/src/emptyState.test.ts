@@ -139,6 +139,15 @@ describe("rendering events", () => {
     ]);
   });
 
+  it("end in exactly one event, even if the host's finished handler throws", () => {
+    const { update, eventService } = construct();
+    eventService.renderingFinished.mockImplementationOnce(() => {
+      throw new Error("host busy");
+    });
+    expect(() => update(full())).toThrow("host busy");
+    expect(eventService.renderingFailed).not.toHaveBeenCalled();
+  });
+
   it("report a failure, still in a started/failed pair", () => {
     const { update, eventService } = construct();
     const broken = {

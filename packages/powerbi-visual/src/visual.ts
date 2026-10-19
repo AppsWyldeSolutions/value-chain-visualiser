@@ -86,10 +86,12 @@ export class Visual implements IVisual {
       this.vcv.setSelection(defaultSelection(rows));
       this.selection.setTable(dataView?.table, rows);
       this.tooltips.setTable(dataView?.table, rows);
-      this.events.renderingFinished(options);
     } catch (error) {
       this.events.renderingFailed(options, String(error));
+      return;
     }
+    // Outside the try, so each update ends in exactly one of the two events.
+    this.events.renderingFinished(options);
   }
 
   public destroy(): void {

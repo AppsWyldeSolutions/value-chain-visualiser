@@ -13,6 +13,10 @@ const result = spawnSync(
     shell: process.platform === "win32",
   },
 );
+if (result.error) {
+  console.error(`Could not run pbiviz: ${result.error.message}`);
+  process.exit(1);
+}
 process.stdout.write(result.stdout ?? "");
 process.stderr.write(result.stderr ?? "");
 
