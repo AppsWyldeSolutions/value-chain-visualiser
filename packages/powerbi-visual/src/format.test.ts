@@ -1,7 +1,11 @@
 import type { KpiRow } from "@appswyldesolutions/vcv-core";
-import { defaultTheme, OCEAN_PRESETS } from "@appswyldesolutions/vcv-renderer";
+import {
+  DEFAULT_HEADING,
+  defaultTheme,
+  OCEAN_PRESETS,
+} from "@appswyldesolutions/vcv-renderer";
 import { describe, expect, it } from "vitest";
-import { rowsToShow, themeFrom } from "./format";
+import { headerFrom, rowsToShow, themeFrom } from "./format";
 import { PRESETS, VisualFormattingSettingsModel } from "./settings";
 
 function settings(
@@ -89,6 +93,34 @@ describe("themeFrom", () => {
     );
     expect(theme.ocean?.opacity).toBe("1");
     expect(theme.card?.primarySphereSize).toBe("66px");
+  });
+});
+
+describe("headerFrom", () => {
+  it("leaves the renderer's heading as it is by default", () => {
+    expect(headerFrom(settings())).toEqual({
+      eyebrow: DEFAULT_HEADING.eyebrow,
+      title: DEFAULT_HEADING.title,
+      show: true,
+      showSubtitle: true,
+    });
+  });
+
+  it("takes the Header card's text and switches", () => {
+    const header = headerFrom(
+      settings((model) => {
+        model.header.eyebrow.value = "Wylde";
+        model.header.title.value = "Operations chain";
+        model.header.showHeader.value = false;
+        model.header.showSubtitle.value = false;
+      }),
+    );
+    expect(header).toEqual({
+      eyebrow: "Wylde",
+      title: "Operations chain",
+      show: false,
+      showSubtitle: false,
+    });
   });
 });
 

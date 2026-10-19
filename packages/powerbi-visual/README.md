@@ -87,14 +87,17 @@ objects. On every `update()` the settings become the renderer's theme
 (`src/format.ts`), applied with `setTheme`, so a change restyles the drawn
 visual in place.
 
-| Card       | Setting          | Control                     | Default                         |
-| ---------- | ---------------- | --------------------------- | ------------------------------- |
-| Colours    | Fill colour      | colour picker               | the renderer's `fillColor`      |
-| Colours    | Shortfall colour | colour picker               | the renderer's `shortfallColor` |
-| Background | Ocean            | Ocean, Deep, Lagoon or None | Ocean                           |
-| Background | Opacity          | slider, 0–100%              | 100%                            |
-| Display    | Transfer Points  | on/off                      | on                              |
-| Display    | Sphere size      | slider, 50–150%             | 100%                            |
+| Card       | Setting          | Control                     | Default                                         |
+| ---------- | ---------------- | --------------------------- | ----------------------------------------------- |
+| Colours    | Fill colour      | colour picker               | the renderer's `fillColor`                      |
+| Colours    | Shortfall colour | colour picker               | the renderer's `shortfallColor`                 |
+| Background | Ocean            | Ocean, Deep, Lagoon or None | Ocean                                           |
+| Background | Opacity          | slider, 0–100%              | 100%                                            |
+| Display    | Transfer Points  | on/off                      | on                                              |
+| Display    | Sphere size      | slider, 50–150%             | 100%                                            |
+| Header     | Show header      | on/off                      | on                                              |
+| Header     | Eyebrow, Title   | text                        | "Value chain", "Business Processes & Scorecard" |
+| Header     | Show subtitle    | on/off                      | on                                              |
 
 - **Colours** replace the web component's header colour pickers: on target
   spheres use the fill colour, missed ones the shortfall colour.
@@ -104,6 +107,20 @@ visual in place.
   the arrows between cards have no popover.
 - **Sphere size** scales every sphere (primary, satellite and the Score
   Card's panels) and the slots they sit in.
+- **Header** edits the visual's own heading, and hides it or just its
+  subtitle. `capabilities.json` sets `suppressDefaultTitle`, so a newly
+  added visual does not also get Power BI's auto-generated title ("Sum of
+  actual and Sum of budget by …"); it can still be turned on in **General →
+  Title**.
+
+## Several periods
+
+When the rows span more than one year or period (the Year and Period
+slicers cleared, or multi-select), the visual shows the latest period with
+actuals and a notice above the cards: "Showing August 2026, the latest with
+actuals of 12 periods in the data. Use the Year and Period slicers to pick
+one." Every year and period in the rows counts, empty actuals included. One
+period, no notice.
 
 ## Selection and cross-filtering
 

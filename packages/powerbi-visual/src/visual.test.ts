@@ -2,7 +2,11 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fromLongRows } from "@appswyldesolutions/vcv-core";
-import { defaultTheme, OCEAN_PRESETS } from "@appswyldesolutions/vcv-renderer";
+import {
+  DEFAULT_HEADING,
+  defaultTheme,
+  OCEAN_PRESETS,
+} from "@appswyldesolutions/vcv-renderer";
 import type powerbi from "powerbi-visuals-api";
 import { afterEach, describe, expect, it } from "vitest";
 import { testHost } from "./testHost";
@@ -92,6 +96,7 @@ describe("Visual", () => {
       "colours-card",
       "background-card",
       "display-card",
+      "header-card",
     ]);
   });
 
@@ -127,6 +132,37 @@ describe("Visual", () => {
       expect(css(element, "--vcv-ocean-base")).toBe(OCEAN_PRESETS.lagoon.base);
       expect(css(element, "--vcv-ocean-opacity")).toBe("0.4");
       expect(css(element, "--vcv-card-primary-sphere-size")).toBe("198px");
+    });
+
+    it("sets the header's text and visibility from the Header card", () => {
+      const { element, visual } = construct();
+      visual.update(formatted({}));
+      const root = element.querySelector(".vcv-root")!;
+      visual.update(
+        formatted({
+          header: {
+            eyebrow: "Wylde",
+            title: "Operations chain",
+            showSubtitle: false,
+          },
+        }),
+      );
+      expect(element.querySelector(".vcv-root")).toBe(root);
+      expect(element.querySelector(".vcv-header__eyebrow")?.textContent).toBe(
+        "Wylde",
+      );
+      expect(element.querySelector(".vcv-header__title")?.textContent).toBe(
+        "Operations chain",
+      );
+      expect(root.classList.contains("vcv-root--no-subtitle")).toBe(true);
+      visual.update(formatted({ header: { showHeader: false } }));
+      expect(root.classList.contains("vcv-root--no-heading")).toBe(true);
+      visual.update(formatted({}));
+      expect(element.querySelector(".vcv-header__title")?.textContent).toBe(
+        DEFAULT_HEADING.title,
+      );
+      expect(root.classList.contains("vcv-root--no-heading")).toBe(false);
+      expect(root.classList.contains("vcv-root--no-subtitle")).toBe(false);
     });
 
     it("goes back to the defaults when a setting is reset", () => {

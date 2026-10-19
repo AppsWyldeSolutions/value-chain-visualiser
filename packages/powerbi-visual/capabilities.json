@@ -119,12 +119,28 @@
           }
         }
       }
+    },
+    "header": {
+      "displayName": "Header",
+      "properties": {
+        "showHeader": {
+          "displayName": "Show header",
+          "type": { "bool": true }
+        },
+        "eyebrow": { "displayName": "Eyebrow", "type": { "text": true } },
+        "title": { "displayName": "Title", "type": { "text": true } },
+        "showSubtitle": {
+          "displayName": "Show subtitle",
+          "type": { "bool": true }
+        }
+      }
     }
   },
   "tooltips": {
     "supportedTypes": { "default": true, "canvas": true },
     "roles": ["tooltips"]
   },
+  "suppressDefaultTitle": true,
   "supportsLandingPage": true,
   "supportsEmptyDataView": true,
   "privileges": []

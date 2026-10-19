@@ -22,6 +22,7 @@ type Capabilities = {
   >;
   tooltips?: unknown;
   supportsLandingPage?: boolean;
+  suppressDefaultTitle?: boolean;
   supportsEmptyDataView?: boolean;
   privileges?: unknown[];
 };
@@ -66,6 +67,10 @@ describe("capabilities.json", () => {
     }
   });
 
+  it("does not start with Power BI's auto-generated title", () => {
+    expect(capabilities.suppressDefaultTitle).toBe(true);
+  });
+
   it("is updated with no data, so it can ask for the missing fields", () => {
     expect(capabilities.supportsLandingPage).toBe(true);
     expect(capabilities.supportsEmptyDataView).toBe(true);
@@ -102,6 +107,7 @@ describe("capabilities.json", () => {
       ColorPicker: "fill",
       Dropdown: "enumeration",
       ToggleSwitch: "bool",
+      TextInput: "text",
       Slider: "numeric",
     };
     const model = new VisualFormattingSettingsModel();

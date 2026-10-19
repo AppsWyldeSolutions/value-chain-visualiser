@@ -192,8 +192,11 @@ the visual's data roles.
    loads).
 
 The visual draws the rows it is given. With the slicers set to one year and
-one period it shows that period. Picking the latest period itself when the
-slicers let several through, with a notice saying so, is a separate change.
+one period it shows that period. When they let several through (cleared, or
+multi-select), it shows the latest period with actuals and says so above
+the cards: "Showing August 2026, the latest with actuals of 12 periods in
+the data. Use the Year and Period slicers to pick one." Every year and
+period in the rows counts, including months whose actuals are still empty.
 
 ## Checking the result
 

@@ -160,6 +160,17 @@ async function update(
   );
 }
 
+/** The table's rows for one period, as the Period slicer would leave them. */
+function onlyPeriod(period: string): typeof table {
+  const at = table.columns.findIndex(
+    (column) => (column as { roles: Record<string, boolean> }).roles.period,
+  );
+  return {
+    columns: table.columns,
+    rows: table.rows.filter((values) => values[at] === period),
+  };
+}
+
 /** The table with one role's field taken out of its well. */
 function without(role: string): typeof table {
   const keep = table.columns.flatMap((column, index) =>
@@ -421,4 +432,54 @@ test("a required field taken out shows what to add, not an error", async ({
     "finished",
   ]);
   expect(errors).toEqual([]);
+});
+
+test("several periods show a notice naming the one shown; one period, none", async ({
+  page,
+}) => {
+  await load(page);
+  await update(page);
+  const host = page.locator("#host");
+  const notice = host.locator(".vcv-notice");
+  await expect(notice).toHaveText(
+    "Showing August 2026, the latest with actuals of 12 periods in the data. Use the Year and Period slicers to pick one.",
+  );
+  await expect(notice).toBeVisible();
+  await expect(host.locator(".vcv-header__subtitle")).toHaveText(
+    "August 2026 · 53 KPIs measured against budget",
+  );
+
+  await update(page, {}, onlyPeriod("August"));
+  await expect(notice).toHaveCount(0);
+  await expect(host.locator(".vcv-grid > .vcv-card")).toHaveCount(9);
+});
+
+test("the Header card edits and hides the visual's own heading", async ({
+  page,
+}) => {
+  await load(page);
+  await update(page);
+  const host = page.locator("#host");
+  await update(page, {
+    header: {
+      eyebrow: "Wylde",
+      title: "Operations chain",
+      showSubtitle: false,
+    },
+  });
+  await expect(host.locator(".vcv-header__eyebrow")).toHaveText("Wylde");
+  await expect(host.locator(".vcv-header__title")).toHaveText(
+    "Operations chain",
+  );
+  await expect(host.locator(".vcv-header__subtitle")).toBeHidden();
+
+  await update(page, { header: { showHeader: false } });
+  await expect(host.locator(".vcv-header__title")).toBeHidden();
+  await expect(host.locator(".vcv-grid > .vcv-card")).toHaveCount(9);
+
+  await update(page);
+  await expect(host.locator(".vcv-header__title")).toHaveText(
+    "Business Processes & Scorecard",
+  );
+  await expect(host.locator(".vcv-header__subtitle")).toBeVisible();
 });
