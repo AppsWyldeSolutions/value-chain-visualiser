@@ -21,11 +21,15 @@ function host(container: HTMLElement): ValueChainVisualiserElement {
 async function mount(ui: ReactElement) {
   const result = render(ui);
   const element = host(result.container);
-  // Upgraded: the effect's import of the define entry has run.
-  await waitFor(() =>
-    expect(element.constructor).toBe(
-      customElements.get("value-chain-visualiser"),
-    ),
+  // Upgraded: the effect's import of the define entry has run. The first
+  // import loads the whole web component, which on a loaded machine takes
+  // longer than waitFor's default 1s.
+  await waitFor(
+    () =>
+      expect(element.constructor).toBe(
+        customElements.get("value-chain-visualiser"),
+      ),
+    { timeout: 10_000 },
   );
   return { ...result, element };
 }
