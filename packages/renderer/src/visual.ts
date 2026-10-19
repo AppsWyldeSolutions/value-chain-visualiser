@@ -52,10 +52,21 @@ export interface VisualOptions {
   /** Called when the viewer changes a control, with the whole new state. */
   onChange?(state: VisualState): void;
   /**
-   * Called when a sphere is clicked, with the KPI it shows. When given, the
-   * spheres show a pointer.
+   * Called when a sphere is clicked, with the KPI it shows. `multi` is true
+   * for a ctrl-click (cmd-click on a Mac): add to the selection rather than
+   * replace it. When given, the spheres show a pointer.
    */
-  onSelect?(kpi: EvaluatedKpi): void;
+  onSelect?(kpi: EvaluatedKpi, click: SelectClick): void;
+  /**
+   * Called when a click lands away from every sphere (and the header
+   * controls): a host clears its selection.
+   */
+  onDeselect?(): void;
+}
+
+/** How a sphere was clicked. */
+export interface SelectClick {
+  multi: boolean;
 }
 
 export interface Visual {
@@ -64,6 +75,11 @@ export interface Visual {
   setRows(rows: KpiRow[]): void;
   setSelection(selection: Selection): void;
   setTheme(overrides: ThemeOverrides): void;
+  /**
+   * Dims every card none of whose KPIs (its transfer points included) is
+   * selected; null shows every card in full. Kept when the cards redraw.
+   */
+  setSelectedKpis(isSelected: ((kpi: EvaluatedKpi) => boolean) | null): void;
   state(): VisualState;
   destroy(): void;
 }
@@ -125,6 +141,11 @@ function rowsFor(rows: KpiRow[], selection: Selection): KpiRow[] {
   return [...selected, ...placeholders.values()];
 }
 
+/** Every KPI drawn for a node: on its card or in its transfer points. */
+function drawnKpis(node: NodeModel) {
+  return [...shownKpis(node), ...node.transferPoints];
+}
+
 /** The KPIs a node's card shows: the ones counted in the subtitle. */
 function shownKpis(node: NodeModel) {
   return isScoreCard(node)
@@ -182,19 +203,25 @@ export function createVisual(
   if (controls) shell.controls.appendChild(controls.element);
   else shell.controls.remove();
 
-  const { onSelect } = options;
-  if (onSelect) {
-    shell.root.classList.add("vcv-root--selectable");
+  const { onSelect, onDeselect } = options;
+  if (onSelect) shell.root.classList.add("vcv-root--selectable");
+  if (onSelect || onDeselect) {
     // One listener for every sphere, including those in popovers.
     shell.root.addEventListener("click", (event) => {
       const target = event.target as Element | null;
       const kpi = target?.closest?.(".vcv-sphere")?.closest(".vcv-kpi");
       const selected = kpi ? kpiOf(kpi) : undefined;
-      if (selected) onSelect(selected);
+      if (selected) {
+        onSelect?.(selected, { multi: event.ctrlKey || event.metaKey });
+      } else if (!kpi && !target?.closest?.(".vcv-controls, .vcv-transfer")) {
+        onDeselect?.();
+      }
     });
   }
 
   let cards: HTMLElement[] = [];
+  let cardNodes: NodeModel[] = [];
+  let isSelected: ((kpi: EvaluatedKpi) => boolean) | null = null;
   const connectors = createConnectors(shell.grid);
 
   function render(): void {
@@ -208,6 +235,8 @@ export function createVisual(
     // Cards go ahead of the arrows' overlays, which stay put.
     for (const card of next) shell.grid.insertBefore(card, connectors.element);
     cards = next;
+    cardNodes = model.nodes;
+    dim();
 
     const measured = model.nodes
       .flatMap(shownKpis)
@@ -219,6 +248,14 @@ export function createVisual(
         : `${when} · No data loaded for this period`,
     );
     controls?.update(state(), yearChoices(rows, selection.year));
+  }
+
+  function dim(): void {
+    cards.forEach((card, i) => {
+      const node = cardNodes[i];
+      const keep = !isSelected || (node && drawnKpis(node).some(isSelected));
+      card.classList.toggle("vcv-card--dimmed", !keep);
+    });
   }
 
   function applyTheme(overrides: ThemeOverrides): void {
@@ -240,6 +277,10 @@ export function createVisual(
       render();
     },
     setTheme: applyTheme,
+    setSelectedKpis(next) {
+      isSelected = next;
+      dim();
+    },
     state,
     destroy() {
       connectors.destroy();

@@ -96,6 +96,8 @@ export interface RendererTheme extends Theme {
     highlightLow: string;
   };
   card: {
+    /** Opacity of a card with none of its KPIs selected. */
+    dimOpacity: string;
     padding: string;
     /** Space between the header and the rows, and between rows. */
     gap: string;
@@ -338,6 +340,7 @@ export const defaultTheme: RendererTheme = {
     highlightLow: "rgba(255, 255, 255, 0.28)",
   },
   card: {
+    dimOpacity: "0.35",
     padding: "20px",
     gap: "14px",
     minHeight: "608px",
