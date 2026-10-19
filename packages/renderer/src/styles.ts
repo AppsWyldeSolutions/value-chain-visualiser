@@ -683,4 +683,18 @@ input[type="color"].vcv-control__input {
 .vcv-root--flat .vcv-sphere__highlight {
   display: none;
 }
+
+/* Empty: a host with no data to draw yet (Visual.setEmpty). */
+.vcv-empty {
+  margin: 0;
+  padding: var(--vcv-layout-gutter);
+  font-family: var(--vcv-fonts-display);
+  font-size: var(--vcv-type-subtitle-size);
+  color: var(--vcv-colors-text-soft);
+  text-align: center;
+}
+.vcv-root--empty .vcv-grid,
+.vcv-root--empty .vcv-header__subtitle {
+  display: none;
+}
 `;

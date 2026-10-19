@@ -549,6 +549,15 @@ Without a host's own tooltips, each KPI has a native `title` tooltip
   data for this period" without figures); for a card, Link and On target
   ("3 of 5").
 
+### Empty state
+
+`Visual.setEmpty(message | null)` shows `message` (as text, in a
+`p.vcv-empty` with `role="status"`) in place of the cards, arrows and
+subtitle, styled from the theme (display font, subtitle size, soft text
+colour, the gutter as padding); `null` shows the chain again. For a host
+with no data to draw yet, such as the Power BI visual before its required
+fields are added.
+
 ### High contrast
 
 `highContrastTheme({ foreground, background, foregroundSelected, hyperlink })`
