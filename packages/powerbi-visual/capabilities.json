@@ -36,5 +36,83 @@
       }
     }
   ],
+  "objects": {
+    "colours": {
+      "displayName": "Colours",
+      "properties": {
+        "fillColor": {
+          "displayName": "Fill colour",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "shortfallColor": {
+          "displayName": "Shortfall colour",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "background": {
+      "displayName": "Background",
+      "properties": {
+        "preset": {
+          "displayName": "Ocean",
+          "type": {
+            "enumeration": [
+              {
+                "value": "ocean",
+                "displayName": "Ocean"
+              },
+              {
+                "value": "deep",
+                "displayName": "Deep"
+              },
+              {
+                "value": "lagoon",
+                "displayName": "Lagoon"
+              },
+              {
+                "value": "none",
+                "displayName": "None"
+              }
+            ]
+          }
+        },
+        "opacity": {
+          "displayName": "Opacity",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "display": {
+      "displayName": "Display",
+      "properties": {
+        "showTransferPoints": {
+          "displayName": "Transfer Points",
+          "type": {
+            "bool": true
+          }
+        },
+        "sphereSize": {
+          "displayName": "Sphere size",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    }
+  },
   "privileges": []
 }

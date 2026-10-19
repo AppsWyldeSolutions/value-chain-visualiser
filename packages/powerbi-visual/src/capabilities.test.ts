@@ -3,6 +3,7 @@ import path from "node:path";
 import type { KpiRow } from "@appswyldesolutions/vcv-core";
 import { describe, expect, it } from "vitest";
 import { ROLES } from "./rows";
+import { PRESETS, VisualFormattingSettingsModel } from "./settings";
 
 type Capabilities = {
   dataRoles: { name: string; displayName: string; kind: string }[];
@@ -14,6 +15,10 @@ type Capabilities = {
       };
     };
   }[];
+  objects?: Record<
+    string,
+    { properties: Record<string, { type: Record<string, unknown> }> }
+  >;
   privileges?: unknown[];
 };
 
@@ -68,5 +73,39 @@ describe("capabilities.json", () => {
       capabilities.dataViewMappings[0]!.table.rows.dataReductionAlgorithm
         ?.window?.count;
     expect(count).toBeGreaterThanOrEqual(30_000);
+  });
+
+  it("declares every format pane setting, with a type that fits its control", () => {
+    // What each control stores; Power BI drops values it has no type for.
+    const typeOf: Record<string, string> = {
+      ColorPicker: "fill",
+      Dropdown: "enumeration",
+      ToggleSwitch: "bool",
+      Slider: "numeric",
+    };
+    const model = new VisualFormattingSettingsModel();
+    const declared = capabilities.objects ?? {};
+    expect(Object.keys(declared).sort()).toEqual(
+      model.cards.map((card) => card.name).sort(),
+    );
+    for (const card of model.cards) {
+      const properties = declared[card.name]!.properties;
+      const slices = (card as { slices?: { name: string; type?: string }[] })
+        .slices!;
+      expect(Object.keys(properties).sort(), card.name).toEqual(
+        slices.map((slice) => slice.name).sort(),
+      );
+      for (const slice of slices) {
+        expect(
+          Object.keys(properties[slice.name]!.type),
+          `${card.name}.${slice.name}`,
+        ).toEqual([typeOf[slice.type!]]);
+      }
+    }
+  });
+
+  it("lists the ocean presets the Background card offers", () => {
+    const preset = capabilities.objects!.background!.properties.preset!;
+    expect(preset.type.enumeration).toEqual(PRESETS);
   });
 });

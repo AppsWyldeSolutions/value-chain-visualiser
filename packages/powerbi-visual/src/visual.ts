@@ -14,6 +14,7 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
 import IVisualEventService = powerbi.extensibility.IVisualEventService;
 
+import { rowsToShow, themeFrom } from "./format";
 import { rowsFromTable } from "./rows";
 import { VisualFormattingSettingsModel } from "./settings";
 
@@ -36,7 +37,11 @@ export class Visual implements IVisual {
     this.formattingSettings = new VisualFormattingSettingsModel();
     // Power BI owns the selection (filters) and colours (format pane), so
     // the visual draws no controls of its own.
-    this.vcv = createVisual(options.element, { rows: [], showControls: false });
+    this.vcv = createVisual(options.element, {
+      rows: [],
+      showControls: false,
+      theme: themeFrom(this.formattingSettings),
+    });
   }
 
   public update(options: VisualUpdateOptions) {
@@ -48,8 +53,11 @@ export class Visual implements IVisual {
           VisualFormattingSettingsModel,
           dataView,
         );
+      // Every update carries the format pane's settings, so a change there
+      // restyles the drawn visual in place.
+      this.vcv.setTheme(themeFrom(this.formattingSettings));
       const rows = rowsFromTable(dataView?.table);
-      this.vcv.setRows(rows);
+      this.vcv.setRows(rowsToShow(rows, this.formattingSettings));
       this.vcv.setSelection(defaultSelection(rows));
       this.events.renderingFinished(options);
     } catch (error) {

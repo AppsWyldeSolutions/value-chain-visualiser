@@ -32,7 +32,6 @@ export const stylesText = `
   overflow: hidden;
   font-family: var(--vcv-fonts-body);
   color: var(--vcv-colors-text);
-  background: var(--vcv-ocean-base);
 }
 .vcv-root *,
 .vcv-root *::before,
@@ -49,7 +48,9 @@ export const stylesText = `
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  background: var(--vcv-ocean-gradient);
+  /* The base colour is here, not on the root, so opacity fades it too. */
+  background: var(--vcv-ocean-gradient), var(--vcv-ocean-base);
+  opacity: var(--vcv-ocean-opacity);
 }
 .vcv-ocean__ray {
   position: absolute;

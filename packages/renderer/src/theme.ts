@@ -37,6 +37,12 @@ export interface RendererTheme extends Theme {
     focusRing: string;
   };
   ocean: {
+    /**
+     * How opaque the whole ocean is, base colour, rays, waves and bubbles
+     * together, from "0" to "1". Below 1 the page behind shows through;
+     * the cards are unaffected.
+     */
+    opacity: string;
     base: string;
     gradient: string;
     rayColor: string;
@@ -237,6 +243,7 @@ export const defaultTheme: RendererTheme = {
     focusRing: "#ffffff",
   },
   ocean: {
+    opacity: "1",
     base: "#073a63",
     gradient:
       "linear-gradient(180deg, #0f6893 0%, #0c5f8c 12%, #0a4d78 40%, #073a63 70%, #052a4c 100%)",

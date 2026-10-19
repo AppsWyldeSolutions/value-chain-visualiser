@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fromLongRows } from "@appswyldesolutions/vcv-core";
+import { defaultTheme, OCEAN_PRESETS } from "@appswyldesolutions/vcv-renderer";
 import type powerbi from "powerbi-visuals-api";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { tableOf } from "./testTable";
@@ -88,9 +89,75 @@ describe("Visual", () => {
     );
   });
 
-  it("has a formatting model before its first update", () => {
+  it("has the Colours, Background and Display cards before its first update", () => {
     const { visual } = construct();
-    expect(visual.getFormattingModel()).toEqual({ cards: [] });
+    const model = visual.getFormattingModel();
+    expect(model.cards.map((card) => card.uid)).toEqual([
+      "colours-card",
+      "background-card",
+      "display-card",
+    ]);
+  });
+
+  describe("format pane", () => {
+    const formatted = (objects: powerbi.DataViewObjects) =>
+      updateWith([
+        { table: tableOf(ROWS), metadata: { columns: [], objects } },
+      ] as powerbi.DataView[]);
+    const css = (element: HTMLElement, name: string) =>
+      element
+        .querySelector<HTMLElement>(".vcv-root")!
+        .style.getPropertyValue(name);
+
+    it("restyles the same visual on each update: no reload", () => {
+      const { element, visual } = construct();
+      visual.update(formatted({}));
+      const root = element.querySelector(".vcv-root");
+      expect(css(element, "--vcv-fill-color")).toBe(defaultTheme.fillColor);
+
+      visual.update(
+        formatted({
+          colours: {
+            fillColor: { solid: { color: "#2f9e44" } },
+            shortfallColor: { solid: { color: "#e03131" } },
+          },
+          background: { preset: "lagoon", opacity: 40 },
+          display: { sphereSize: 150 },
+        }),
+      );
+      expect(element.querySelector(".vcv-root")).toBe(root);
+      expect(css(element, "--vcv-fill-color")).toBe("#2f9e44");
+      expect(css(element, "--vcv-shortfall-color")).toBe("#e03131");
+      expect(css(element, "--vcv-ocean-base")).toBe(OCEAN_PRESETS.lagoon.base);
+      expect(css(element, "--vcv-ocean-opacity")).toBe("0.4");
+      expect(css(element, "--vcv-card-primary-sphere-size")).toBe("198px");
+    });
+
+    it("goes back to the defaults when a setting is reset", () => {
+      const { element, visual } = construct();
+      visual.update(
+        formatted({
+          background: { preset: "none" },
+          display: { sphereSize: 50 },
+        }),
+      );
+      visual.update(formatted({}));
+      expect(css(element, "--vcv-ocean-base")).toBe(OCEAN_PRESETS.ocean.base);
+      expect(css(element, "--vcv-card-primary-sphere-size")).toBe(
+        defaultTheme.card.primarySphereSize,
+      );
+    });
+
+    it("shows the format pane the values in use", () => {
+      const { visual } = construct();
+      visual.update(formatted({ display: { showTransferPoints: false } }));
+      const display = visual
+        .getFormattingModel()
+        .cards.find((card) => card.uid === "display-card")!;
+      const toggle = JSON.stringify(display);
+      expect(toggle).toContain('"showTransferPoints"');
+      expect(toggle).toMatch(/"value":false/);
+    });
   });
 
   it("removes the visual on destroy", () => {
