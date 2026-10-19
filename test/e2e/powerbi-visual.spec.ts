@@ -74,9 +74,37 @@ async function load(page: Page) {
       vcvEvents: string[];
     };
     w.vcvEvents = [];
+    // A selection manager that, like Power BI's, replaces the selection on
+    // a plain select and adds to it on a multi-select. Ids are table rows.
+    type Id = { row: number; equals(other: Id): boolean };
+    let selected: Id[] = [];
+    const selectionManager = {
+      select: async (id: Id, multi = false) => {
+        selected = multi ? [...selected, id] : [id];
+        return selected;
+      },
+      clear: async () => {
+        selected = [];
+        return {};
+      },
+      getSelectionIds: () => selected,
+      registerOnSelectCallback: () => {},
+    };
     w.vcvVisual = w.powerbi.visuals.plugins[guid]!.create({
       element: document.getElementById("host"),
       host: {
+        createSelectionManager: () => selectionManager,
+        createSelectionIdBuilder: () => {
+          let id: Id;
+          const builder = {
+            withTable(_: unknown, row: number) {
+              id = { row, equals: (other: Id) => other.row === row };
+              return builder;
+            },
+            createSelectionId: () => id,
+          };
+          return builder;
+        },
         eventService: {
           renderingStarted: () => w.vcvEvents.push("started"),
           renderingFinished: () => w.vcvEvents.push("finished"),
@@ -196,5 +224,39 @@ test("each format pane setting updates the drawn visual, with no reload", async 
   expect((await events(page)).filter((e) => e.startsWith("failed"))).toEqual(
     [],
   );
+  expect(errors).toEqual([]);
+});
+
+test("clicking spheres selects, ctrl-click adds, a click away clears", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await load(page);
+  await update(page);
+
+  const host = page.locator("#host");
+  const cards = host.locator(".vcv-grid > .vcv-card");
+  const dimmed = host.locator(".vcv-grid > .vcv-card--dimmed");
+  await expect(cards).toHaveCount(9);
+  const sphere = (card: number) =>
+    cards.nth(card).locator(".vcv-kpi--primary .vcv-sphere").first();
+
+  await sphere(0).click();
+  await expect(dimmed).toHaveCount(8);
+  await expect(cards.nth(0)).not.toHaveClass(/vcv-card--dimmed/);
+  await expect(cards.nth(1)).toHaveCSS("opacity", "0.35");
+
+  await sphere(2).click({ modifiers: ["ControlOrMeta"] });
+  await expect(dimmed).toHaveCount(7);
+  await expect(cards.nth(2)).toHaveCSS("opacity", "1");
+
+  await sphere(4).click();
+  await expect(dimmed).toHaveCount(8);
+  await expect(cards.nth(4)).not.toHaveClass(/vcv-card--dimmed/);
+
+  await host.locator(".vcv-header__title").click();
+  await expect(dimmed).toHaveCount(0);
+  await expect(cards.nth(1)).toHaveCSS("opacity", "1");
   expect(errors).toEqual([]);
 });

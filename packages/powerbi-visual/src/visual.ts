@@ -16,6 +16,7 @@ import IVisualEventService = powerbi.extensibility.IVisualEventService;
 
 import { rowsToShow, themeFrom } from "./format";
 import { rowsFromTable } from "./rows";
+import { RowSelection } from "./selection";
 import { VisualFormattingSettingsModel } from "./settings";
 
 export class Visual implements IVisual {
@@ -23,6 +24,7 @@ export class Visual implements IVisual {
   private vcv: VcvVisual;
   private formattingSettings: VisualFormattingSettingsModel;
   private formattingSettingsService: FormattingSettingsService;
+  private selection: RowSelection;
 
   // Optional because pbiviz's generated plugin (.tmp/precompile/visualPlugin.ts)
   // passes its own optional argument straight through; typed this way, that
@@ -41,7 +43,13 @@ export class Visual implements IVisual {
       rows: [],
       showControls: false,
       theme: themeFrom(this.formattingSettings),
+      // Selection and cross-filtering: a sphere selects its table row.
+      onSelect: (kpi, { multi }) => void this.selection.select(kpi.row, multi),
+      onDeselect: () => void this.selection.clear(),
     });
+    this.selection = new RowSelection(options.host, (selected) =>
+      this.vcv.setSelectedKpis(selected),
+    );
   }
 
   public update(options: VisualUpdateOptions) {
@@ -59,6 +67,7 @@ export class Visual implements IVisual {
       const rows = rowsFromTable(dataView?.table);
       this.vcv.setRows(rowsToShow(rows, this.formattingSettings));
       this.vcv.setSelection(defaultSelection(rows));
+      this.selection.setTable(dataView?.table, rows);
       this.events.renderingFinished(options);
     } catch (error) {
       this.events.renderingFailed(options, String(error));

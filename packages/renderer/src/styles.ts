@@ -362,6 +362,9 @@ input[type="color"].vcv-control__input {
     saturate(var(--vcv-glass-saturate));
   box-shadow: var(--vcv-glass-card-shadow);
 }
+.vcv-card--dimmed {
+  opacity: var(--vcv-card-dim-opacity);
+}
 .vcv-card__header {
   display: flex;
   flex-shrink: 0;

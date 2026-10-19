@@ -91,6 +91,25 @@ visual in place.
 - **Sphere size** scales every sphere (primary, satellite and the Score
   Card's panels) and the slots they sit in.
 
+## Selection and cross-filtering
+
+`src/selection.ts`: every table row gets a selection id
+(`createSelectionIdBuilder().withTable(table, rowIndex)`).
+
+- **Click a sphere** to select its row through Power BI's selection manager,
+  which filters the report's other visuals to that KPI and period. The cards
+  with no selected KPI dim.
+- **Ctrl-click** (cmd-click on a Mac) adds to the selection instead of
+  replacing it.
+- **Click away** from the spheres to clear the selection; every card returns
+  to full opacity.
+- When the host changes the selection (a bookmark, or clearing it from
+  another visual), the dimming follows; and it is kept across updates.
+- A KPI drawn as no data (no row for the period) has no row to select.
+- Where the host allows no interactions (`allowInteractions` false, as on a
+  dashboard tile) clicks select nothing. A selection the host refuses
+  leaves the cards as they were.
+
 ## Tests
 
 - `src/*.test.ts` (Vitest, in the root `npm run test`): the table mapping

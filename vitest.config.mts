@@ -22,6 +22,10 @@ export default defineConfig({
   },
   test: {
     passWithNoTests: true,
+    // The first test in a jsdom file also pays for the environment, the
+    // embedded fonts and the first full draw of the fixture's 1,020 rows:
+    // about 5s on a loaded machine, against Vitest's default limit of 5s.
+    testTimeout: 20_000,
     exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**"],
   },
 });
