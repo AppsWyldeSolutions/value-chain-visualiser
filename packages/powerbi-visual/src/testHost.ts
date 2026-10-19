@@ -47,8 +47,25 @@ export function testHost({ allowInteractions = true } = {}) {
     renderingFinished: vi.fn(),
     renderingFailed: vi.fn(),
   };
+  const tooltipService = {
+    enabled: vi.fn(() => true),
+    show: vi.fn(),
+    move: vi.fn(),
+    hide: vi.fn(),
+  };
+  // Mutable, as Power BI's is when the viewer turns high contrast on or off.
+  const colorPalette = {
+    isHighContrast: false,
+    foreground: { value: "#ffff00" },
+    background: { value: "#000000" },
+    foregroundSelected: { value: "#00ffff" },
+    hyperlink: { value: "#ff00ff" },
+  };
   const host = {
     eventService,
+    tooltipService,
+    colorPalette,
+    locale: "en-US",
     hostCapabilities: { allowInteractions },
     createSelectionManager: () => selectionManager,
     createSelectionIdBuilder: () => {
@@ -67,6 +84,8 @@ export function testHost({ allowInteractions = true } = {}) {
     host: host as unknown as powerbi.extensibility.visual.IVisualHost,
     eventService,
     selectionManager,
+    tooltipService,
+    colorPalette,
     /** As Power BI does when the host changes the selection (bookmarks). */
     hostSelects(ids: RowId[]) {
       selected = ids;

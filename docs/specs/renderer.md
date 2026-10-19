@@ -532,6 +532,37 @@ from.
   period. The renderer keeps no selection of its own: the host decides what
   is selected and says so.
 
+### Tooltips
+
+Without a host's own tooltips, each KPI has a native `title` tooltip
+(`kpiTooltip`). `createVisual`'s `tooltip` option takes `show`, `move` and
+`hide` handlers instead, and the native titles are then left out:
+
+- `show(target, point)` when the pointer reaches a target, `move` while it
+  moves over the same one, `hide()` when it is over none or leaves the
+  visual. `point` is `{ x, y }` in viewport coordinates.
+- A target is `{ kind: "kpi", kpi }` over a KPI (its sphere, name or
+  figures, on a card or in a transfer points popover), or
+  `{ kind: "card", node }` elsewhere on a card.
+- `tooltipItems(target)` gives its lines as `{ displayName, value }`: for a
+  KPI, KPI, Period, Actual, Budget, Rule and Status (KPI, Period and "No
+  data for this period" without figures); for a card, Link and On target
+  ("3 of 5").
+
+### High contrast
+
+`highContrastTheme({ foreground, background, foregroundSelected, hyperlink })`
+is a flat theme in those colours only: every colour token in one of them,
+no gradients, glass, glow or shadows. Spheres on target fill in the
+foreground colour and missed ones in the hyperlink colour; borders, rings
+and arrows are solid foreground, focus is `foregroundSelected`.
+
+`Visual.setHighContrast(colors | null)` applies it on top of the theme
+`setTheme` sets, and adds `vcv-root--flat`, whose rules remove the ocean,
+the cards' and popovers' backdrop blur and shadows, the spheres' glow,
+highlights and meniscus, and fill the liquid with one solid colour. `null`
+goes back to the host's theme, including any `setTheme` made meanwhile.
+
 ## Web component
 
 Package `@appswyldesolutions/vcv-web-component`. Importing its `./define`

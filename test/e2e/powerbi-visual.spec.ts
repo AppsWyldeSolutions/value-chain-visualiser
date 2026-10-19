@@ -72,8 +72,18 @@ async function load(page: Page) {
       powerbi: { visuals: { plugins: Record<string, Plugin> } };
       vcvVisual: object;
       vcvEvents: string[];
+      vcvTooltips: { call: string; options: unknown }[];
+      vcvPalette: { isHighContrast: boolean };
     };
     w.vcvEvents = [];
+    w.vcvTooltips = [];
+    w.vcvPalette = {
+      isHighContrast: false,
+      foreground: { value: "#ffff00" },
+      background: { value: "#000000" },
+      foregroundSelected: { value: "#00ffff" },
+      hyperlink: { value: "#ff00ff" },
+    } as { isHighContrast: boolean };
     // A selection manager that, like Power BI's, replaces the selection on
     // a plain select and adds to it on a multi-select. Ids are table rows.
     type Id = { row: number; equals(other: Id): boolean };
@@ -93,6 +103,20 @@ async function load(page: Page) {
     w.vcvVisual = w.powerbi.visuals.plugins[guid]!.create({
       element: document.getElementById("host"),
       host: {
+        // Records what the visual asks Power BI's tooltip service to do.
+        tooltipService: {
+          enabled: () => true,
+          show: (options: unknown) =>
+            w.vcvTooltips.push({ call: "show", options }),
+          move: (options: unknown) =>
+            w.vcvTooltips.push({ call: "move", options }),
+          hide: (options: unknown) =>
+            w.vcvTooltips.push({ call: "hide", options }),
+        },
+        // Power BI's palette in its "High contrast #1" colours; the test turns
+        // isHighContrast on and off.
+        colorPalette: w.vcvPalette,
+        locale: "en-US",
         createSelectionManager: () => selectionManager,
         createSelectionIdBuilder: () => {
           let id: Id;
@@ -259,4 +283,88 @@ test("clicking spheres selects, ctrl-click adds, a click away clears", async ({
   await expect(dimmed).toHaveCount(0);
   await expect(cards.nth(1)).toHaveCSS("opacity", "1");
   expect(errors).toEqual([]);
+});
+
+test("hovering shows Power BI's tooltip, not the browser's", async ({
+  page,
+}) => {
+  await load(page);
+  await update(page);
+  const host = page.locator("#host");
+  const kpi = host.locator(".vcv-card .vcv-kpi").first();
+  const calls = () =>
+    page.evaluate(
+      () =>
+        (
+          window as unknown as {
+            vcvTooltips: {
+              call: string;
+              options: { dataItems?: { displayName: string; value: string }[] };
+            }[];
+          }
+        ).vcvTooltips,
+    );
+
+  await kpi.locator(".vcv-sphere").hover();
+  await expect
+    .poll(async () => (await calls()).map((c) => c.call))
+    .toContain("show");
+  const shown = (await calls()).find((c) => c.call === "show")!;
+  expect(shown.options.dataItems?.map((item) => item.displayName)).toEqual([
+    "KPI",
+    "Period",
+    "Actual",
+    "Budget",
+    "Rule",
+    "Status",
+  ]);
+  // No native tooltip to show alongside it.
+  await expect(kpi).not.toHaveAttribute("title");
+
+  await host.locator(".vcv-header__title").hover();
+  await expect.poll(async () => (await calls()).at(-1)?.call).toBe("hide");
+});
+
+test("high-contrast mode draws the visual flat, in the palette's colours", async ({
+  page,
+}) => {
+  await load(page);
+  await update(page);
+  const host = page.locator("#host");
+  const root = host.locator(".vcv-root");
+  const card = host.locator(".vcv-grid > .vcv-card").first();
+  const liquid = host
+    .locator(".vcv-sphere:not(.vcv-sphere--no-data) .vcv-sphere__liquid")
+    .first();
+  const highlight = host.locator(".vcv-sphere__highlight").first();
+  const setContrast = (on: boolean) =>
+    page.evaluate((on) => {
+      (
+        window as unknown as { vcvPalette: { isHighContrast: boolean } }
+      ).vcvPalette.isHighContrast = on;
+    }, on);
+
+  await expect(liquid).not.toHaveCSS("background-image", "none");
+
+  await setContrast(true);
+  await update(page);
+  await expect(root).toHaveClass(/vcv-root--flat/);
+  await expect(root).toHaveCSS("background-color", "rgb(0, 0, 0)");
+  await expect(host.locator(".vcv-ocean")).toBeHidden();
+  await expect(card).toHaveCSS("backdrop-filter", "none");
+  await expect(card).toHaveCSS("box-shadow", "none");
+  await expect(card).toHaveCSS("background-image", "none");
+  await expect(card).toHaveCSS("border-top-color", "rgb(255, 255, 0)");
+  await expect(card).toHaveCSS("border-top-style", "solid");
+  await expect(liquid).toHaveCSS("background-image", "none");
+  expect(
+    await liquid.evaluate((el) => getComputedStyle(el).backgroundColor),
+  ).toMatch(/^rgb\((255, 255, 0|255, 0, 255)\)$/);
+  await expect(highlight).toBeHidden();
+
+  await setContrast(false);
+  await update(page);
+  await expect(root).not.toHaveClass(/vcv-root--flat/);
+  await expect(host.locator(".vcv-ocean")).toBeVisible();
+  await expect(liquid).not.toHaveCSS("background-image", "none");
 });

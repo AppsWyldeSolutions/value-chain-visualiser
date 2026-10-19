@@ -4,6 +4,7 @@ import type { KpiRow } from "@appswyldesolutions/vcv-core";
 import { describe, expect, it } from "vitest";
 import { ROLES } from "./rows";
 import { PRESETS, VisualFormattingSettingsModel } from "./settings";
+import { TOOLTIPS_ROLE } from "./tooltips";
 
 type Capabilities = {
   dataRoles: { name: string; displayName: string; kind: string }[];
@@ -19,6 +20,7 @@ type Capabilities = {
     string,
     { properties: Record<string, { type: Record<string, unknown> }> }
   >;
+  tooltips?: unknown;
   privileges?: unknown[];
 };
 
@@ -48,16 +50,28 @@ describe("capabilities.json", () => {
   });
 
   it("has a data role for every KpiRow field, figures as measures", () => {
-    const roles = capabilities.dataRoles.map((role) => role.name);
+    const roles = capabilities.dataRoles
+      .map((role) => role.name)
+      .filter((name) => name !== TOOLTIPS_ROLE);
     expect([...roles].sort()).toEqual(Object.keys(FIELDS).sort());
     expect([...ROLES].sort()).toEqual([...roles].sort());
     for (const role of capabilities.dataRoles) {
       expect(role.kind, role.name).toBe(
-        role.name === "actual" || role.name === "budget"
+        ["actual", "budget", TOOLTIPS_ROLE].includes(role.name)
           ? "Measure"
           : "Grouping",
       );
     }
+  });
+
+  it("takes extra tooltip fields, and report page tooltips", () => {
+    expect(
+      capabilities.dataRoles.find((role) => role.name === TOOLTIPS_ROLE),
+    ).toMatchObject({ displayName: "Tooltips", kind: "Measure" });
+    expect(capabilities.tooltips).toEqual({
+      supportedTypes: { default: true, canvas: true },
+      roles: [TOOLTIPS_ROLE],
+    });
   });
 
   it("maps every role into one table, in the roles' order", () => {

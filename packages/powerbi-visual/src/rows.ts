@@ -23,6 +23,15 @@ export const ROLES = [
 
 type Role = (typeof ROLES)[number];
 
+/**
+ * One KPI in one period: what a table row, and a sphere, stand for. Selection
+ * ids and tooltip fields are looked up by it.
+ */
+export const rowKey = (row: KpiRow): string =>
+  [row.node, row.group, row.subGroup, row.metric, row.year, row.period].join(
+    "\u0000",
+  );
+
 /** Without these a row cannot be placed on a card for a period. */
 const REQUIRED: readonly Role[] = ["node", "group", "metric", "year", "period"];
 

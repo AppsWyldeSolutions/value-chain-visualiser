@@ -110,6 +110,29 @@ visual in place.
   dashboard tile) clicks select nothing. A selection the host refuses
   leaves the cards as they were.
 
+## Tooltips
+
+`src/tooltips.ts`: hovering a KPI or a card shows Power BI's own tooltip
+(`host.tooltipService`), so it takes the report's theme; the renderer's
+native title tooltips are left out.
+
+- A KPI's tooltip lists KPI, Period, Actual, Budget, Rule and Status, then
+  the fields in the **Tooltips** data role for that KPI's row (numbers in the
+  report's locale). It carries the row's selection id.
+- A card's tooltip lists its Link and how many of its KPIs are on target.
+- `capabilities.json` declares `tooltips` (default and canvas), so a
+  report can also use a report page as the tooltip.
+
+## High contrast
+
+When Power BI's high-contrast mode is on (`host.colorPalette.isHighContrast`)
+the visual draws flat, in the palette's foreground, background,
+foregroundSelected and hyperlink colours only: no ocean, glass, gradients
+or highlights; solid borders and rings; spheres on target in the
+foreground colour and missed ones in the hyperlink colour. The format
+pane's colours and ocean do not apply meanwhile; sphere size still does.
+Each update checks the palette, so turning the mode off restores them.
+
 ## Tests
 
 - `src/*.test.ts` (Vitest, in the root `npm run test`): the table mapping

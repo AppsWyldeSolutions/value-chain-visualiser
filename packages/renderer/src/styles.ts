@@ -658,4 +658,29 @@ input[type="color"].vcv-control__input {
     animation: none;
   }
 }
+
+/* Flat: a high-contrast mode (Visual.setHighContrast). Solid colours only:
+   no ocean, glass, glow, gradient or highlights. */
+.vcv-root--flat {
+  background: var(--vcv-ocean-base);
+}
+.vcv-root--flat .vcv-ocean {
+  display: none;
+}
+.vcv-root--flat .vcv-card,
+.vcv-root--flat .vcv-popover {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.vcv-root--flat .vcv-sphere {
+  box-shadow: none;
+}
+.vcv-root--flat .vcv-sphere__liquid {
+  background: var(--vcv-sphere-color);
+}
+.vcv-root--flat .vcv-sphere__meniscus,
+.vcv-root--flat .vcv-sphere__highlight {
+  display: none;
+}
 `;
