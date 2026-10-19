@@ -18,7 +18,7 @@ type RowId = ReturnType<typeof rowId>;
  * a selection manager that, like Power BI's, replaces the selection on a
  * plain select and adds to it on a multi-select.
  */
-export function testHost() {
+export function testHost({ allowInteractions = true } = {}) {
   let selected: RowId[] = [];
   let onSelect: ((ids: RowId[]) => void) | undefined;
   const selectionManager = {
@@ -49,6 +49,7 @@ export function testHost() {
   };
   const host = {
     eventService,
+    hostCapabilities: { allowInteractions },
     createSelectionManager: () => selectionManager,
     createSelectionIdBuilder: () => {
       let id: RowId | undefined;

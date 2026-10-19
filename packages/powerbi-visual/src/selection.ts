@@ -25,6 +25,8 @@ const keyOf = (row: KpiRow) =>
  */
 export class RowSelection {
   private readonly manager: ISelectionManager;
+  /** False where the host allows no interactions, e.g. a dashboard tile. */
+  private readonly interactive: boolean;
   private readonly idOf = new Map<string, ISelectionId>();
 
   constructor(
@@ -32,6 +34,7 @@ export class RowSelection {
     private readonly show: (selected: SelectedKpis) => void,
   ) {
     this.manager = host.createSelectionManager();
+    this.interactive = host.hostCapabilities?.allowInteractions !== false;
     this.manager.registerOnSelectCallback((ids) => this.apply(ids));
   }
 
@@ -54,14 +57,25 @@ export class RowSelection {
   async select(row: KpiRow, multi: boolean): Promise<void> {
     const id = this.idOf.get(keyOf(row));
     // A KPI with no row for the period is drawn as no data: nothing to select.
-    if (!id) return;
-    this.apply(await this.manager.select(id, multi));
+    if (!id || !this.interactive) return;
+    try {
+      this.apply(await this.manager.select(id, multi));
+    } catch {
+      // The host refused: the selection, and the cards, stay as they were.
+    }
   }
 
   /** A click away from every sphere. */
   async clear(): Promise<void> {
-    await this.manager.clear();
-    this.apply([]);
+    if (!this.interactive || this.manager.getSelectionIds().length === 0) {
+      return;
+    }
+    try {
+      await this.manager.clear();
+      this.apply([]);
+    } catch {
+      // As for select.
+    }
   }
 
   private apply(ids: SelectedId[]): void {

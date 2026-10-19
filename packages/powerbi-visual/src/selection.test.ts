@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fromLongRows } from "@appswyldesolutions/vcv-core";
 import type powerbi from "powerbi-visuals-api";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { testHost } from "./testHost";
 import { tableOf } from "./testTable";
 import { Visual } from "./visual";
@@ -20,10 +20,10 @@ const ROWS = fromLongRows(
 );
 const TABLE = tableOf(ROWS);
 
-function construct() {
+function construct(options: Parameters<typeof testHost>[0] = {}) {
   const element = document.createElement("div");
   document.body.appendChild(element);
-  const stub = testHost();
+  const stub = testHost(options);
   const visual = new Visual({
     element,
     host: stub.host,
@@ -115,6 +115,38 @@ describe("selection", () => {
     expect(dimmed(element)).toHaveLength(cards(element).length - 1);
     expect(dimmed(element)).not.toContain(cards(element)[1]);
     hostSelects([]);
+    expect(dimmed(element)).toHaveLength(0);
+  });
+
+  it("selects nothing where the host allows no interactions", async () => {
+    const { element, selectionManager } = construct({
+      allowInteractions: false,
+    });
+    click(sphere(element, 0));
+    click(element.querySelector(".vcv-header__title")!);
+    await settle();
+    expect(selectionManager.select).not.toHaveBeenCalled();
+    expect(selectionManager.clear).not.toHaveBeenCalled();
+    expect(dimmed(element)).toHaveLength(0);
+  });
+
+  it("does not ask the host to clear an empty selection", async () => {
+    const { element, selectionManager } = construct();
+    click(element.querySelector(".vcv-header__title")!);
+    await settle();
+    expect(selectionManager.clear).not.toHaveBeenCalled();
+  });
+
+  it("keeps the cards as they were when the host refuses a selection", async () => {
+    const { element, selectionManager } = construct();
+    selectionManager.select.mockRejectedValueOnce(new Error("not now"));
+    const unhandled = vi.fn();
+    process.on("unhandledRejection", unhandled);
+    click(sphere(element, 0));
+    await settle();
+    await settle();
+    process.off("unhandledRejection", unhandled);
+    expect(unhandled).not.toHaveBeenCalled();
     expect(dimmed(element)).toHaveLength(0);
   });
 

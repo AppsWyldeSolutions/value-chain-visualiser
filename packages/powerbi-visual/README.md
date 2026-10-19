@@ -106,6 +106,9 @@ visual in place.
 - When the host changes the selection (a bookmark, or clearing it from
   another visual), the dimming follows; and it is kept across updates.
 - A KPI drawn as no data (no row for the period) has no row to select.
+- Where the host allows no interactions (`allowInteractions` false, as on a
+  dashboard tile) clicks select nothing. A selection the host refuses
+  leaves the cards as they were.
 
 ## Tests
 
