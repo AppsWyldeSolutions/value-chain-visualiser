@@ -11,7 +11,13 @@
     { "name": "year", "displayName": "Year", "kind": "Grouping" },
     { "name": "period", "displayName": "Period", "kind": "Grouping" },
     { "name": "actual", "displayName": "Actual", "kind": "Measure" },
-    { "name": "budget", "displayName": "Budget", "kind": "Measure" }
+    { "name": "budget", "displayName": "Budget", "kind": "Measure" },
+    {
+      "name": "tooltips",
+      "displayName": "Tooltips",
+      "description": "Extra fields shown in a KPI's tooltip",
+      "kind": "Measure"
+    }
   ],
   "dataViewMappings": [
     {
@@ -29,7 +35,8 @@
             { "for": { "in": "year" } },
             { "for": { "in": "period" } },
             { "for": { "in": "actual" } },
-            { "for": { "in": "budget" } }
+            { "for": { "in": "budget" } },
+            { "for": { "in": "tooltips" } }
           ],
           "dataReductionAlgorithm": { "window": { "count": 30000 } }
         }
@@ -113,6 +120,10 @@
         }
       }
     }
+  },
+  "tooltips": {
+    "supportedTypes": { "default": true, "canvas": true },
+    "roles": ["tooltips"]
   },
   "privileges": []
 }

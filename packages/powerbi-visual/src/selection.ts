@@ -2,6 +2,7 @@
 
 import type { EvaluatedKpi, KpiRow } from "@appswyldesolutions/vcv-core";
 import type powerbi from "powerbi-visuals-api";
+import { rowKey as keyOf } from "./rows";
 
 type ISelectionId = powerbi.visuals.ISelectionId;
 type SelectedId = powerbi.extensibility.ISelectionId;
@@ -10,12 +11,6 @@ type IVisualHost = powerbi.extensibility.visual.IVisualHost;
 
 /** Which KPIs to keep in full; null keeps every card. */
 export type SelectedKpis = ((kpi: EvaluatedKpi) => boolean) | null;
-
-/** One KPI in one period: what a table row, and a sphere, stand for. */
-const keyOf = (row: KpiRow) =>
-  [row.node, row.group, row.subGroup, row.metric, row.year, row.period].join(
-    "\u0000",
-  );
 
 /**
  * Selection and cross-filtering: a selection id per table row, selected
@@ -51,6 +46,11 @@ export class RowSelection {
       });
     }
     this.apply(this.manager.getSelectionIds());
+  }
+
+  /** The selection id of a KPI's table row, if it has one. */
+  idFor(row: KpiRow): ISelectionId | undefined {
+    return this.idOf.get(keyOf(row));
   }
 
   /** A sphere was clicked: select its row, or add it with `multi`. */
