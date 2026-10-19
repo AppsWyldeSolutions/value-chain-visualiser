@@ -7,10 +7,13 @@ import {
 import { createCard } from "./card.js";
 import { createConnectors } from "./connectors.js";
 import { createControls, type ControlsValue } from "./controls.js";
+import { highContrastTheme, type HighContrastColors } from "./highContrast.js";
 import { kpiOf } from "./kpi.js";
-import { createScoreCard, isScoreCard, scoreCardKpis } from "./scoreCard.js";
+import { drawnKpis, shownKpis } from "./nodeKpis.js";
+import { createScoreCard, isScoreCard } from "./scoreCard.js";
 import { createShell } from "./shell.js";
 import { resolveTheme, type ThemeOverrides } from "./theme.js";
+import type { TooltipHandlers, TooltipTarget } from "./tooltip.js";
 
 export const PERIODS = [
   "January",
@@ -62,6 +65,12 @@ export interface VisualOptions {
    * controls): a host clears its selection.
    */
   onDeselect?(): void;
+  /**
+   * The host's own tooltips, called as the pointer moves over KPIs and
+   * cards. When given, the native title tooltips are left out, so the two do
+   * not both show.
+   */
+  tooltip?: TooltipHandlers;
 }
 
 /** How a sphere was clicked. */
@@ -80,6 +89,12 @@ export interface Visual {
    * selected; null shows every card in full. Kept when the cards redraw.
    */
   setSelectedKpis(isSelected: ((kpi: EvaluatedKpi) => boolean) | null): void;
+  /**
+   * Draws the visual flat, in a high-contrast mode's colours (see
+   * `highContrastTheme`), on top of the theme `setTheme` sets; null goes
+   * back to that theme.
+   */
+  setHighContrast(colors: HighContrastColors | null): void;
   state(): VisualState;
   destroy(): void;
 }
@@ -141,18 +156,6 @@ function rowsFor(rows: KpiRow[], selection: Selection): KpiRow[] {
   return [...selected, ...placeholders.values()];
 }
 
-/** Every KPI drawn for a node: on its card or in its transfer points. */
-function drawnKpis(node: NodeModel) {
-  return [...shownKpis(node), ...node.transferPoints];
-}
-
-/** The KPIs a node's card shows: the ones counted in the subtitle. */
-function shownKpis(node: NodeModel) {
-  return isScoreCard(node)
-    ? scoreCardKpis(node)
-    : [...node.primary, ...node.satellite];
-}
-
 /**
  * Builds the whole visual inside `container`: the shell, the header controls,
  * a card for every link (the Score Card last) and the arrows between them.
@@ -166,7 +169,11 @@ export function createVisual(
   const doc = container.ownerDocument;
   let rows = options.rows;
   let selection = options.selection ?? defaultSelection(rows);
-  let theme = resolveTheme(options.theme);
+  // The host's theme, and the one drawn: the host's with any high-contrast
+  // colours on top.
+  let hostTheme = resolveTheme(options.theme);
+  let contrast: ThemeOverrides | null = null;
+  let theme = hostTheme;
 
   const shell = createShell(container, {
     theme: options.theme,
@@ -259,9 +266,66 @@ export function createVisual(
   }
 
   function applyTheme(overrides: ThemeOverrides): void {
-    theme = resolveTheme(overrides, theme);
-    shell.setTheme(overrides);
+    hostTheme = resolveTheme(overrides, hostTheme);
+    redrawTheme();
+  }
+
+  function redrawTheme(): void {
+    theme = contrast ? resolveTheme(contrast, hostTheme) : hostTheme;
+    shell.setTheme(theme);
     controls?.update(state());
+  }
+
+  const { tooltip } = options;
+  if (tooltip) {
+    const targetAt = (element: Element | null): TooltipTarget | null => {
+      const kpiElement = element?.closest?.(".vcv-kpi");
+      const kpi = kpiElement ? kpiOf(kpiElement) : undefined;
+      if (kpi) return { kind: "kpi", kpi };
+      const card = element?.closest?.(".vcv-card");
+      const node = card
+        ? cardNodes[cards.indexOf(card as HTMLElement)]
+        : undefined;
+      return node ? { kind: "card", node } : null;
+    };
+    const same = (a: TooltipTarget | null, b: TooltipTarget) =>
+      a?.kind === b.kind &&
+      (a.kind === "kpi"
+        ? a.kpi === (b as typeof a).kpi
+        : a.node === (b as typeof a).node);
+    let shown: TooltipTarget | null = null;
+    // The host draws the tooltips: drop the native ones on the way in,
+    // before the browser shows them.
+    shell.root.addEventListener(
+      "mouseover",
+      (event) => {
+        for (
+          let element = event.target as Element | null;
+          element && element !== shell.root;
+          element = element.parentElement
+        ) {
+          element.removeAttribute("title");
+        }
+      },
+      true,
+    );
+    shell.root.addEventListener("mousemove", (event) => {
+      const target = targetAt(event.target as Element | null);
+      const point = { x: event.clientX, y: event.clientY };
+      if (!target) {
+        if (shown) tooltip.hide();
+        shown = null;
+      } else if (same(shown, target)) {
+        tooltip.move(target, point);
+      } else {
+        tooltip.show(target, point);
+        shown = target;
+      }
+    });
+    shell.root.addEventListener("mouseleave", () => {
+      if (shown) tooltip.hide();
+      shown = null;
+    });
   }
 
   render();
@@ -277,6 +341,11 @@ export function createVisual(
       render();
     },
     setTheme: applyTheme,
+    setHighContrast(colors) {
+      contrast = colors ? highContrastTheme(colors) : null;
+      shell.root.classList.toggle("vcv-root--flat", colors !== null);
+      redrawTheme();
+    },
     setSelectedKpis(next) {
       isSelected = next;
       dim();

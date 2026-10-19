@@ -11,6 +11,15 @@ export type {
   ThemeOverrides,
 } from "./theme.js";
 export { OCEAN_PRESETS } from "./oceanPresets.js";
+export { highContrastTheme } from "./highContrast.js";
+export type { HighContrastColors } from "./highContrast.js";
+export { tooltipItems } from "./tooltip.js";
+export type {
+  TooltipHandlers,
+  TooltipItem,
+  TooltipPoint,
+  TooltipTarget,
+} from "./tooltip.js";
 export type { OceanPreset, OceanPresetName } from "./oceanPresets.js";
 export { stylesText } from "./styles.js";
 export { fontFaceCss } from "./fonts.generated.js";
