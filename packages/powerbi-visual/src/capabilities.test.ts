@@ -21,6 +21,8 @@ type Capabilities = {
     { properties: Record<string, { type: Record<string, unknown> }> }
   >;
   tooltips?: unknown;
+  supportsLandingPage?: boolean;
+  supportsEmptyDataView?: boolean;
   privileges?: unknown[];
 };
 
@@ -62,6 +64,11 @@ describe("capabilities.json", () => {
           : "Grouping",
       );
     }
+  });
+
+  it("is updated with no data, so it can ask for the missing fields", () => {
+    expect(capabilities.supportsLandingPage).toBe(true);
+    expect(capabilities.supportsEmptyDataView).toBe(true);
   });
 
   it("takes extra tooltip fields, and report page tooltips", () => {

@@ -2,7 +2,13 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fromLongRows, type KpiRow } from "@appswyldesolutions/vcv-core";
 import { describe, expect, it } from "vitest";
-import { rowsFromTable } from "./rows";
+import {
+  emptyMessage,
+  missingRoles,
+  REQUIRED,
+  ROLE_NAMES,
+  rowsFromTable,
+} from "./rows";
 import { tableOf } from "./testTable";
 
 // The API's long rows, as core reads them: what the visual must reproduce
@@ -80,23 +86,64 @@ describe("rowsFromTable", () => {
     expect(rowsFromTable(partial)).toEqual([]);
   });
 
-  it("reads a KPI with no figures bound as having no data", () => {
-    const required: (keyof KpiRow)[] = [
+  it("needs the figures too: no Actual or Budget, no rows", () => {
+    const noFigures = tableOf(ROWS.slice(0, 1), [
       "node",
       "group",
       "metric",
       "year",
       "period",
-    ];
-    const [row] = rowsFromTable(tableOf(ROWS.slice(0, 1), required));
+    ]);
+    expect(rowsFromTable(noFigures)).toEqual([]);
+  });
+
+  it("reads the optional fields left unbound as their defaults", () => {
+    const [row] = rowsFromTable(tableOf(ROWS.slice(0, 1), [...REQUIRED]));
     expect(row).toMatchObject({
       node: ROWS[0]!.node,
-      actual: null,
-      budget: null,
       operator: "Equal",
       symbol: "",
       valueType: "Number",
       nodeOrder: 0,
+      subGroup: "",
     });
+  });
+});
+
+describe("missingRoles", () => {
+  it("names the required roles with no field, in the field wells' order", () => {
+    const table = tableOf(ROWS.slice(0, 1), ["group", "year", "period"]);
+    expect(missingRoles(table)).toEqual(["node", "metric", "actual", "budget"]);
+  });
+
+  it("names none when every required role has a field", () => {
+    expect(missingRoles(tableOf(ROWS.slice(0, 1)))).toEqual([]);
+    expect(missingRoles(tableOf(ROWS.slice(0, 1), [...REQUIRED]))).toEqual([]);
+  });
+
+  it("names them all without a table", () => {
+    expect(missingRoles(undefined)).toEqual([...REQUIRED]);
+  });
+});
+
+describe("emptyMessage", () => {
+  it("asks for the missing fields by their field well names", () => {
+    expect(emptyMessage(["node", "metric", "actual", "budget"])).toBe(
+      "Add Node, Metric, Actual and Budget",
+    );
+    expect(emptyMessage(["year", "period"])).toBe("Add Year and Period");
+    expect(emptyMessage(["budget"])).toBe("Add Budget");
+  });
+
+  it("uses the names capabilities.json gives the roles", () => {
+    const capabilities = JSON.parse(
+      readFileSync(path.resolve(__dirname, "../capabilities.json"), "utf8"),
+    ) as { dataRoles: { name: string; displayName: string }[] };
+    for (const [role, name] of Object.entries(ROLE_NAMES)) {
+      expect(
+        capabilities.dataRoles.find((r) => r.name === role)?.displayName,
+        role,
+      ).toBe(name);
+    }
   });
 });

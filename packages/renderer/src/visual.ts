@@ -95,6 +95,12 @@ export interface Visual {
    * back to that theme.
    */
   setHighContrast(colors: HighContrastColors | null): void;
+  /**
+   * Shows `message` in place of the chain (the cards and arrows), for a host
+   * that has no data to draw yet, e.g. "Add Node, Metric, Actual and Budget";
+   * null shows the chain again.
+   */
+  setEmpty(message: string | null): void;
   state(): VisualState;
   destroy(): void;
 }
@@ -345,6 +351,16 @@ export function createVisual(
       contrast = colors ? highContrastTheme(colors) : null;
       shell.root.classList.toggle("vcv-root--flat", colors !== null);
       redrawTheme();
+    },
+    setEmpty(message) {
+      shell.root.querySelector(".vcv-empty")?.remove();
+      shell.root.classList.toggle("vcv-root--empty", message !== null);
+      if (message === null) return;
+      const empty = doc.createElement("p");
+      empty.className = "vcv-empty";
+      empty.setAttribute("role", "status");
+      empty.textContent = message;
+      shell.grid.before(empty);
     },
     setSelectedKpis(next) {
       isSelected = next;

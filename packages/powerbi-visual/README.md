@@ -29,8 +29,19 @@ npm links them to `packages/core` and `packages/renderer`, and their built
 
 ## Package
 
-`npm run build -w packages/powerbi-visual` (`pbiviz package`) writes
-`dist/*.pbiviz`.
+`npm run build -w packages/powerbi-visual` runs
+`scripts/certification-audit.mjs`: `pbiviz package --certification-audit`,
+failing unless the audit finds no external requests (`fetch`,
+`XMLHttpRequest`, `eval`), which certification forbids. It writes
+`dist/*.pbiviz`. `npm run package` is plain `pbiviz package`.
+
+Every `update()` reports `renderingStarted`, then `renderingFinished`
+(or `renderingFailed` if it throws), which export to PDF or PowerPoint and
+subscriptions rely on.
+
+Before handing a `.pbiviz` to anyone, work through
+[docs/powerbi-testing.md](../../docs/powerbi-testing.md) in Power BI
+Desktop.
 
 ## Data
 
@@ -53,10 +64,13 @@ its role, so the report's own field names and column order do not matter.
 | Actual      | Measure  | `actual`     | the month's actual          |
 | Budget      | Measure  | `budget`     | the month's budget          |
 
-- **Required:** Node, Group, Metric, Year and Period. Until all five are
-  bound the visual draws an empty chain.
+- **Required:** Node, Group, Metric, Year, Period, Actual and Budget. Until
+  all seven are bound the visual says which to add, e.g. `Add Node, Metric,
+Actual and Budget`, instead of drawing (`capabilities.json` declares
+  `supportsLandingPage` and `supportsEmptyDataView`, so it is updated even
+  with no fields).
 - **Optional:** the rest. Unbound, Operator reads as `Equal`, Value type as
-  `Number`, Node order as 0, and Actual and Budget as no data.
+  `Number` and Node order as 0. A blank Actual or Budget reads as no data.
 - **Value type is its own role.** It cannot be derived from the unit symbol:
   some `%` KPIs are counted as numbers in the source data (for example
   "90% of Corner Stones achieved by Process").
