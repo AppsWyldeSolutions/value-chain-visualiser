@@ -4,7 +4,8 @@ import path from "node:path";
 import { fromLongRows } from "@appswyldesolutions/vcv-core";
 import { defaultTheme, OCEAN_PRESETS } from "@appswyldesolutions/vcv-renderer";
 import type powerbi from "powerbi-visuals-api";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
+import { testHost } from "./testHost";
 import { tableOf } from "./testTable";
 import { Visual } from "./visual";
 
@@ -19,19 +20,14 @@ const ROWS = fromLongRows(
   ).records,
 );
 
-// The parts of the Power BI host the visual uses.
 function construct() {
   const element = document.createElement("div");
   document.body.appendChild(element);
-  const eventService = {
-    renderingStarted: vi.fn(),
-    renderingFinished: vi.fn(),
-    renderingFailed: vi.fn(),
-  };
+  const { host, eventService } = testHost();
   const options = {
     element,
-    host: { eventService },
-  } as unknown as powerbi.extensibility.visual.VisualConstructorOptions;
+    host,
+  } as powerbi.extensibility.visual.VisualConstructorOptions;
   return { element, eventService, visual: new Visual(options) };
 }
 
