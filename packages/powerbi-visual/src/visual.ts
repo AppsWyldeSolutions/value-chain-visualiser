@@ -16,7 +16,7 @@ import IVisual = powerbi.extensibility.visual.IVisual;
 import IVisualEventService = powerbi.extensibility.IVisualEventService;
 
 import { rowsToShow, themeFrom } from "./format";
-import { rowsFromTable } from "./rows";
+import { emptyMessage, missingRoles, rowsFromTable } from "./rows";
 import { RowSelection } from "./selection";
 import { VisualFormattingSettingsModel } from "./settings";
 import { Tooltips } from "./tooltips";
@@ -78,6 +78,10 @@ export class Visual implements IVisual {
       this.vcv.setTheme(themeFrom(this.formattingSettings));
       this.vcv.setHighContrast(highContrastColors(this.host.colorPalette));
       const rows = rowsFromTable(dataView?.table);
+      // Until every required field is in its well, say which to add rather
+      // than draw an empty chain.
+      const missing = missingRoles(dataView?.table);
+      this.vcv.setEmpty(missing.length > 0 ? emptyMessage(missing) : null);
       this.vcv.setRows(rowsToShow(rows, this.formattingSettings));
       this.vcv.setSelection(defaultSelection(rows));
       this.selection.setTable(dataView?.table, rows);

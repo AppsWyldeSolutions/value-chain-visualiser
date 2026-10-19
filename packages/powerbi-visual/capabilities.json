@@ -125,5 +125,7 @@
     "supportedTypes": { "default": true, "canvas": true },
     "roles": ["tooltips"]
   },
+  "supportsLandingPage": true,
+  "supportsEmptyDataView": true,
   "privileges": []
 }

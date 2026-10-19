@@ -14,7 +14,7 @@
     "pbiviz": "pbiviz",
     "start": "pbiviz start",
     "package": "pbiviz package",
-    "build": "pbiviz package",
+    "build": "node scripts/certification-audit.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."
   },

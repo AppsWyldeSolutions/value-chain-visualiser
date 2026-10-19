@@ -141,7 +141,11 @@ async function load(page: Page) {
 }
 
 /** Power BI's update: the table, and the format pane's saved settings. */
-async function update(page: Page, objects: object = {}) {
+async function update(
+  page: Page,
+  objects: object = {},
+  shown: typeof table = table,
+) {
   await page.evaluate(
     ({ table, objects }) => {
       const visual = (
@@ -152,8 +156,22 @@ async function update(page: Page, objects: object = {}) {
         viewport: {},
       });
     },
-    { table, objects },
+    { table: shown, objects },
   );
+}
+
+/** The table with one role's field taken out of its well. */
+function without(role: string): typeof table {
+  const keep = table.columns.flatMap((column, index) =>
+    (column as { roles: Record<string, boolean> }).roles[role] ? [] : [index],
+  );
+  return {
+    columns: keep.map((index, i) => ({
+      ...(table.columns[index] as object),
+      index: i,
+    })),
+    rows: table.rows.map((values) => keep.map((index) => values[index])),
+  };
 }
 
 const events = (page: Page) =>
@@ -367,4 +385,40 @@ test("high-contrast mode draws the visual flat, in the palette's colours", async
   await expect(root).not.toHaveClass(/vcv-root--flat/);
   await expect(host.locator(".vcv-ocean")).toBeVisible();
   await expect(liquid).not.toHaveCSS("background-image", "none");
+});
+
+test("a required field taken out shows what to add, not an error", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await load(page);
+  await update(page);
+  const host = page.locator("#host");
+  await expect(host.locator(".vcv-grid > .vcv-card")).toHaveCount(9);
+
+  await update(page, {}, without("budget"));
+  await expect(host.locator(".vcv-empty")).toHaveText("Add Budget");
+  await expect(host.locator(".vcv-empty")).toBeVisible();
+  await expect(host.locator(".vcv-grid")).toBeHidden();
+
+  await update(page, {}, { columns: [], rows: [] });
+  await expect(host.locator(".vcv-empty")).toHaveText(
+    "Add Node, Group, Metric, Year, Period, Actual and Budget",
+  );
+
+  await update(page);
+  await expect(host.locator(".vcv-empty")).toHaveCount(0);
+  await expect(host.locator(".vcv-grid > .vcv-card")).toHaveCount(9);
+  expect(await events(page)).toEqual([
+    "started",
+    "finished",
+    "started",
+    "finished",
+    "started",
+    "finished",
+    "started",
+    "finished",
+  ]);
+  expect(errors).toEqual([]);
 });
