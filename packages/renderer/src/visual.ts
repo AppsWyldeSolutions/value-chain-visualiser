@@ -73,6 +73,14 @@ export interface VisualOptions {
   tooltip?: TooltipHandlers;
 }
 
+/** What Visual.setHeader can change. */
+export interface HeaderOptions {
+  eyebrow?: string;
+  title?: string;
+  show?: boolean;
+  showSubtitle?: boolean;
+}
+
 /** How a sphere was clicked. */
 export interface SelectClick {
   multi: boolean;
@@ -101,6 +109,17 @@ export interface Visual {
    * null shows the chain again.
    */
   setEmpty(message: string | null): void;
+  /**
+   * Shows `text` in a notice between the header and the cards, e.g. why
+   * this period is the one shown; null removes it.
+   */
+  setNotice(text: string | null): void;
+  /**
+   * Changes the header: the eyebrow and title text, whether the heading
+   * (eyebrow, title, subtitle) shows, and whether the subtitle does. Only
+   * what is given changes; it is kept when the cards redraw.
+   */
+  setHeader(header: HeaderOptions): void;
   state(): VisualState;
   destroy(): void;
 }
@@ -361,6 +380,27 @@ export function createVisual(
       empty.setAttribute("role", "status");
       empty.textContent = message;
       shell.grid.before(empty);
+    },
+    setNotice(text) {
+      shell.root.querySelector(".vcv-notice")?.remove();
+      if (text === null) return;
+      const notice = doc.createElement("p");
+      notice.className = "vcv-notice";
+      notice.setAttribute("role", "status");
+      notice.textContent = text;
+      shell.root.querySelector(".vcv-header")?.after(notice);
+    },
+    setHeader(header) {
+      shell.setHeading(header);
+      if (header.show !== undefined) {
+        shell.root.classList.toggle("vcv-root--no-heading", !header.show);
+      }
+      if (header.showSubtitle !== undefined) {
+        shell.root.classList.toggle(
+          "vcv-root--no-subtitle",
+          !header.showSubtitle,
+        );
+      }
     },
     setSelectedKpis(next) {
       isSelected = next;

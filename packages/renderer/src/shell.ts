@@ -18,6 +18,12 @@ const WAVE_PATHS = [
   "M0 146 C 220 112, 420 176, 660 140 S 1020 108, 1220 146 S 1380 164, 1440 140 V0 H0 Z",
 ];
 
+/** The heading a visual opens with, unless given its own. */
+export const DEFAULT_HEADING = {
+  eyebrow: "Value chain",
+  title: "Business Processes & Scorecard",
+} as const;
+
 export interface ShellOptions {
   theme?: ThemeOverrides;
   eyebrow?: string;
@@ -34,6 +40,8 @@ export interface Shell {
   /** Lays `overrides` over the current theme and re-applies it. */
   setTheme(overrides: ThemeOverrides): void;
   setSubtitle(text: string): void;
+  /** Changes the eyebrow and title; text left out stays as it is. */
+  setHeading(heading: { eyebrow?: string; title?: string }): void;
   destroy(): void;
 }
 
@@ -139,9 +147,9 @@ export function createShell(
   ocean.replaceChildren(...buildOcean(doc, theme));
 
   const eyebrow = el(doc, "div", "vcv-header__eyebrow");
-  eyebrow.textContent = options.eyebrow ?? "Value chain";
+  eyebrow.textContent = options.eyebrow ?? DEFAULT_HEADING.eyebrow;
   const title = el(doc, "h1", "vcv-header__title");
-  title.textContent = options.title ?? "Business Processes & Scorecard";
+  title.textContent = options.title ?? DEFAULT_HEADING.title;
   const subtitle = el(doc, "div", "vcv-header__subtitle");
   subtitle.textContent = options.subtitle ?? "";
 
@@ -178,6 +186,10 @@ export function createShell(
     },
     setSubtitle(text) {
       subtitle.textContent = text;
+    },
+    setHeading(heading) {
+      if (heading.eyebrow !== undefined) eyebrow.textContent = heading.eyebrow;
+      if (heading.title !== undefined) title.textContent = heading.title;
     },
     destroy() {
       root.remove();

@@ -33,6 +33,7 @@ prototype's values.
 | `layout`    | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `cardMinWidth`, `columnGap`, `rowGap`                                                                                                                                                                                                                 |
 | `type`      | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                                                            |
 | `motion`    | `bubbleDuration`, `bubbleRise`, `flowDuration`                                                                                                                                                                                                                                                                                                                        |
+| `notice`    | `color`, `background`, `border`, `borderWidth`, `size`, `padding`                                                                                                                                                                                                                                                                                                     |
 
 ```ts
 export function resolveTheme(
@@ -548,6 +549,19 @@ Without a host's own tooltips, each KPI has a native `title` tooltip
   KPI, KPI, Period, Actual, Budget, Rule and Status (KPI, Period and "No
   data for this period" without figures); for a card, Link and On target
   ("3 of 5").
+
+### Notice and header
+
+- `Visual.setNotice(text | null)` shows `text` in a `p.vcv-notice`
+  (`role="status"`, set as text) between the header and the cards, styled
+  from the `notice` tokens (a pill like the header controls); `null` removes
+  it. It stays visible when the heading is hidden.
+- `Visual.setHeader({ eyebrow?, title?, show?, showSubtitle? })` changes the
+  eyebrow and title text (as text) and hides or shows the heading
+  (`vcv-root--no-heading`: eyebrow, title and subtitle) and the subtitle
+  alone (`vcv-root--no-subtitle`). Only what is given changes; it is kept
+  when the cards redraw. `DEFAULT_HEADING` holds the default eyebrow ("Value
+  chain") and title ("Business Processes & Scorecard").
 
 ### Empty state
 
