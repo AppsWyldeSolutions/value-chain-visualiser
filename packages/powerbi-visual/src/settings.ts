@@ -1,6 +1,9 @@
 "use strict";
 
-import { defaultTheme } from "@appswyldesolutions/vcv-renderer";
+import {
+  DEFAULT_HEADING,
+  defaultTheme,
+} from "@appswyldesolutions/vcv-renderer";
 import type powerbi from "powerbi-visuals-api";
 import { formattingSettings } from "powerbi-visuals-utils-formattingmodel";
 
@@ -98,11 +101,52 @@ class DisplayCard extends FormattingSettingsCard {
   ];
 }
 
+/** The visual's own heading, in place of Power BI's auto-generated title. */
+class HeaderCard extends FormattingSettingsCard {
+  showHeader = new formattingSettings.ToggleSwitch({
+    name: "showHeader",
+    displayName: "Show header",
+    description: "The eyebrow, title and subtitle above the chain",
+    value: true,
+  });
+
+  eyebrow = new formattingSettings.TextInput({
+    name: "eyebrow",
+    displayName: "Eyebrow",
+    placeholder: DEFAULT_HEADING.eyebrow,
+    value: DEFAULT_HEADING.eyebrow,
+  });
+
+  title = new formattingSettings.TextInput({
+    name: "title",
+    displayName: "Title",
+    placeholder: DEFAULT_HEADING.title,
+    value: DEFAULT_HEADING.title,
+  });
+
+  showSubtitle = new formattingSettings.ToggleSwitch({
+    name: "showSubtitle",
+    displayName: "Show subtitle",
+    description: "The period shown and how many KPIs are measured",
+    value: true,
+  });
+
+  name = "header";
+  displayName = "Header";
+  slices: FormattingSettingsSlice[] = [
+    this.showHeader,
+    this.eyebrow,
+    this.title,
+    this.showSubtitle,
+  ];
+}
+
 /** The format pane: replaces the web component's header colour pickers. */
 export class VisualFormattingSettingsModel extends FormattingSettingsModel {
   colours = new ColoursCard();
   background = new BackgroundCard();
   display = new DisplayCard();
+  header = new HeaderCard();
 
-  cards = [this.colours, this.background, this.display];
+  cards = [this.colours, this.background, this.display, this.header];
 }

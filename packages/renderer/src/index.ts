@@ -41,6 +41,7 @@ export { createControls } from "./controls.js";
 export type { Controls, ControlsOptions, ControlsValue } from "./controls.js";
 export { createVisual, defaultSelection, PERIODS } from "./visual.js";
 export type {
+  HeaderOptions,
   SelectClick,
   Selection,
   Visual,
@@ -50,5 +51,10 @@ export type {
 export { kpiOf } from "./kpi.js";
 export { createSphere } from "./sphere.js";
 export type { Sphere, SphereOptions, SphereState } from "./sphere.js";
-export { createShell, installFonts, installStyles } from "./shell.js";
+export {
+  createShell,
+  DEFAULT_HEADING,
+  installFonts,
+  installStyles,
+} from "./shell.js";
 export type { Shell, ShellOptions } from "./shell.js";

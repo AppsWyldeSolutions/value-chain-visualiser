@@ -64,5 +64,6 @@ export function highContrastTheme(colors: HighContrastColors): ThemeOverrides {
     popover: { background: bg, border: fg, shadow: "none", blur: "0px" },
     score: { panelBackground: bg },
     control: { optionColor: fg, optionBackground: bg },
+    notice: { color: fg, background: bg, border: fg },
   };
 }

@@ -32,6 +32,13 @@ found in the visual.` and `Package created!` in the output, and a file in
    format pane own those).
 3. Pick July in the Period slicer. **Expect** the spheres and subtitle to
    change to July 2026.
+4. Clear the Period slicer. **Expect** August 2026 shown, with the notice
+   `Showing August 2026, the latest with actuals of 12 periods in the data.
+Use the Year and Period slicers to pick one.` above the cards. Pick a
+   period again: **expect** the notice gone.
+5. **Expect** no Power BI title above the visual ("Sum of actual and Sum of
+   budget by …"), only the visual's own heading. (A visual added before this
+   build keeps its title setting: turn it off in **General → Title**.)
 
 ## 2. Fields and the empty state
 
@@ -60,7 +67,10 @@ With the visual on page 1 selected, open **Format visual**:
    cards to show no Transfer Points panel. Turn it back on.
 5. **Display → Sphere size**: 50%, then 150%. **Expect** every sphere to
    shrink, then grow, with no overlap.
-6. **Reset to default** on each card. **Expect** the original look.
+6. **Header**: change Eyebrow and Title. **Expect** the heading to change
+   at once. Turn off Show subtitle, then Show header. **Expect** the
+   subtitle, then the whole heading, to disappear.
+7. **Reset to default** on each card. **Expect** the original look.
 
 ## 4. Selection and cross-filtering
 

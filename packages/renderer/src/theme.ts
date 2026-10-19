@@ -215,6 +215,15 @@ export interface RendererTheme extends Theme {
     titleSize: string;
     subtitleSize: string;
   };
+  /** The notice under the header (Visual.setNotice). */
+  notice: {
+    color: string;
+    background: string;
+    border: string;
+    borderWidth: string;
+    size: string;
+    padding: string;
+  };
   motion: {
     bubbleDuration: string;
     bubbleRise: string;
@@ -441,6 +450,14 @@ export const defaultTheme: RendererTheme = {
     titleSize: "38px",
     subtitleSize: "15px",
   },
+  notice: {
+    color: "#ffffff",
+    background: "rgba(255, 255, 255, 0.14)",
+    border: "rgba(255, 255, 255, 0.32)",
+    borderWidth: "1px",
+    size: "13px",
+    padding: "6px 12px",
+  },
   motion: {
     bubbleDuration: "16s",
     bubbleRise: "260px",
@@ -479,6 +496,7 @@ export function resolveTheme(
     radii: mergeGroup(base.radii, overrides.radii),
     layout: mergeGroup(base.layout, overrides.layout),
     type: mergeGroup(base.type, overrides.type),
+    notice: mergeGroup(base.notice, overrides.notice),
     motion: mergeGroup(base.motion, overrides.motion),
   };
 }

@@ -697,4 +697,24 @@ input[type="color"].vcv-control__input {
 .vcv-root--empty .vcv-header__subtitle {
   display: none;
 }
+
+/* Notice: why this period is the one shown (Visual.setNotice). */
+.vcv-notice {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 var(--vcv-layout-header-gap);
+  padding: var(--vcv-notice-padding);
+  border: var(--vcv-notice-border-width) solid var(--vcv-notice-border);
+  border-radius: var(--vcv-radii-pill);
+  background: var(--vcv-notice-background);
+  color: var(--vcv-notice-color);
+  font-family: var(--vcv-fonts-body);
+  font-size: var(--vcv-notice-size);
+}
+
+/* Header visibility (Visual.setHeader). */
+.vcv-root--no-heading .vcv-header__heading,
+.vcv-root--no-subtitle .vcv-header__subtitle {
+  display: none;
+}
 `;

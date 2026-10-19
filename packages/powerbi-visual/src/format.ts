@@ -5,6 +5,7 @@ import {
   defaultTheme,
   OCEAN_PRESETS,
   type OceanPresetName,
+  type HeaderOptions,
   type ThemeOverrides,
 } from "@appswyldesolutions/vcv-renderer";
 import {
@@ -52,6 +53,19 @@ export function themeFrom(
       panelSlot: scaled(score.panelSlot, scale),
       panelMinSlot: scaled(score.panelMinSlot, scale),
     },
+  };
+}
+
+/** The header for the format pane's Header card. */
+export function headerFrom(
+  settings: VisualFormattingSettingsModel,
+): HeaderOptions {
+  const { header } = settings;
+  return {
+    eyebrow: header.eyebrow.value,
+    title: header.title.value,
+    show: header.showHeader.value,
+    showSubtitle: header.showSubtitle.value,
   };
 }
 
