@@ -555,14 +555,15 @@ actual / budget (pct)`, or `metric — No data for this period`). Hovering
   than either side's room, it goes on the roomier side and scrolls. The same
   bar, the close button, a click elsewhere or Escape closes it (Escape and
   the button give focus back to the bar). Redrawing, or switching display,
-  closes it.
+  closes it. Opened from the keyboard, focus moves to its close button.
 - **One popup at a time.** Opening a bar's popup unpins any transfer points
   popover; pinning one (`vcv-transfer-pin`) closes the bar's popup.
 - **Selection.** A click on a bar, spheres included, opens the popup; it
   does not call `onSelect` or `onDeselect`. Spheres on the card in the
   popup select as in full mode. `setSelectedKpis` dims bars as it dims
   cards.
-- **Motion.** The popup and the tooltip fade in over `motion.popupDuration`;
+- **Motion.** The popup and the tooltip fade in (`vcv-fade-in`) over
+  `motion.popupDuration`;
   `prefers-reduced-motion: reduce` turns that off.
 - High contrast (`vcv-root--flat`) drops the bars' and the popup's blur and
   shadows too. Outside clicks are read from the event's composed path, so

@@ -507,6 +507,9 @@ export function createVisual(
     if (!(bar instanceof HTMLElement)) return;
     event.preventDefault();
     toggleDetail(bar);
+    // From the keyboard, into the popup: its close button, which Enter
+    // closes again (as does Escape), giving focus back to the bar.
+    if (openBar === bar) close.focus();
   });
   close.addEventListener("click", () => closeDetail(true));
   // A transfer points popover pinned open closes the card's popup.

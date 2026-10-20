@@ -833,7 +833,7 @@ input[type="color"].vcv-control__input {
   box-shadow: var(--vcv-popover-shadow);
   -webkit-backdrop-filter: blur(var(--vcv-popover-blur));
   backdrop-filter: blur(var(--vcv-popover-blur));
-  transition: opacity var(--vcv-motion-popup-duration) ease;
+  animation: vcv-fade-in var(--vcv-motion-popup-duration) ease;
 }
 .vcv-detail[hidden] {
   display: none;
@@ -871,15 +871,20 @@ input[type="color"].vcv-control__input {
   font-family: var(--vcv-fonts-body);
   font-size: var(--vcv-compact-tip-size);
   pointer-events: none;
-  transition: opacity var(--vcv-motion-popup-duration) ease;
+  animation: vcv-fade-in var(--vcv-motion-popup-duration) ease;
 }
 .vcv-tip[hidden] {
   display: none;
 }
+@keyframes vcv-fade-in {
+  from {
+    opacity: 0;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .vcv-detail,
   .vcv-tip {
-    transition: none;
+    animation: none;
   }
 }
 .vcv-root--flat .vcv-bar,

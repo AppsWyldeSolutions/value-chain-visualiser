@@ -169,6 +169,7 @@ test("opens and closes from the keyboard, giving focus back", async ({
   await bar.focus();
   await page.keyboard.press("Enter");
   await expect(detail(page)).toBeVisible();
+  await expect(detail(page).locator(".vcv-detail__close")).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(detail(page)).toHaveCount(0);
   await expect(bar).toBeFocused();
@@ -210,16 +211,17 @@ test("only one popup is open at a time", async ({ page }) => {
   await expect(detail(page)).toHaveCount(0);
 });
 
-test("turns the popup's transition off for reduced motion", async ({
-  page,
-}) => {
+test("fades the popup in, except for reduced motion", async ({ page }) => {
+  const animation = () =>
+    detail(page).evaluate((element) => getComputedStyle(element).animationName);
+  await open(page);
+  await bars(page).first().click();
+  expect(await animation()).toBe("vcv-fade-in");
+
   await page.emulateMedia({ reducedMotion: "reduce" });
   await open(page);
   await bars(page).first().click();
-  const duration = await detail(page).evaluate(
-    (element) => getComputedStyle(element).transitionDuration,
-  );
-  expect(duration).toBe("0s");
+  expect(await animation()).toBe("none");
 });
 
 test("the web component draws compact bars by default too", async ({

@@ -210,6 +210,16 @@ describe("the detail popup", () => {
     expect(document.activeElement).toBe(bar);
   });
 
+  it("moves focus into the popup when opened from the keyboard", () => {
+    const { root } = mount();
+    const bar = bars(root)[1]!;
+    bar.focus();
+    key(bar, "Enter");
+    expect(document.activeElement).toBe(
+      detail(root)!.querySelector(".vcv-detail__close"),
+    );
+  });
+
   it("closes when the cards redraw or the display changes", () => {
     const { root, visual } = mount();
     click(bars(root)[0]);
@@ -335,9 +345,12 @@ describe("compact styles", () => {
     }
   });
 
-  it("turns popup and tooltip transitions off for reduced motion", () => {
+  it("fades the popup and tooltip in, except for reduced motion", () => {
+    expect(rule(".vcv-detail {")).toContain(
+      "animation: vcv-fade-in var(--vcv-motion-popup-duration)",
+    );
     expect(stylesText).toMatch(
-      /@media \(prefers-reduced-motion: reduce\)[^@]*\.vcv-detail[^@]*\.vcv-tip/,
+      /@media \(prefers-reduced-motion: reduce\)[^@]*\.vcv-detail[^@]*\.vcv-tip[^}]*animation: none/,
     );
   });
 });
