@@ -224,6 +224,7 @@ export function createVisual(
     ...selection,
     fillColor: theme.fillColor,
     shortfallColor: theme.shortfallColor,
+    cardDisplay: display,
   });
 
   const controls =
@@ -233,7 +234,10 @@ export function createVisual(
           periods: PERIODS,
           value: state(),
           onChange(change) {
-            const { year, period, ...colors } = change;
+            const { year, period, cardDisplay, ...colors } = change;
+            if (cardDisplay !== undefined && cardDisplay !== display) {
+              setDisplay(cardDisplay);
+            }
             if (year !== undefined || period !== undefined) {
               selection = {
                 year: year ?? selection.year,
@@ -529,6 +533,12 @@ export function createVisual(
     });
   }
 
+  function setDisplay(mode: CardDisplay): void {
+    display = mode;
+    shell.root.classList.toggle("vcv-root--compact", display === "compact");
+    render();
+  }
+
   function applyTheme(overrides: ThemeOverrides): void {
     hostTheme = resolveTheme(overrides, hostTheme);
     redrawTheme();
@@ -609,10 +619,7 @@ export function createVisual(
       redrawTheme();
     },
     setCardDisplay(mode) {
-      if (mode === display) return;
-      display = mode;
-      shell.root.classList.toggle("vcv-root--compact", display === "compact");
-      render();
+      if (mode !== display) setDisplay(mode);
     },
     setEmpty(message) {
       shell.root.querySelector(".vcv-empty")?.remove();

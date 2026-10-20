@@ -439,16 +439,27 @@ export function createControls(
   options: {
     years: number[];
     periods: string[];
-    value: ControlsValue; // { year, period, fillColor, shortfallColor }
+    value: ControlsValue; // { year, period, fillColor, shortfallColor, cardDisplay }
     onChange(change: Partial<ControlsValue>): void;
   },
 ): Controls; // { element, update(value, years?) }
 ```
 
-Four labelled controls, as in the prototype: **Year** and **Period** selects,
-then **Fill colour** and **Shortfall colour** pickers (named
+Five labelled controls: **Year** and **Period** selects, the **View**
+switch, then **Fill colour** and **Shortfall colour** pickers (named
 `Fill colour when target is met` and `Fill colour when target is missed` for
 assistive tech).
+
+- **View** switches the card display: **Compact** | **Full card**, a radio
+  group (`role="radiogroup"` named by its label, each option `role="radio"`
+  with `aria-checked`). One tab stop, the chosen option; the arrow keys move
+  between the options and choose. The chosen option takes
+  `control.selectedBackground` and `control.selectedColor` (inverted in high
+  contrast), its padding `control.segmentPadding`. It reports
+  `{ cardDisplay }`; `createVisual` switches the display in place and passes
+  the whole state, `cardDisplay` included, to `onChange`. There is no View
+  switch with `showControls: false` (the Power BI visual's format pane owns
+  the choice there).
 
 - `onChange` receives only the field the viewer changed. Selects report on
   `change`; pickers report on `input`, so spheres recolour while a colour is
@@ -472,7 +483,7 @@ export function createVisual(
     eyebrow?: string;
     title?: string;
     showControls?: boolean; // default true
-    onChange?(state: VisualState): void; // year, period, fillColor, shortfallColor
+    onChange?(state: VisualState): void; // year, period, fillColor, shortfallColor, cardDisplay
   },
 ): Visual;
 
@@ -690,11 +701,11 @@ because browsers ignore them inside a shadow root.
   Putting it back redraws from the data already loaded, without fetching
   again.
 
-| Event        | When                                        | `detail`                                                                                      |
-| ------------ | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `vcv-select` | A sphere is clicked                         | `{ node, group, subGroup, metric, year, period, actual, budget, hasData, met, level, label }` |
-| `vcv-change` | The viewer changes Year, Period or a colour | `{ year, period, fillColor, shortfallColor }`                                                 |
-| `vcv-error`  | `data-src` cannot be fetched or read        | The `Error`                                                                                   |
+| Event        | When                                              | `detail`                                                                                                          |
+| ------------ | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `vcv-select` | A sphere is clicked                               | `{ node, group, subGroup, metric, year, period, actual, budget, hasData, met, level, label }`                     |
+| `vcv-change` | The viewer changes Year, Period, View or a colour | `{ year, period, fillColor, shortfallColor, cardDisplay }` (the element does not rewrite its `data-card-display`) |
+| `vcv-error`  | `data-src` cannot be fetched or read              | The `Error`                                                                                                       |
 
 All three bubble and cross the shadow boundary (`composed`), so a listener on
 the document hears them.

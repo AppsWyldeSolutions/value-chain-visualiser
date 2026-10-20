@@ -15,7 +15,9 @@ All four `@appswyldesolutions/vcv-*` packages are public on npm: a plain
 By default the visual is **compact**: one small bar per link, in a single
 row that scales with its width; clicking a bar opens its full card. For the
 grid of full cards, set `data-card-display="full"` on the element (or
-`cardDisplay="full"` on the React wrapper).
+`cardDisplay="full"` on the React wrapper). Viewers can also switch with
+the **View** control in the visual's header; `vcv-change` (React's
+`onChange`) reports their choice as `cardDisplay`.
 
 Two rules hold in every framework:
 

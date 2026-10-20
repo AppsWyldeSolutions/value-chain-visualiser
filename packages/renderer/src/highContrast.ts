@@ -63,7 +63,12 @@ export function highContrastTheme(colors: HighContrastColors): ThemeOverrides {
     connector: { stroke: fg, head: fg },
     popover: { background: bg, border: fg, shadow: "none", blur: "0px" },
     score: { panelBackground: bg },
-    control: { optionColor: fg, optionBackground: bg },
+    control: {
+      optionColor: fg,
+      optionBackground: bg,
+      selectedBackground: fg,
+      selectedColor: bg,
+    },
     notice: { color: fg, background: bg, border: fg },
   };
 }

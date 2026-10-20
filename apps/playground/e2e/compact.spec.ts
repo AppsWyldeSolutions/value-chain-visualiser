@@ -235,3 +235,23 @@ test("the web component draws compact bars by default too", async ({
   await page.mouse.click(5, 5);
   await expect(host.locator(".vcv-detail:not([hidden])")).toHaveCount(0);
 });
+
+test("the header's View switch changes the display, both ways", async ({
+  page,
+}) => {
+  await open(page);
+  const view = page.getByRole("radiogroup", { name: "View" });
+  await expect(view.getByRole("radio", { name: "Compact" })).toHaveAttribute(
+    "aria-checked",
+    "true",
+  );
+  await view.getByRole("radio", { name: "Full card" }).click();
+  await expect(page.locator(".vcv-grid > .vcv-card")).toHaveCount(9);
+  await expect(bars(page)).toHaveCount(0);
+
+  // From the keyboard: the arrow keys move between the two options.
+  await view.getByRole("radio", { name: "Full card" }).focus();
+  await page.keyboard.press("ArrowLeft");
+  await expect(bars(page)).toHaveCount(9);
+  await expect(view.getByRole("radio", { name: "Compact" })).toBeFocused();
+});

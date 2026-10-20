@@ -197,6 +197,36 @@ select.vcv-control__input {
 .vcv-control--period select {
   min-width: var(--vcv-control-period-min-width);
 }
+/* The View switch: two options side by side, the chosen one filled. */
+.vcv-segments {
+  display: inline-flex;
+  box-sizing: border-box;
+  height: var(--vcv-control-height);
+  overflow: hidden;
+  border: var(--vcv-compact-border-width) solid var(--vcv-glass-control-border);
+  border-radius: var(--vcv-radii-control);
+  background: var(--vcv-glass-control-background);
+}
+.vcv-segment {
+  padding: var(--vcv-control-segment-padding);
+  border: 0;
+  background: transparent;
+  color: var(--vcv-colors-text-muted);
+  font-family: var(--vcv-fonts-body);
+  font-size: var(--vcv-control-font-size);
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.vcv-segment[aria-checked="true"] {
+  background: var(--vcv-control-selected-background);
+  color: var(--vcv-control-selected-color);
+}
+.vcv-segment:focus-visible {
+  outline-offset: calc(-1 * var(--vcv-compact-border-width));
+}
 input[type="color"].vcv-control__input {
   width: var(--vcv-control-swatch-width);
   padding: 4px;

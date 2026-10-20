@@ -22,6 +22,7 @@ const VALUE: ControlsValue = {
   period: "August",
   fillColor: "#8fd3f4",
   shortfallColor: "#ff9f40",
+  cardDisplay: "compact",
 };
 
 function build(onChange = vi.fn()) {
