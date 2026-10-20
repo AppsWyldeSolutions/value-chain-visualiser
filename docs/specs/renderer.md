@@ -695,6 +695,12 @@ because browsers ignore them inside a shadow root.
   lives in this package alone (CLAUDE.md rule 4). Core and the renderer make
   none. A host that already has the data sets the `rows` property to
   `KpiRow[]` instead, and nothing is fetched.
+- **Card display.** Left unset, the element draws compact bars with the
+  header's View switch shown. `data-card-display="full"` draws the full
+  cards. The `cardDisplay` property sets that attribute (anything but
+  `"full"` is compact), so the two agree, and reads the display shown,
+  including a viewer's View switch choice, which does not rewrite the
+  attribute.
 - **Stale replies.** If `data-src` changes, or `rows` is set, while a fetch is
   on its way, that fetch is aborted and its reply ignored.
 - **Reconnecting.** Removing the element from the page tears the visual down.

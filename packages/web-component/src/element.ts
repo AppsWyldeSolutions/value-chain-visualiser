@@ -96,6 +96,8 @@ function selectDetail(kpi: EvaluatedKpi): VcvSelectDetail {
  *   no attribute, draws compact bars that open their full card when clicked.
  *
  * Instead of `data-src`, a host can set the `rows` property to `KpiRow`s.
+ * The `cardDisplay` property sets `data-card-display`, and reads the display
+ * shown, including a viewer's choice in the header's View switch.
  *
  * Events, all bubbling out of the shadow root:
  * - `vcv-select` when a sphere is clicked, with a `VcvSelectDetail`.
@@ -131,6 +133,23 @@ export class ValueChainVisualiserElement extends HTMLElement {
 
   get rows(): KpiRow[] | undefined {
     return this.#rows;
+  }
+
+  /**
+   * Compact bars or full cards. Setting it sets `data-card-display` (anything
+   * but `"full"` is compact), so the property and the attribute agree;
+   * reading it gives the display shown, including a viewer's View switch
+   * choice, which does not rewrite the attribute.
+   */
+  get cardDisplay(): "compact" | "full" {
+    return this.#visual?.state().cardDisplay ?? this.#cardDisplay();
+  }
+
+  set cardDisplay(value: "compact" | "full") {
+    this.setAttribute(
+      "data-card-display",
+      value === "full" ? "full" : "compact",
+    );
   }
 
   set rows(rows: KpiRow[] | undefined) {
