@@ -32,7 +32,10 @@ test("the IIFE build registers <value-chain-visualiser> from a script tag", asyn
   });
 
   await page.goto(`${ORIGIN}/`);
-  await expect(page.locator("value-chain-visualiser .vcv-card")).toHaveCount(9);
+  // Compact bars, the default display.
+  await expect(
+    page.locator("value-chain-visualiser .vcv-grid .vcv-bar"),
+  ).toHaveCount(9);
 
   expect(
     await page.evaluate(

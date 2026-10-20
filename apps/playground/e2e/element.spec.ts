@@ -17,7 +17,7 @@ async function openElement(page: Page, src: string): Promise<string[]> {
   page.on("request", (request) =>
     requested.push(new URL(request.url()).pathname),
   );
-  await page.goto(`/?view=element&src=${src}`);
+  await page.goto(`/?view=element&src=${src}&display=full`);
   await expect(page.locator("value-chain-visualiser .vcv-card")).toHaveCount(9);
   await page.evaluate(() => document.fonts.ready);
   return requested;

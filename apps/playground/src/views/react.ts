@@ -7,6 +7,10 @@ import {
 import { loadRows } from "./processes.js";
 
 const ROWS = loadRows();
+const DISPLAY =
+  new URLSearchParams(location.search).get("display") === "full"
+    ? "full"
+    : undefined;
 
 // vcv-react's <ValueChainVisualiser>, showing the last sphere clicked.
 function App() {
@@ -22,6 +26,7 @@ function App() {
     createElement(ValueChainVisualiser, {
       rows: ROWS,
       period: "July",
+      cardDisplay: DISPLAY,
       onSelect: setSelected,
       style: { minHeight: "100%" },
     }),

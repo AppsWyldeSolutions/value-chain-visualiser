@@ -90,7 +90,7 @@ function drawnSpheres(page: Page): Promise<DrawnSphere[]> {
 
 async function openVisual(page: Page, width = 1440): Promise<void> {
   await page.setViewportSize({ width, height: 900 });
-  await page.goto("/?view=visual");
+  await page.goto("/?view=visual&display=full");
   await expect(page.locator(".vcv-card--score")).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
 }
