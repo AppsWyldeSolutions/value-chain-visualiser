@@ -24,6 +24,8 @@ export interface Connectors {
   element: SVGSVGElement;
   /** Re-measures the cards and redraws. Called automatically on resize. */
   update(): void;
+  /** Closes any transfer points popover a click pinned open. */
+  unpinAll(): void;
   destroy(): void;
 }
 
@@ -64,7 +66,21 @@ function cardsOf(grid: HTMLElement): Element[] {
  * An arrow leaving a card built by `createCard` whose node has transfer
  * points also gets a hover and focus target that shows them in a popover.
  */
-export function createConnectors(grid: HTMLElement): Connectors {
+export interface ConnectorOptions {
+  /** The cards to join, in chain order; by default the grid's `.vcv-card` children. */
+  cards?(): Element[];
+  /**
+   * How far down a card its outgoing arrow sits, in unscaled pixels, or
+   * undefined for the theme's rowAnchor.
+   */
+  anchor?(card: Element): number | undefined;
+}
+
+export function createConnectors(
+  grid: HTMLElement,
+  options: ConnectorOptions = {},
+): Connectors {
+  const cardsIn = () => options.cards?.() ?? cardsOf(grid);
   const doc = grid.ownerDocument;
   const view = doc.defaultView;
 
@@ -85,7 +101,7 @@ export function createConnectors(grid: HTMLElement): Connectors {
     // Undo any CSS transform on an ancestor (hosts may scale the visual):
     // the overlay's own coordinates are unscaled.
     const scale = grid.offsetWidth > 0 ? origin.width / grid.offsetWidth : 1;
-    const cards = cardsOf(grid);
+    const cards = cardsIn();
     const boxes: Box[] = cards.map((card) => {
       const rect = card.getBoundingClientRect();
       return {
@@ -93,6 +109,7 @@ export function createConnectors(grid: HTMLElement): Connectors {
         top: (rect.top - origin.top) / scale,
         width: rect.width / scale,
         height: rect.height / scale,
+        anchor: options.anchor?.(card),
       };
     });
 
@@ -158,7 +175,7 @@ export function createConnectors(grid: HTMLElement): Connectors {
     if (!resizeObserver) return;
     resizeObserver.disconnect();
     resizeObserver.observe(grid);
-    for (const card of cardsOf(grid)) resizeObserver.observe(card);
+    for (const card of cardsIn()) resizeObserver.observe(card);
   }
   // Only the grid's direct children are watched, so redrawing the arrows
   // and their targets inside the two overlays does not trigger this again.
@@ -176,6 +193,9 @@ export function createConnectors(grid: HTMLElement): Connectors {
   return {
     element: svg,
     update,
+    unpinAll() {
+      for (const transfer of transfers.values()) transfer.points.unpin();
+    },
     destroy() {
       resizeObserver?.disconnect();
       mutationObserver?.disconnect();

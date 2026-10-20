@@ -29,15 +29,19 @@ test.describe("Next.js consumer", () => {
 
     await page.goto(NEXT_URL);
     const host = page.locator("value-chain-visualiser");
-    const score = host.locator(".vcv-card--score");
+    // Compact bars, the default display; the Score Card's is last.
+    const score = host.locator(".vcv-bar--score");
     await expect(score).toHaveCount(1);
-    await expect(
-      score.locator(".vcv-kpi--panel .vcv-sphere").first(),
-    ).toBeVisible();
-    await expect(host.locator(".vcv-card")).toHaveCount(9);
+    await expect(score.locator(".vcv-sphere").first()).toBeVisible();
+    await expect(host.locator(".vcv-grid .vcv-bar")).toHaveCount(9);
 
-    // onSelect reaches the client component through the wrapper.
-    await host.locator(".vcv-kpi--primary .vcv-sphere").first().click();
+    // onSelect reaches the client component through the wrapper: a bar
+    // opens its full card, whose spheres select.
+    await host.locator(".vcv-grid .vcv-bar").first().click();
+    await host
+      .locator(".vcv-detail .vcv-kpi--primary .vcv-sphere")
+      .first()
+      .click();
     await expect(page.getByTestId("selected")).toHaveText(
       "BU1 - P2: Product Development › Product Launch Milestones Delivered > RF Plan",
     );

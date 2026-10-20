@@ -56,6 +56,15 @@ describe("<ValueChainVisualiser>", () => {
     expect(element.style.minHeight).toBe("400px");
   });
 
+  it("passes cardDisplay as data-card-display, and drops it when unset", async () => {
+    const { element, rerender } = await mount(
+      <ValueChainVisualiser rows={ROWS} cardDisplay="full" />,
+    );
+    expect(element.getAttribute("data-card-display")).toBe("full");
+    rerender(<ValueChainVisualiser rows={ROWS} />);
+    expect(element.hasAttribute("data-card-display")).toBe(false);
+  });
+
   it("registers the element and sets rows as a property once it is upgraded", async () => {
     const { element } = await mount(<ValueChainVisualiser rows={ROWS} />);
     await waitFor(() => expect(element.rows).toBe(ROWS));

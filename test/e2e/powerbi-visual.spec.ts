@@ -140,12 +140,20 @@ async function load(page: Page) {
   }, guid);
 }
 
-/** Power BI's update: the table, and the format pane's saved settings. */
+/**
+ * Power BI's update: the table, and the format pane's saved settings. Most
+ * tests here are about the full cards, so Display → Card display is Full
+ * unless a test sets it.
+ */
 async function update(
   page: Page,
-  objects: object = {},
+  objects: { display?: object } & Record<string, unknown> = {},
   shown: typeof table = table,
 ) {
+  objects = {
+    ...objects,
+    display: { cardDisplay: "full", ...objects.display },
+  };
   await page.evaluate(
     ({ table, objects }) => {
       const visual = (
@@ -482,4 +490,29 @@ test("the Header card edits and hides the visual's own heading", async ({
     "Business Processes & Scorecard",
   );
   await expect(host.locator(".vcv-header__subtitle")).toBeVisible();
+});
+
+test("compact bars open their full card, whose spheres select", async ({
+  page,
+}) => {
+  await load(page);
+  await update(page, { display: { cardDisplay: "compact" } });
+  const host = page.locator("#host");
+  const bars = host.locator(".vcv-grid .vcv-bar");
+  await expect(bars).toHaveCount(9);
+  await expect(host.locator(".vcv-connector")).toHaveCount(8);
+
+  await bars.first().click();
+  const detail = host.locator(".vcv-detail:not([hidden])");
+  await expect(detail.locator(".vcv-card__title")).toHaveText(
+    "Product Development",
+  );
+  await detail.locator(".vcv-kpi--primary .vcv-sphere").click();
+  // The selection dims the other bars.
+  await expect(host.locator(".vcv-grid .vcv-bar.vcv-card--dimmed")).toHaveCount(
+    8,
+  );
+
+  await page.keyboard.press("Escape");
+  await expect(detail).toHaveCount(0);
 });

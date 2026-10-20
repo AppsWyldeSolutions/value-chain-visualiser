@@ -4,6 +4,11 @@ export interface Box {
   top: number;
   width: number;
   height: number;
+  /**
+   * How far down the box an arrow leaving it sits, in place of the metrics'
+   * rowAnchor (a compact bar's measured primary sphere).
+   */
+  anchor?: number;
 }
 
 /** The theme's `connector` sizes, as pixel numbers. */
@@ -71,7 +76,8 @@ export function connectorShape(
   if (sameRow) {
     if (to.left < fromRight) return null;
     // On the anchor line, but never off the end of a short card.
-    const anchored = from.top + Math.min(rowAnchor, from.height / 2);
+    const anchored =
+      from.top + (from.anchor ?? Math.min(rowAnchor, from.height / 2));
     const y = Math.max(
       to.top + halfHead,
       Math.min(anchored, toBottom - halfHead),

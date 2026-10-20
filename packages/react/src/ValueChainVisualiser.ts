@@ -36,6 +36,11 @@ export interface ValueChainVisualiserProps {
   /** Month to show (`"July"`). Defaults to the latest month with actuals. */
   period?: string;
   theme?: ValueChainVisualiserTheme;
+  /**
+   * `"compact"` (the default): one small bar per link, opening its full card
+   * when clicked. `"full"`: every full card, as before.
+   */
+  cardDisplay?: "compact" | "full";
   /** A sphere was clicked (`vcv-select`). */
   onSelect?: (detail: VcvSelectDetail) => void;
   /** The viewer changed Year, Period or a colour (`vcv-change`). */
@@ -60,6 +65,7 @@ export function ValueChainVisualiser({
   year,
   period,
   theme,
+  cardDisplay,
   onSelect,
   onChange,
   onError,
@@ -130,5 +136,6 @@ export function ValueChainVisualiser({
     "data-period": period,
     "data-fill-color": theme?.fillColor,
     "data-shortfall-color": theme?.shortfallColor,
+    "data-card-display": cardDisplay,
   });
 }

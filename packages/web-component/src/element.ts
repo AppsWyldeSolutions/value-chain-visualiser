@@ -92,6 +92,8 @@ function selectDetail(kpi: EvaluatedKpi): VcvSelectDetail {
  * - `data-year`, `data-period`: the selection to show. Without them it opens
  *   on the data's latest period with actuals.
  * - `data-fill-color`, `data-shortfall-color`: the two sphere colours.
+ * - `data-card-display`: `full` for today's full cards; anything else, or
+ *   no attribute, draws compact bars that open their full card when clicked.
  *
  * Instead of `data-src`, a host can set the `rows` property to `KpiRow`s.
  *
@@ -107,6 +109,7 @@ export class ValueChainVisualiserElement extends HTMLElement {
     "data-period",
     "data-fill-color",
     "data-shortfall-color",
+    "data-card-display",
   ];
 
   #container: HTMLElement;
@@ -173,6 +176,9 @@ export class ValueChainVisualiserElement extends HTMLElement {
           shortfallColor: value ?? defaultTheme.shortfallColor,
         });
         break;
+      case "data-card-display":
+        this.#visual?.setCardDisplay(this.#cardDisplay());
+        break;
     }
   }
 
@@ -235,9 +241,16 @@ export class ValueChainVisualiserElement extends HTMLElement {
       rows: this.#rows,
       selection,
       theme: this.#theme(),
+      cardDisplay: this.#cardDisplay(),
       onChange: (state) => this.#emit("vcv-change", state),
       onSelect: (kpi) => this.#emit("vcv-select", selectDetail(kpi)),
     });
+  }
+
+  #cardDisplay(): "compact" | "full" {
+    return this.getAttribute("data-card-display") === "full"
+      ? "full"
+      : "compact";
   }
 
   #emit(type: string, detail: unknown): void {

@@ -9,6 +9,10 @@ import { testHost } from "./testHost";
 import { tableOf } from "./testTable";
 import { Visual } from "./visual";
 
+// These tests are about the full cards (Display → Card display: Full);
+// compact mode has its own tests.
+const FULL = { display: { cardDisplay: "full" } };
+
 const ROWS = fromLongRows(
   (
     JSON.parse(
@@ -54,7 +58,7 @@ function construct(table = tableOf(ROWS)) {
   } as powerbi.extensibility.visual.VisualConstructorOptions);
   const update = () =>
     visual.update({
-      dataViews: [{ table, metadata: { columns: [] } }],
+      dataViews: [{ table, metadata: { columns: [], objects: FULL } }],
     } as unknown as powerbi.extensibility.visual.VisualUpdateOptions);
   update();
   return { element, visual, update, table, ...stub };

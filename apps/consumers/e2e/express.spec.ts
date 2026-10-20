@@ -21,12 +21,11 @@ test.describe("Express consumer", () => {
 
     await page.goto(EXPRESS_URL);
     const host = page.locator("value-chain-visualiser");
-    const score = host.locator(".vcv-card--score");
+    // Compact bars, the default display; the Score Card's is last.
+    const score = host.locator(".vcv-bar--score");
     await expect(score).toHaveCount(1);
-    await expect(
-      score.locator(".vcv-kpi--panel .vcv-sphere").first(),
-    ).toBeVisible();
-    await expect(host.locator(".vcv-card")).toHaveCount(9);
+    await expect(score.locator(".vcv-sphere").first()).toBeVisible();
+    await expect(host.locator(".vcv-grid .vcv-bar")).toHaveCount(9);
 
     expect(requested).toContain("/vcv/vcv.iife.js");
     expect(requested).toContain("/api/kpis");

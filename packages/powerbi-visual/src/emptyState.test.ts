@@ -53,7 +53,7 @@ const full = () => [{ table: tableOf(ROWS), metadata: { columns: [] } }];
 const message = (element: Element) =>
   element.querySelector(".vcv-empty")?.textContent ?? null;
 const cards = (element: Element) =>
-  element.querySelectorAll(".vcv-grid > .vcv-card").length;
+  element.querySelectorAll(".vcv-grid > .vcv-card, .vcv-grid .vcv-bar").length;
 
 afterEach(() => {
   document.body.replaceChildren();

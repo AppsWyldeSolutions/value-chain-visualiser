@@ -23,6 +23,7 @@ function mount(options: Partial<VisualOptions> = {}) {
   const container = document.createElement("div");
   document.body.appendChild(container);
   const visual = createVisual(container, {
+    cardDisplay: "full",
     rows: ROWS,
     selection: { year: 2026, period: "August" },
     ...options,

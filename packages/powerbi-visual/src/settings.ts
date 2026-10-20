@@ -35,6 +35,12 @@ export const PRESETS: powerbi.IEnumMember[] = [
   { value: "none", displayName: "None" },
 ];
 
+/** How the chain draws its links, in the renderer's names. */
+export const CARD_DISPLAYS: powerbi.IEnumMember[] = [
+  { value: "compact", displayName: "Compact" },
+  { value: "full", displayName: "Full" },
+];
+
 /** On target and missed: the spheres' two liquid colours. */
 class ColoursCard extends FormattingSettingsCard {
   fillColor = new formattingSettings.ColorPicker({
@@ -79,6 +85,15 @@ class BackgroundCard extends FormattingSettingsCard {
 
 /** What the chain shows, and how large. */
 class DisplayCard extends FormattingSettingsCard {
+  cardDisplay = new formattingSettings.ItemDropdown({
+    name: "cardDisplay",
+    displayName: "Card display",
+    description:
+      "Compact: one small bar per link, opening its full card when clicked. Full: every full card.",
+    items: CARD_DISPLAYS,
+    value: CARD_DISPLAYS[0]!,
+  });
+
   showTransferPoints = new formattingSettings.ToggleSwitch({
     name: "showTransferPoints",
     displayName: "Transfer Points",
@@ -96,6 +111,7 @@ class DisplayCard extends FormattingSettingsCard {
   name = "display";
   displayName = "Display";
   slices: FormattingSettingsSlice[] = [
+    this.cardDisplay,
     this.showTransferPoints,
     this.sphereSize,
   ];

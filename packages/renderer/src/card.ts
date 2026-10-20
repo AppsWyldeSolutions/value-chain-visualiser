@@ -16,6 +16,11 @@ let nextTitleId = 0;
 // transfer points handed from one card to the next.
 const cardNodes = new WeakMap<Element, NodeModel>();
 
+/** Records the node a card (or a compact bar) was built from. */
+export function bindCardNode(card: Element, node: NodeModel): void {
+  cardNodes.set(card, node);
+}
+
 /** The node a card element was built from, if `createCard` built it. */
 export function cardNode(card: Element): NodeModel | undefined {
   return cardNodes.get(card);

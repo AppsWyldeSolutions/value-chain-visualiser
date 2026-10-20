@@ -15,7 +15,7 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
 import IVisualEventService = powerbi.extensibility.IVisualEventService;
 
-import { headerFrom, rowsToShow, themeFrom } from "./format";
+import { cardDisplayFrom, headerFrom, rowsToShow, themeFrom } from "./format";
 import { periodNotice } from "./periods";
 import { emptyMessage, missingRoles, rowsFromTable } from "./rows";
 import { RowSelection } from "./selection";
@@ -79,6 +79,7 @@ export class Visual implements IVisual {
       this.vcv.setTheme(themeFrom(this.formattingSettings));
       this.vcv.setHighContrast(highContrastColors(this.host.colorPalette));
       this.vcv.setHeader(headerFrom(this.formattingSettings));
+      this.vcv.setCardDisplay(cardDisplayFrom(this.formattingSettings));
       const rows = rowsFromTable(dataView?.table);
       // Until every required field is in its well, say which to add rather
       // than draw an empty chain.

@@ -13,6 +13,10 @@ import { testHost } from "./testHost";
 import { tableOf } from "./testTable";
 import { Visual } from "./visual";
 
+// These tests are about the full cards (Display → Card display: Full);
+// compact mode has its own tests.
+const FULL = { display: { cardDisplay: "full" } };
+
 const ROWS = fromLongRows(
   (
     JSON.parse(
@@ -56,7 +60,12 @@ describe("Visual", () => {
 
   it("draws the cards from the table data view", () => {
     const { element, eventService, visual } = construct();
-    const options = updateWith([{ table: tableOf(ROWS) } as powerbi.DataView]);
+    const options = updateWith([
+      {
+        table: tableOf(ROWS),
+        metadata: { columns: [], objects: FULL },
+      } as powerbi.DataView,
+    ]);
     visual.update(options);
     expect(element.querySelectorAll(".vcv-grid > .vcv-card")).toHaveLength(9);
     expect(element.querySelector(".vcv-header__subtitle")?.textContent).toBe(
@@ -77,7 +86,12 @@ describe("Visual", () => {
 
   it("keeps one visual across updates", () => {
     const { element, visual } = construct();
-    const options = updateWith([{ table: tableOf(ROWS) } as powerbi.DataView]);
+    const options = updateWith([
+      {
+        table: tableOf(ROWS),
+        metadata: { columns: [], objects: FULL },
+      } as powerbi.DataView,
+    ]);
     visual.update(options);
     visual.update(options);
     expect(element.querySelectorAll(".vcv-root")).toHaveLength(1);

@@ -26,7 +26,7 @@ function panelOf(kpi: EvaluatedKpi): string {
 }
 
 /** Each panel's KPIs, keyed by name, in the order the names first appear. */
-function panelsOf(node: NodeModel): Map<string, EvaluatedKpi[]> {
+export function panelsOf(node: NodeModel): Map<string, EvaluatedKpi[]> {
   const panels = new Map<string, EvaluatedKpi[]>();
   for (const kpi of [...node.satellite, ...node.transferPoints]) {
     const name = panelOf(kpi);

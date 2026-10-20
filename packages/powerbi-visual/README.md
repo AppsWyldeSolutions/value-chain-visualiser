@@ -93,6 +93,7 @@ visual in place.
 | Colours    | Shortfall colour | colour picker               | the renderer's `shortfallColor`                 |
 | Background | Ocean            | Ocean, Deep, Lagoon or None | Ocean                                           |
 | Background | Opacity          | slider, 0–100%              | 100%                                            |
+| Display    | Card display     | Compact or Full             | Compact                                         |
 | Display    | Transfer Points  | on/off                      | on                                              |
 | Display    | Sphere size      | slider, 50–150%             | 100%                                            |
 | Header     | Show header      | on/off                      | on                                              |
@@ -103,6 +104,9 @@ visual in place.
   spheres use the fill colour, missed ones the shortfall colour.
 - **Ocean** applies one of the renderer's `OCEAN_PRESETS`. **Opacity** is
   `ocean.opacity`: it fades the ocean, not the cards.
+- **Card display**: Compact (one small bar per link in a single row that
+  scales with the visual; clicking a bar opens its full card, whose spheres
+  select) or Full (every full card).
 - **Transfer Points** off drops the rows in the Transfer Points group, so
   the arrows between cards have no popover.
 - **Sphere size** scales every sphere (primary, satellite and the Score

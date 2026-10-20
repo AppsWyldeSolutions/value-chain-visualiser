@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
 test("the React wrapper draws the chain and calls onSelect on a sphere click", async ({
   page,
 }) => {
-  await page.goto("/?view=react");
+  await page.goto("/?view=react&display=full");
   const host = page.locator("value-chain-visualiser");
   await expect(host.locator(".vcv-card")).toHaveCount(9);
   await expect(host).toHaveAttribute("data-period", "July");

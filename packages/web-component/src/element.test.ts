@@ -60,10 +60,14 @@ function shadow(element: HTMLElement): ShadowRoot {
   return element.shadowRoot;
 }
 
-/** Waits until the element has rendered its cards (or gives up). */
+/** The links drawn: compact bars, or full cards. */
+const links = (element: HTMLElement) =>
+  shadow(element).querySelectorAll(".vcv-grid > .vcv-card, .vcv-grid .vcv-bar");
+
+/** Waits until the element has rendered its links (or gives up). */
 async function rendered(element: HTMLElement, cards = 9): Promise<void> {
   await vi.waitFor(() => {
-    expect(shadow(element).querySelectorAll(".vcv-card")).toHaveLength(cards);
+    expect(links(element)).toHaveLength(cards);
   });
 }
 
@@ -89,9 +93,9 @@ describe("<value-chain-visualiser>", () => {
     expect(subtitle(element)).toBe(
       "August 2026 · 53 KPIs measured against budget",
     );
-    expect(shadow(element).querySelectorAll(".vcv-card--score")).toHaveLength(
-      1,
-    );
+    expect(
+      shadow(element).querySelectorAll(".vcv-card--score, .vcv-bar--score"),
+    ).toHaveLength(1);
   });
 
   it("loads the prototype's wide records through data-src", async () => {
@@ -176,7 +180,7 @@ describe("<value-chain-visualiser>", () => {
 
     releaseFirst(new Response(LONG));
     await new Promise((resolve) => setTimeout(resolve, 20));
-    expect(shadow(element).querySelectorAll(".vcv-card")).toHaveLength(1);
+    expect(links(element)).toHaveLength(1);
   });
 
   it("fires vcv-error when the data cannot be loaded", async () => {
@@ -224,7 +228,15 @@ describe("<value-chain-visualiser>", () => {
       selected.push((event as CustomEvent<VcvSelectDetail>).detail);
     });
 
-    const sphere = shadow(element).querySelector(".vcv-card .vcv-sphere");
+    // Compact: the bar opens its full card, whose spheres select.
+    shadow(element)
+      .querySelector(".vcv-bar")
+      ?.dispatchEvent(
+        new MouseEvent("click", { bubbles: true, composed: true }),
+      );
+    const sphere = shadow(element).querySelector(
+      ".vcv-detail .vcv-card .vcv-sphere",
+    );
     sphere?.dispatchEvent(
       new MouseEvent("click", { bubbles: true, composed: true }),
     );
@@ -298,5 +310,49 @@ describe("<value-chain-visualiser>", () => {
     document.body.appendChild(element);
     await rendered(element);
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("data-card-display", () => {
+  const bars = (element: HTMLElement) =>
+    shadow(element).querySelectorAll(".vcv-grid .vcv-bar");
+  const cards = (element: HTMLElement) =>
+    shadow(element).querySelectorAll(".vcv-grid > .vcv-card");
+
+  it("draws compact bars by default", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    expect(bars(element)).toHaveLength(9);
+    expect(cards(element)).toHaveLength(0);
+  });
+
+  it("draws today's full cards with data-card-display=full", async () => {
+    const element = mount({
+      "data-src": "/kpis.json",
+      "data-card-display": "full",
+    });
+    await rendered(element);
+    expect(cards(element)).toHaveLength(9);
+    expect(bars(element)).toHaveLength(0);
+  });
+
+  it("follows a later change, in place", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    const root = shadow(element).querySelector(".vcv-root");
+    element.setAttribute("data-card-display", "full");
+    expect(cards(element)).toHaveLength(9);
+    element.removeAttribute("data-card-display");
+    expect(bars(element)).toHaveLength(9);
+    expect(shadow(element).querySelector(".vcv-root")).toBe(root);
+  });
+
+  it("treats anything else as compact", async () => {
+    const element = mount({
+      "data-src": "/kpis.json",
+      "data-card-display": "wide",
+    });
+    await rendered(element);
+    expect(bars(element)).toHaveLength(9);
   });
 });

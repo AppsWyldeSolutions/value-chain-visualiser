@@ -21,7 +21,12 @@ function mount(options: Partial<Parameters<typeof createVisual>[1]> = {}) {
   const container = document.createElement("div");
   document.body.appendChild(container);
   const onChange = vi.fn();
-  const visual = createVisual(container, { rows: ROWS, onChange, ...options });
+  const visual = createVisual(container, {
+    rows: ROWS,
+    onChange,
+    cardDisplay: "full",
+    ...options,
+  });
   const root = visual.root;
   const select = (name: string) => {
     const input = root.querySelector<HTMLSelectElement>(
