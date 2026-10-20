@@ -11,6 +11,8 @@ export type {
   ThemeOverrides,
 } from "./theme.js";
 export { OCEAN_PRESETS } from "./oceanPresets.js";
+export { createBar, sphereLabel } from "./compact.js";
+export type { Bar, CardDisplay } from "./compact.js";
 export { highContrastTheme } from "./highContrast.js";
 export type { HighContrastColors } from "./highContrast.js";
 export { tooltipItems } from "./tooltip.js";

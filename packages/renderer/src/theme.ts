@@ -228,6 +228,31 @@ export interface RendererTheme extends Theme {
     bubbleDuration: string;
     bubbleRise: string;
     flowDuration: string;
+    /** How long the compact detail popup and tooltips take to fade in. */
+    popupDuration: string;
+  };
+  /**
+   * The compact display's sizes. Those used inside a bar may use `cqw`: a
+   * bar's slot is a size container, so they scale with the slot's width.
+   */
+  compact: {
+    primarySphereSize: string;
+    sphereSize: string;
+    codeSize: string;
+    primaryPctSize: string;
+    pctSize: string;
+    padding: string;
+    radius: string;
+    innerGap: string;
+    rowGap: string;
+    /** Between bars, in the chain's single row. */
+    gap: string;
+    borderWidth: string;
+    detailWidth: string;
+    closeSize: string;
+    tipWidth: string;
+    tipPadding: string;
+    tipSize: string;
   };
 }
 
@@ -462,6 +487,26 @@ export const defaultTheme: RendererTheme = {
     bubbleDuration: "16s",
     bubbleRise: "260px",
     flowDuration: "1.6s",
+    popupDuration: "120ms",
+  },
+  compact: {
+    primarySphereSize: "clamp(16px, 28cqw, 44px)",
+    sphereSize: "clamp(9px, 11cqw, 18px)",
+    codeSize: "clamp(7px, 6cqw, 11px)",
+    primaryPctSize: "clamp(9px, 8cqw, 17px)",
+    pctSize: "clamp(7px, 5.5cqw, 11px)",
+    padding:
+      "clamp(6px, 4cqw, 10px) clamp(5px, 3cqw, 8px) clamp(7px, 4.5cqw, 12px)",
+    radius: "clamp(8px, 3cqw, 16px)",
+    innerGap: "clamp(4px, 3cqw, 10px)",
+    rowGap: "clamp(3px, 2cqw, 7px)",
+    gap: "clamp(3px, 1vw, 14px)",
+    borderWidth: "1px",
+    detailWidth: "420px",
+    closeSize: "26px",
+    tipWidth: "240px",
+    tipPadding: "7px 10px",
+    tipSize: "12px",
   },
 };
 
@@ -498,6 +543,7 @@ export function resolveTheme(
     type: mergeGroup(base.type, overrides.type),
     notice: mergeGroup(base.notice, overrides.notice),
     motion: mergeGroup(base.motion, overrides.motion),
+    compact: mergeGroup(base.compact, overrides.compact),
   };
 }
 

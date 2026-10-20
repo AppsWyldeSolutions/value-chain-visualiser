@@ -717,4 +717,175 @@ input[type="color"].vcv-control__input {
 .vcv-root--no-subtitle .vcv-header__subtitle {
   display: none;
 }
+
+/* Compact display (cardDisplay "compact"): one bar per link, in a single
+   row that never wraps. Each bar sits in a slot that is a size container,
+   so everything in it scales with the slot's width (the cqw in the compact
+   tokens) as the visual narrows. */
+.vcv-root--compact .vcv-grid {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--vcv-compact-gap);
+  row-gap: 0;
+}
+.vcv-slot {
+  position: relative;
+  min-width: 0;
+  container-type: inline-size;
+}
+.vcv-bar {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: var(--vcv-compact-padding);
+  border: var(--vcv-compact-border-width) solid var(--vcv-glass-card-border);
+  border-radius: var(--vcv-compact-radius);
+  background: var(--vcv-glass-card-background);
+  box-shadow: var(--vcv-glass-card-shadow);
+  -webkit-backdrop-filter: blur(var(--vcv-glass-blur))
+    saturate(var(--vcv-glass-saturate));
+  backdrop-filter: blur(var(--vcv-glass-blur))
+    saturate(var(--vcv-glass-saturate));
+  color: var(--vcv-colors-text);
+  cursor: pointer;
+}
+.vcv-bar:hover,
+.vcv-bar[aria-expanded="true"] {
+  border-color: var(--vcv-colors-focus-ring);
+}
+.vcv-bar__code {
+  max-width: 100%;
+  margin-bottom: var(--vcv-compact-inner-gap);
+  overflow: hidden;
+  font-family: var(--vcv-fonts-body);
+  font-size: var(--vcv-compact-code-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--vcv-colors-text-label);
+}
+.vcv-bar__primary {
+  --vcv-sphere-size: var(--vcv-compact-primary-sphere-size);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vcv-compact-inner-gap);
+}
+.vcv-bar__primary .vcv-bar__kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vcv-compact-row-gap);
+}
+.vcv-bar__primary .vcv-bar__pct {
+  font-family: var(--vcv-fonts-display);
+  font-size: var(--vcv-compact-primary-pct-size);
+  font-weight: 700;
+}
+.vcv-bar__divider {
+  align-self: stretch;
+  height: var(--vcv-compact-border-width);
+  margin: var(--vcv-compact-inner-gap) 0;
+  background: var(--vcv-glass-line);
+}
+/* One grid for all of a bar's satellites, so the sphere column and the
+   percentage column each size to their widest item and stay aligned. */
+.vcv-bar__list {
+  --vcv-sphere-size: var(--vcv-compact-sphere-size);
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: var(--vcv-compact-inner-gap);
+  row-gap: var(--vcv-compact-row-gap);
+  width: fit-content;
+}
+.vcv-bar__list .vcv-bar__kpi {
+  display: contents;
+}
+.vcv-bar__list .vcv-bar__pct {
+  font-family: var(--vcv-fonts-body);
+  font-size: var(--vcv-compact-pct-size);
+  font-variant-numeric: tabular-nums;
+  color: var(--vcv-colors-text-muted);
+  text-align: left;
+}
+
+/* A bar's full card, in a popup anchored to the bar. */
+.vcv-detail {
+  position: absolute;
+  z-index: 30;
+  box-sizing: border-box;
+  width: min(var(--vcv-compact-detail-width), 100%);
+  overflow: auto;
+  padding: var(--vcv-popover-padding);
+  border: var(--vcv-compact-border-width) solid var(--vcv-popover-border);
+  border-radius: var(--vcv-radii-popover);
+  background: var(--vcv-popover-background);
+  box-shadow: var(--vcv-popover-shadow);
+  -webkit-backdrop-filter: blur(var(--vcv-popover-blur));
+  backdrop-filter: blur(var(--vcv-popover-blur));
+  transition: opacity var(--vcv-motion-popup-duration) ease;
+}
+.vcv-detail[hidden] {
+  display: none;
+}
+.vcv-detail .vcv-card {
+  min-height: 0;
+}
+.vcv-detail__close {
+  position: absolute;
+  z-index: 1;
+  top: var(--vcv-compact-row-gap);
+  right: var(--vcv-compact-row-gap);
+  width: var(--vcv-compact-close-size);
+  height: var(--vcv-compact-close-size);
+  padding: 0;
+  border: var(--vcv-compact-border-width) solid var(--vcv-glass-pill-border);
+  border-radius: var(--vcv-radii-pill);
+  background: var(--vcv-glass-pill-background);
+  color: var(--vcv-colors-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* A sphere's name and figures, over a compact bar. */
+.vcv-tip {
+  position: absolute;
+  z-index: 40;
+  box-sizing: border-box;
+  max-width: var(--vcv-compact-tip-width);
+  padding: var(--vcv-compact-tip-padding);
+  border: var(--vcv-compact-border-width) solid var(--vcv-popover-border);
+  border-radius: var(--vcv-radii-control);
+  background: var(--vcv-popover-background);
+  color: var(--vcv-colors-text);
+  font-family: var(--vcv-fonts-body);
+  font-size: var(--vcv-compact-tip-size);
+  pointer-events: none;
+  transition: opacity var(--vcv-motion-popup-duration) ease;
+}
+.vcv-tip[hidden] {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .vcv-detail,
+  .vcv-tip {
+    transition: none;
+  }
+}
+.vcv-root--flat .vcv-bar,
+.vcv-root--flat .vcv-detail {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
 `;

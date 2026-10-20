@@ -15,6 +15,11 @@ function line(doc: Document, className: string, text: string): HTMLElement {
 const kpiElements = new WeakMap<Element, EvaluatedKpi>();
 
 /** The KPI a `.vcv-kpi` element shows, if `createKpi` built it. */
+/** Records the KPI an element shows, for `kpiOf`. */
+export function bindKpi(element: Element, kpi: EvaluatedKpi): void {
+  kpiElements.set(element, kpi);
+}
+
 export function kpiOf(element: Element): EvaluatedKpi | undefined {
   return kpiElements.get(element);
 }

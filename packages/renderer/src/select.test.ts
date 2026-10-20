@@ -21,7 +21,9 @@ const ROWS = fromLongRows(
 function mount(onSelect?: (kpi: EvaluatedKpi) => void) {
   const container = document.createElement("div");
   document.body.appendChild(container);
-  return createVisual(container, { rows: ROWS, onSelect }).root;
+  // These tests are about the full cards; compact mode has its own.
+  return createVisual(container, { rows: ROWS, onSelect, cardDisplay: "full" })
+    .root;
 }
 
 function click(element: Element | null | undefined): void {

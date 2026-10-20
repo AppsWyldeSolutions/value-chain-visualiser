@@ -10,6 +10,8 @@ export interface TransferPoints {
   element: HTMLElement;
   /** Moves the target over the arrow's hit area, in grid coordinates. */
   place(hit: Box): void;
+  /** Closes the popover if a click pinned it open. */
+  unpin(): void;
   destroy(): void;
 }
 
@@ -74,8 +76,10 @@ function buildPopover(
 /**
  * Builds the transfer points handed from one link to the next: a focusable
  * target to lay over the arrow between them, and the popover it shows on
- * hover or keyboard focus. Escape closes the popover until the target is
- * entered again, and it is kept inside the viewport and the visual.
+ * hover or keyboard focus. A click pins it open (clicking again, Escape or a
+ * click elsewhere unpins it) and dispatches a bubbling `vcv-transfer-pin`
+ * event, so other popups can close. Escape closes the popover until the
+ * target is entered again, and it is kept inside the viewport and the visual.
  */
 export function createTransferPoints(
   doc: Document,
@@ -98,6 +102,7 @@ export function createTransferPoints(
   let hovered = false;
   let focused = false;
   let dismissed = false;
+  let pinned = false;
   let open = false;
 
   function reposition(): void {
@@ -139,11 +144,36 @@ export function createTransferPoints(
   function onKeydown(event: KeyboardEvent): void {
     if (event.key !== "Escape") return;
     dismissed = true;
+    setPinned(false);
     sync();
   }
 
+  function onDocumentClick(event: MouseEvent): void {
+    // The path, not the target: in a shadow root the document sees the
+    // click retargeted to the host element.
+    if (event.composedPath().includes(trigger)) return;
+    setPinned(false);
+    sync();
+  }
+
+  function setPinned(next: boolean): void {
+    if (next === pinned) return;
+    pinned = next;
+    trigger.classList.toggle("vcv-transfer--pinned", pinned);
+    if (pinned) {
+      doc.addEventListener("click", onDocumentClick);
+      trigger.dispatchEvent(
+        new (view?.CustomEvent ?? CustomEvent)("vcv-transfer-pin", {
+          bubbles: true,
+        }),
+      );
+    } else {
+      doc.removeEventListener("click", onDocumentClick);
+    }
+  }
+
   function sync(): void {
-    const next = (hovered || focused) && !dismissed;
+    const next = (hovered || focused || pinned) && !dismissed;
     if (next === open) return;
     open = next;
     popover.hidden = !open;
@@ -172,6 +202,15 @@ export function createTransferPoints(
     if (!focused) dismissed = false;
     sync();
   });
+  // A click pins the popover open, or unpins it; clicks inside it do not.
+  trigger.addEventListener("click", (event) => {
+    if (popover.contains(event.target as Node)) return;
+    // Unpinning closes it even with the pointer (and focus) still on the
+    // arrow; entering the arrow again previews it again.
+    dismissed = pinned;
+    setPinned(!pinned);
+    sync();
+  });
   trigger.addEventListener("focusin", () => {
     focused = true;
     dismissed = false;
@@ -192,9 +231,14 @@ export function createTransferPoints(
       trigger.style.height = `${hit.height}px`;
       reposition();
     },
+    unpin() {
+      setPinned(false);
+      sync();
+    },
     destroy() {
       hovered = false;
       focused = false;
+      setPinned(false);
       sync();
       trigger.remove();
     },

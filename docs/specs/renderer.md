@@ -32,8 +32,9 @@ prototype's values.
 | `radii`     | `card`, `popover`, `panel`, `control`, `pill`                                                                                                                                                                                                                                                                                                                         |
 | `layout`    | `contentWidth`, `gutter`, `paddingTop`, `paddingBottom`, `headerHeight`, `headerGap`, `controlsGap`, `columns`, `cardMinWidth`, `columnGap`, `rowGap`                                                                                                                                                                                                                 |
 | `type`      | `eyebrowSize`, `titleSize`, `subtitleSize`                                                                                                                                                                                                                                                                                                                            |
-| `motion`    | `bubbleDuration`, `bubbleRise`, `flowDuration`                                                                                                                                                                                                                                                                                                                        |
+| `motion`    | `bubbleDuration`, `bubbleRise`, `flowDuration`, `popupDuration`                                                                                                                                                                                                                                                                                                       |
 | `notice`    | `color`, `background`, `border`, `borderWidth`, `size`, `padding`                                                                                                                                                                                                                                                                                                     |
+| `compact`   | `primarySphereSize`, `sphereSize`, `codeSize`, `primaryPctSize`, `pctSize`, `padding`, `radius`, `innerGap`, `rowGap`, `gap`, `borderWidth`, `detailWidth`, `closeSize`, `tipWidth`, `tipPadding`, `tipSize`                                                                                                                                                          |
 
 ```ts
 export function resolveTheme(
@@ -372,6 +373,14 @@ is nothing extra for a host to call.
 - The prototype's turn arrow responds over a fixed 960px strip; here the
   target follows the measured arrow.
 
+### Pinning
+
+A click on an arrow's target pins its popover open: it stays after the
+pointer leaves, until the target is clicked again, Escape, or a click
+anywhere else (read from the composed path, so a shadow root works).
+Pinning dispatches a bubbling `vcv-transfer-pin` event; `unpin()` (and the
+connectors' `unpinAll()`) closes a pinned popover from outside.
+
 ## Score Card
 
 ```ts
@@ -512,6 +521,53 @@ host such as the web component wraps.
   that owns those choices itself, such as Power BI (its filters and format
   pane), which sets them through `setSelection` and `setTheme`.
 
+### Compact display
+
+`createVisual`'s `cardDisplay` option is `"compact"` (the default) or
+`"full"`; `Visual.setCardDisplay(mode)` switches in place. `"full"` is the
+grid of full cards described above, unchanged.
+
+- **Bars.** Compact draws one bar per link (`createBar`): an
+  `article.vcv-bar` in a `div.vcv-slot`, the grid's cell. A process bar
+  has its code (`BU1 · P2`), its primary KPI's sphere and percentage, a
+  divider, then its satellites in one two-column grid (spheres, then
+  percentages), each column as wide as its widest item. The Score Card's
+  bar (`.vcv-bar--score`, last) has its primary KPIs as small spheres on
+  top, then each sub-group's, divided. A bar is `width: fit-content`, in
+  the same glass and tones as the cards.
+- **One row that scales.** The grid is a single row of equal columns
+  (`grid-auto-flow: column`) that never wraps. Each slot is
+  `container-type: inline-size`, and the `compact` tokens used inside a
+  bar are `clamp(… cqw …)`, so spheres, text and padding shrink together
+  with the slot as the visual narrows, down to each clamp's minimum.
+- **Arrows** join consecutive bars at the height of the primary sphere (the
+  first sphere on the Score Card's bar), measured, so they follow as the
+  bars scale. Hover on one previews its transfer points; a click pins them.
+- **Spheres** in a bar have `role="img"` and an `aria-label` (`metric —
+actual / budget (pct)`, or `metric — No data for this period`). Hovering
+  one shows that text in a tooltip (`.vcv-tip`), above it or below if there
+  is no room; with a `tooltip` option the host's tooltips are used instead.
+- **Detail popup.** A bar is a button (`role="button"`, `tabindex="0"`,
+  `aria-haspopup="dialog"`, `aria-expanded`). Clicking it, or Enter or
+  Space on it, opens `.vcv-detail` (`role="dialog"`) holding the link's
+  full card (`createCard` or `createScoreCard`), with a close button. It
+  sits below the bar if it fits, above if not, inside the visual; taller
+  than either side's room, it goes on the roomier side and scrolls. The same
+  bar, the close button, a click elsewhere or Escape closes it (Escape and
+  the button give focus back to the bar). Redrawing, or switching display,
+  closes it.
+- **One popup at a time.** Opening a bar's popup unpins any transfer points
+  popover; pinning one (`vcv-transfer-pin`) closes the bar's popup.
+- **Selection.** A click on a bar, spheres included, opens the popup; it
+  does not call `onSelect` or `onDeselect`. Spheres on the card in the
+  popup select as in full mode. `setSelectedKpis` dims bars as it dims
+  cards.
+- **Motion.** The popup and the tooltip fade in over `motion.popupDuration`;
+  `prefers-reduced-motion: reduce` turns that off.
+- High contrast (`vcv-root--flat`) drops the bars' and the popup's blur and
+  shadows too. Outside clicks are read from the event's composed path, so
+  all of this works inside a shadow root (the web component).
+
 ### Selecting a KPI
 
 `createVisual`'s `onSelect(kpi)` option is called with the `EvaluatedKpi`
@@ -617,6 +673,7 @@ because browsers ignore them inside a shadow root.
 | `data-period`          | Month to show (`"July"`). Defaults to the latest month with actuals.                                            |
 | `data-fill-color`      | Sphere colour when a KPI is on target.                                                                          |
 | `data-shortfall-color` | Sphere colour when a KPI misses its target.                                                                     |
+| `data-card-display`    | `full` for the full cards; anything else, or none, for compact bars (the default).                              |
 
 - **Data shapes.** `data-src` may return `{ "records": [...] }` or a bare
   array of long rows (the Power BI / API shape, as in
