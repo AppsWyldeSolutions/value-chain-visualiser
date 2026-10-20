@@ -12,6 +12,11 @@ The visual is one custom element, `<value-chain-visualiser>`, from
 All four `@appswyldesolutions/vcv-*` packages are public on npm: a plain
 `npm install` works, with no auth token, `.npmrc` or registry setup.
 
+By default the visual is **compact**: one small bar per link, in a single
+row that scales with its width; clicking a bar opens its full card. For the
+grid of full cards, set `data-card-display="full"` on the element (or
+`cardDisplay="full"` on the React wrapper).
+
 Two rules hold in every framework:
 
 1. **Register the element before the framework sets `rows`.** Import
@@ -54,17 +59,18 @@ export function Chain({ rows }: { rows: KpiRow[] }) {
 }
 ```
 
-| Prop        | Type                                | Becomes                                              |
-| ----------- | ----------------------------------- | ---------------------------------------------------- |
-| `rows`      | `KpiRow[]`                          | The element's `rows` property                        |
-| `year`      | `number`                            | `data-year`                                          |
-| `period`    | `string`                            | `data-period`                                        |
-| `theme`     | `{ fillColor?, shortfallColor? }`   | `data-fill-color`, `data-shortfall-color`            |
-| `onSelect`  | `(detail: VcvSelectDetail) => void` | A `vcv-select` listener                              |
-| `onChange`  | `(detail: VcvChangeDetail) => void` | A `vcv-change` listener                              |
-| `onError`   | `(error: Error) => void`            | A `vcv-error` listener; also called if loading fails |
-| `className` | `string`                            | `class`                                              |
-| `style`     | `CSSProperties`                     | `style`                                              |
+| Prop          | Type                                | Becomes                                              |
+| ------------- | ----------------------------------- | ---------------------------------------------------- |
+| `rows`        | `KpiRow[]`                          | The element's `rows` property                        |
+| `year`        | `number`                            | `data-year`                                          |
+| `period`      | `string`                            | `data-period`                                        |
+| `theme`       | `{ fillColor?, shortfallColor? }`   | `data-fill-color`, `data-shortfall-color`            |
+| `onSelect`    | `(detail: VcvSelectDetail) => void` | A `vcv-select` listener                              |
+| `onChange`    | `(detail: VcvChangeDetail) => void` | A `vcv-change` listener                              |
+| `onError`     | `(error: Error) => void`            | A `vcv-error` listener; also called if loading fails |
+| `className`   | `string`                            | `class`                                              |
+| `style`       | `CSSProperties`                     | `style`                                              |
+| `cardDisplay` | `"compact" \| "full"`               | `data-card-display` (compact when left out)          |
 
 - Changing a prop updates the same element; it is never remounted. Leaving a
   prop out removes its attribute, so the element falls back to its default.

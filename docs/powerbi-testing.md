@@ -67,10 +67,16 @@ With the visual on page 1 selected, open **Format visual**:
    cards to show no Transfer Points panel. Turn it back on.
 5. **Display → Sphere size**: 50%, then 150%. **Expect** every sphere to
    shrink, then grow, with no overlap.
-6. **Header**: change Eyebrow and Title. **Expect** the heading to change
+6. **Display → Card display**: the visual opens Compact, one small bar per
+   link in a single row. Click a bar: **expect** its full card in a popup
+   below it (above if there is no room), closing on a second click, Escape
+   or a click elsewhere. Pick Full: **expect** the full cards. Back to
+   Compact, and narrow the visual: **expect** the bars to shrink in one row,
+   never wrapping.
+7. **Header**: change Eyebrow and Title. **Expect** the heading to change
    at once. Turn off Show subtitle, then Show header. **Expect** the
    subtitle, then the whole heading, to disappear.
-7. **Reset to default** on each card. **Expect** the original look.
+8. **Reset to default** on each card. **Expect** the original look.
 
 ## 4. Selection and cross-filtering
 

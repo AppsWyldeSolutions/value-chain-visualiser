@@ -5,6 +5,7 @@ import {
   defaultTheme,
   OCEAN_PRESETS,
   type OceanPresetName,
+  type CardDisplay,
   type HeaderOptions,
   type ThemeOverrides,
 } from "@appswyldesolutions/vcv-renderer";
@@ -54,6 +55,15 @@ export function themeFrom(
       panelMinSlot: scaled(score.panelMinSlot, scale),
     },
   };
+}
+
+/** Compact bars (the default) or full cards, from Display → Card display. */
+export function cardDisplayFrom(
+  settings: VisualFormattingSettingsModel,
+): CardDisplay {
+  return settings.display.cardDisplay.value?.value === "full"
+    ? "full"
+    : "compact";
 }
 
 /** The header for the format pane's Header card. */

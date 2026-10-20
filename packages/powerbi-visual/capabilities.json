@@ -106,6 +106,15 @@
     "display": {
       "displayName": "Display",
       "properties": {
+        "cardDisplay": {
+          "displayName": "Card display",
+          "type": {
+            "enumeration": [
+              { "value": "compact", "displayName": "Compact" },
+              { "value": "full", "displayName": "Full" }
+            ]
+          }
+        },
         "showTransferPoints": {
           "displayName": "Transfer Points",
           "type": {

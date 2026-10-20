@@ -20,6 +20,10 @@ const ROWS = fromLongRows(
 );
 const TABLE = tableOf(ROWS);
 
+// These tests are about the full cards (Display → Card display: Full);
+// compact mode has its own tests.
+const FULL = { display: { cardDisplay: "full" } };
+
 function construct(options: Parameters<typeof testHost>[0] = {}) {
   const element = document.createElement("div");
   document.body.appendChild(element);
@@ -29,7 +33,7 @@ function construct(options: Parameters<typeof testHost>[0] = {}) {
     host: stub.host,
   } as powerbi.extensibility.visual.VisualConstructorOptions);
   visual.update({
-    dataViews: [{ table: TABLE, metadata: { columns: [] } }],
+    dataViews: [{ table: TABLE, metadata: { columns: [], objects: FULL } }],
   } as unknown as powerbi.extensibility.visual.VisualUpdateOptions);
   return { element, visual, ...stub };
 }
@@ -155,7 +159,7 @@ describe("selection", () => {
     click(sphere(element, 0));
     await settle();
     visual.update({
-      dataViews: [{ table: TABLE, metadata: { columns: [] } }],
+      dataViews: [{ table: TABLE, metadata: { columns: [], objects: FULL } }],
     } as unknown as powerbi.extensibility.visual.VisualUpdateOptions);
     expect(dimmed(element)).toHaveLength(cards(element).length - 1);
   });
