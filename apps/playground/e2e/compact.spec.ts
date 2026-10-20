@@ -255,3 +255,20 @@ test("the header's View switch changes the display, both ways", async ({
   await expect(bars(page)).toHaveCount(9);
   await expect(view.getByRole("radio", { name: "Compact" })).toBeFocused();
 });
+
+test("the web component's cardDisplay property switches and reflects", async ({
+  page,
+}) => {
+  await page.goto("/?view=element");
+  const host = page.locator("value-chain-visualiser");
+  await expect(host.locator(".vcv-grid .vcv-bar")).toHaveCount(9);
+  await host.evaluate((element) => {
+    (element as unknown as { cardDisplay: string }).cardDisplay = "full";
+  });
+  await expect(host.locator(".vcv-grid > .vcv-card")).toHaveCount(9);
+  await expect(host).toHaveAttribute("data-card-display", "full");
+  await expect(host.getByRole("radio", { name: "Full card" })).toHaveAttribute(
+    "aria-checked",
+    "true",
+  );
+});

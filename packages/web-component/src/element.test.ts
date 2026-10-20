@@ -395,3 +395,64 @@ describe("the View switch", () => {
     expect(changes).toEqual([]);
   });
 });
+
+describe("the cardDisplay property", () => {
+  const cards = (element: HTMLElement) =>
+    shadow(element).querySelectorAll(".vcv-grid > .vcv-card");
+  const bars = (element: HTMLElement) =>
+    shadow(element).querySelectorAll(".vcv-grid .vcv-bar");
+
+  it("is compact when nothing is set, with the View switch shown", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    expect(element.cardDisplay).toBe("compact");
+    await rendered(element);
+    expect(bars(element)).toHaveLength(9);
+    expect(
+      shadow(element).querySelector(".vcv-control--view [role=radiogroup]"),
+    ).not.toBeNull();
+  });
+
+  it("sets data-card-display, so property and attribute agree", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    element.cardDisplay = "full";
+    expect(element.getAttribute("data-card-display")).toBe("full");
+    expect(cards(element)).toHaveLength(9);
+    expect(element.cardDisplay).toBe("full");
+    element.cardDisplay = "compact";
+    expect(element.getAttribute("data-card-display")).toBe("compact");
+    expect(bars(element)).toHaveLength(9);
+  });
+
+  it("can be set before the element is on the page", async () => {
+    const element = document.createElement(
+      "value-chain-visualiser",
+    ) as ValueChainVisualiserElement;
+    element.cardDisplay = "full";
+    element.setAttribute("data-src", "/kpis.json");
+    document.body.appendChild(element);
+    await rendered(element);
+    expect(cards(element)).toHaveLength(9);
+  });
+
+  it("reads what is shown, including the viewer's View switch choice", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    const full = Array.from(
+      shadow(element).querySelectorAll<HTMLElement>(
+        ".vcv-control--view [role=radio]",
+      ),
+    ).find((radio) => radio.textContent === "Full card")!;
+    full.click();
+    expect(element.cardDisplay).toBe("full");
+    expect(element.hasAttribute("data-card-display")).toBe(false);
+  });
+
+  it("treats anything but 'full' as compact", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    (element as unknown as { cardDisplay: string }).cardDisplay = "wide";
+    expect(element.cardDisplay).toBe("compact");
+    expect(bars(element)).toHaveLength(9);
+  });
+});
