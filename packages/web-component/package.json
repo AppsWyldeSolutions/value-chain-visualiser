@@ -1,6 +1,6 @@
 {
   "name": "@appswyldesolutions/vcv-web-component",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "<value-chain-visualiser>: a glass-and-spheres KPI visual for business-process value chains, as a web component.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -66,6 +66,6 @@
   },
   "devDependencies": {
     "@appswyldesolutions/vcv-core": "^1.0.0",
-    "@appswyldesolutions/vcv-renderer": "^1.0.0"
+    "@appswyldesolutions/vcv-renderer": "^2.0.0"
   }
 }

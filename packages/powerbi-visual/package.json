@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@appswyldesolutions/vcv-core": "^1.0.0",
-    "@appswyldesolutions/vcv-renderer": "^1.0.0",
+    "@appswyldesolutions/vcv-renderer": "^2.0.0",
     "powerbi-visuals-api": "5.11.1",
     "powerbi-visuals-utils-formattingmodel": "6.0.4"
   },
