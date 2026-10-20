@@ -298,6 +298,7 @@ describe("<value-chain-visualiser>", () => {
         period: "July",
         fillColor: "#8fd3f4",
         shortfallColor: "#ff9f40",
+        cardDisplay: "compact",
       },
     ]);
   });
@@ -354,5 +355,43 @@ describe("data-card-display", () => {
     });
     await rendered(element);
     expect(bars(element)).toHaveLength(9);
+  });
+});
+
+describe("the View switch", () => {
+  const option = (element: HTMLElement, name: string) =>
+    Array.from(
+      shadow(element).querySelectorAll<HTMLElement>(
+        ".vcv-control--view [role=radio]",
+      ),
+    ).find((radio) => radio.textContent === name)!;
+
+  it("reports the viewer's choice in vcv-change, leaving the attribute", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    const changes: { cardDisplay: string }[] = [];
+    element.addEventListener("vcv-change", (event) =>
+      changes.push((event as CustomEvent).detail),
+    );
+    option(element, "Full card").click();
+    expect(changes.map((change) => change.cardDisplay)).toEqual(["full"]);
+    expect(
+      shadow(element).querySelectorAll(".vcv-grid > .vcv-card"),
+    ).toHaveLength(9);
+    expect(element.hasAttribute("data-card-display")).toBe(false);
+  });
+
+  it("follows data-card-display without reporting it", async () => {
+    const element = mount({ "data-src": "/kpis.json" });
+    await rendered(element);
+    const changes: unknown[] = [];
+    element.addEventListener("vcv-change", (event) =>
+      changes.push((event as CustomEvent).detail),
+    );
+    element.setAttribute("data-card-display", "full");
+    expect(option(element, "Full card").getAttribute("aria-checked")).toBe(
+      "true",
+    );
+    expect(changes).toEqual([]);
   });
 });

@@ -102,6 +102,7 @@ describe("createVisual", () => {
       period: "August",
       fillColor: "#8fd3f4",
       shortfallColor: "#ff9f40",
+      cardDisplay: "full",
     });
   });
 
@@ -131,6 +132,7 @@ describe("createVisual", () => {
       period: "July",
       fillColor: "#8fd3f4",
       shortfallColor: "#ff9f40",
+      cardDisplay: "full",
     });
   });
 
@@ -191,6 +193,7 @@ describe("createVisual", () => {
       period: "August",
       fillColor: "#00ff00",
       shortfallColor: "#ff00ff",
+      cardDisplay: "full",
     });
   });
 

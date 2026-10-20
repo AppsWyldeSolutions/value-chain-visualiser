@@ -184,6 +184,11 @@ export interface RendererTheme extends Theme {
     yearMinWidth: string;
     periodMinWidth: string;
     swatchWidth: string;
+    /** Inside each option of the View switch. */
+    segmentPadding: string;
+    /** The View switch's chosen option. */
+    selectedBackground: string;
+    selectedColor: string;
     /** A select's open list, which browsers draw on a light background. */
     optionColor: string;
     optionBackground: string;
@@ -447,6 +452,9 @@ export const defaultTheme: RendererTheme = {
     yearMinWidth: "110px",
     periodMinWidth: "150px",
     swatchWidth: "64px",
+    segmentPadding: "0 14px",
+    selectedBackground: "rgba(255, 255, 255, 0.28)",
+    selectedColor: "#ffffff",
     optionColor: "#0b3350",
     optionBackground: "#eaf6fb",
   },
