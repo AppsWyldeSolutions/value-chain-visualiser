@@ -22,21 +22,41 @@ not to npm.
   element's `rows`. It listens for the worksheet's `SummaryDataChanged`
   (filters, parameters, data edits; `FilterChanged` on Tableau versions
   before API 1.9) and reads the data again, redrawing the element in place.
-- Problems (no worksheet, missing fields, Tableau errors) show as a line of
-  text above the visual.
+- Problems (no worksheet, missing fields, no marks, Tableau errors) show as
+  a line of text in place of the visual.
 
-## Data (sample mapping)
+## Data
 
-For now the worksheet's fields must be named after the API's long-row fields:
-`link`, `group`, `subGroup`, `metric`, `kpiOperator`, `metricValueType`,
-`kpiSymbol`, `year`, `january` … `december` and `januaryBudget` …
-`decemberBudget`, one mark per long row. Names match loosely: case, spaces,
-punctuation and an aggregation such as `SUM(...)` are ignored, so
-`SUM(January Budget)` reads as `januaryBudget`. Shaping arbitrary worksheets
-is issue #59.
+The worksheet must have **one mark per KPI per period**, with a field named
+after each `KpiRow` field: the Power BI visual's shaped table, field for
+field. `src/rows.ts`'s `rowsFromSummaryData` reads each field from the
+summary-data column of that name, so column order does not matter and other
+fields are ignored.
 
-`sample/long-rows.csv` is the fixture (`fixtures/bobos-big-block.json`) in
-that shape; `npm run sample -w packages/tableau-extension` regenerates it.
+| Field       | Required | Read as                                         |
+| ----------- | -------- | ----------------------------------------------- |
+| `node`      | yes      | the card (process / link) the KPI sits on       |
+| `nodeOrder` | no       | the card's position; left out, 0 for every card |
+| `group`     | yes      | `Primary`, `Satellite` or `Transfer Points`     |
+| `subGroup`  | no       | blank if left out                               |
+| `metric`    | yes      | the KPI's name                                  |
+| `operator`  | no       | `LessThan`, or `Equal` for anything else        |
+| `valueType` | no       | `Number` if left out                            |
+| `symbol`    | no       | the unit symbol; blank if left out              |
+| `year`      | yes      | a number                                        |
+| `period`    | yes      | the month, as shown (`January`)                 |
+| `actual`    | yes      | a number; blank is no data                      |
+| `budget`    | yes      | a number; blank is no data                      |
+
+- **Names are exact**, case and all. A name wrapped in the aggregation
+  Tableau gives it also matches: `SUM(actual)`, `ATTR(node)`.
+- **Until every required field is there** the extension draws nothing and
+  says which to add: `"KPIs" needs fields named metric and budget.`
+- Numbers may be text, with thousands separators (`"604,000"`).
+
+[docs/tableau-data-shaping.md](../../docs/tableau-data-shaping.md) shows how
+to build such a worksheet, from the shaped table or from the API's
+month-per-column records.
 
 ## Develop in Tableau Desktop
 
@@ -50,10 +70,11 @@ that shape; `npm run sample -w packages/tableau-extension` regenerates it.
    web component straight from source, so edits show on reload with no
    build. Tableau allows plain http only for localhost.
 
-2. In Tableau Desktop, connect to `sample/long-rows.csv` and make a
-   worksheet: put every text field (`link`, `group`, `subGroup`, `metric`,
-   `kpiOperator`, `metricValueType`, `kpiSymbol`) and `year` (as a
-   dimension) on Rows or Detail, and the 24 month measures on Detail.
+2. In Tableau Desktop, connect to
+   [`samples/powerbi/shaped-table.tsv`](../../samples/powerbi/shaped-table.tsv)
+   (the fixture, already shaped) and build the worksheet as
+   [docs/tableau-data-shaping.md](../../docs/tableau-data-shaping.md#from-the-shaped-table)
+   describes.
 3. Make a dashboard, add the worksheet, then drag **Extension** from Objects
    onto it, choose **Access Local Extensions** and open
    `value-chain-visualiser.dev.trex` from this folder.
