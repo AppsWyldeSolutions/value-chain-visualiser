@@ -3,12 +3,12 @@ import { defineValueChainVisualiser } from "@appswyldesolutions/vcv-web-componen
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { startExtension, type ExtensionView } from "./extension.js";
 import type { DataTable, TableauApi, Worksheet } from "./tableau.js";
-import { fixtureRecords, summaryTable } from "./testTable.js";
+import { fixtureRows, summaryTable } from "./testTable.js";
 
-const records = fixtureRecords();
-// A few records keep each full draw quick under jsdom.
-const FIRST = summaryTable(records.slice(0, 3));
-const SECOND = summaryTable(records.slice(3, 5));
+const ROWS = fixtureRows();
+// A few KPIs (twelve rows each) keep each full draw quick under jsdom.
+const FIRST = summaryTable(ROWS.slice(0, 3 * 12));
+const SECOND = summaryTable(ROWS.slice(3 * 12, 5 * 12));
 
 /** A worksheet whose summary data is `tables`, one per read, last repeated. */
 function fakeWorksheet(...tables: DataTable[]) {
@@ -101,7 +101,7 @@ describe("startExtension", () => {
     await settle();
     expect(worksheet.getSummaryDataAsync).toHaveBeenCalledTimes(2);
     expect(view.visual.rows).toHaveLength(2 * 12);
-    expect(view.visual.rows?.[0]?.node).toBe(records[3]!.link);
+    expect(view.visual.rows?.[0]).toEqual(ROWS[3 * 12]);
     // The same element and drawing: redrawn, not rebuilt.
     expect(document.querySelectorAll("value-chain-visualiser")).toHaveLength(1);
     expect(drawn).toBeTruthy();
@@ -131,7 +131,7 @@ describe("startExtension", () => {
     await settle();
     resolveSlow(FIRST);
     await settle();
-    expect(view.visual.rows?.[0]?.node).toBe(records[3]!.link);
+    expect(view.visual.rows?.[0]).toEqual(ROWS[3 * 12]);
   });
 
   it("stops listening when the returned function is called", async () => {
@@ -141,15 +141,56 @@ describe("startExtension", () => {
     expect(remove).toHaveBeenCalledOnce();
   });
 
-  it("says which long-row fields the worksheet lacks", async () => {
-    const table = summaryTable(records.slice(0, 1));
-    table.columns = table.columns.filter(
-      (column) => column.fieldName !== "kpiSymbol",
-    );
-    const { worksheet } = fakeWorksheet(table);
+  it("names the required fields the worksheet lacks, drawing nothing", async () => {
+    const partial = summaryTable(ROWS.slice(0, 12), [
+      "node",
+      "group",
+      "year",
+      "period",
+      "actual",
+    ]);
+    const { worksheet } = fakeWorksheet(partial);
     await startExtension(fakeTableau([worksheet]), view);
     expect(view.status.hidden).toBe(false);
-    expect(view.status.textContent).toBe('"KPIs" has no field for: kpiSymbol.');
+    expect(view.status.textContent).toBe(
+      '"KPIs" needs fields named metric and budget.',
+    );
+    expect(view.visual.hidden).toBe(true);
+    expect(view.visual.rows).toBeUndefined();
+  });
+
+  it("draws once the missing fields are added", async () => {
+    const partial = summaryTable(ROWS.slice(0, 12), ["node", "metric"]);
+    const { worksheet, fire } = fakeWorksheet(partial, FIRST);
+    await startExtension(fakeTableau([worksheet]), view);
+    fire("summary-data-changed");
+    await settle();
+    expect(view.status.hidden).toBe(true);
+    expect(view.visual.hidden).toBe(false);
+    expect(view.visual.rows).toHaveLength(3 * 12);
+  });
+
+  it("draws without the optional fields, saying nothing", async () => {
+    const required = summaryTable(ROWS.slice(0, 12), [
+      "node",
+      "group",
+      "metric",
+      "year",
+      "period",
+      "actual",
+      "budget",
+    ]);
+    const { worksheet } = fakeWorksheet(required);
+    await startExtension(fakeTableau([worksheet]), view);
+    expect(view.status.hidden).toBe(true);
+    expect(view.visual.rows).toHaveLength(12);
+  });
+
+  it("says so when the worksheet has no marks", async () => {
+    const { worksheet } = fakeWorksheet(summaryTable([]));
+    await startExtension(fakeTableau([worksheet]), view);
+    expect(view.status.textContent).toBe('"KPIs" has no marks to show.');
+    expect(view.visual.hidden).toBe(true);
   });
 
   it("asks for a worksheet when the dashboard has none", async () => {

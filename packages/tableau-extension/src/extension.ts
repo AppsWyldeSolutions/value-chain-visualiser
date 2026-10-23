@@ -1,5 +1,5 @@
 import type { ValueChainVisualiserElement } from "@appswyldesolutions/vcv-web-component";
-import { missingFields, rowsFromSummaryData } from "./rows.js";
+import { missingFields, missingMessage, rowsFromSummaryData } from "./rows.js";
 import type { TableauApi, Worksheet } from "./tableau.js";
 
 /** Where the extension draws: the visual, and a line of text for problems. */
@@ -43,13 +43,18 @@ export async function startExtension(
       });
       // A newer change since: this reply is stale.
       if (id !== loadId) return;
+      // Until the worksheet follows the convention, or while it has no
+      // marks, say why rather than draw an empty chain.
       const missing = missingFields(table);
-      showStatus(
-        view,
+      const problem =
         missing.length > 0
-          ? `"${worksheet.name}" has no field for: ${missing.join(", ")}.`
-          : "",
-      );
+          ? missingMessage(worksheet.name, missing)
+          : table.data.length === 0
+            ? `"${worksheet.name}" has no marks to show.`
+            : "";
+      showStatus(view, problem);
+      view.visual.hidden = problem !== "";
+      if (problem) return;
       // Setting rows on the drawn element redraws it in place.
       view.visual.rows = rowsFromSummaryData(table);
     } catch (error) {
