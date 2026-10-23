@@ -11,6 +11,7 @@ export default tseslint.config(
       ".consumers/**",
       "**/.tmp/**",
       "docs/prototype/**",
+      "packages/tableau-extension/public/lib/**",
       "fixtures/**",
       "**/*.md",
     ],

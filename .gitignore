@@ -153,3 +153,6 @@ apps/consumers/next/next-env.d.ts
 # Power BI visual: pbiviz build output and bundle reports
 packages/powerbi-visual/.tmp/
 packages/powerbi-visual/webpack.statistics.*.html
+
+# Tableau extension: TypeScript build info
+packages/tableau-extension/.tmp/

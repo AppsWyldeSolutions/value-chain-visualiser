@@ -1,2 +1,5 @@
 # Power BI files are zip archives
 *.pbix binary
+
+# Tableau's Extensions API library, vendored as Tableau intends
+packages/tableau-extension/public/lib/** linguist-vendored -diff

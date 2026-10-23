@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Value Chain Visualiser</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      value-chain-visualiser {
+        flex: 1;
+        min-height: 0;
+      }
+      #status {
+        padding: 8px 12px;
+        font:
+          13px/1.4 system-ui,
+          sans-serif;
+      }
+    </style>
+    <!-- Tableau's own library, served from this extension's origin. -->
+    <script vite-ignore src="./lib/tableau.extensions.1.latest.js"></script>
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <p id="status" role="status" hidden></p>
+    <value-chain-visualiser
+      data-card-display="compact"
+    ></value-chain-visualiser>
+  </body>
+</html>

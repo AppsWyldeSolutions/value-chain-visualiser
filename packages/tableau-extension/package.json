@@ -1,0 +1,25 @@
+{
+  "name": "@appswyldesolutions/vcv-tableau-extension",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The Value Chain Visualiser as a Tableau dashboard extension: a glass-and-spheres KPI visual for business-process value chains.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppsWyldeSolutions/value-chain-visualiser.git",
+    "directory": "packages/tableau-extension"
+  },
+  "author": "Wylde Solutions Pty Ltd",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "vite --port 8765 --strictPort",
+    "build": "vite build",
+    "sample": "node scripts/sample-csv.mjs"
+  },
+  "dependencies": {
+    "@appswyldesolutions/vcv-web-component": "^2.0.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}

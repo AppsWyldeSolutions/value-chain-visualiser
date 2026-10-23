@@ -1,7 +1,8 @@
 # Value Chain Visualiser
 
-A glass-and-spheres KPI visual for business-process value chains. One core, two hosts:
-web component (any Node.js web app) and Power BI custom visual.
+A glass-and-spheres KPI visual for business-process value chains. One core, three hosts:
+web component (any Node.js web app), Power BI custom visual and Tableau
+dashboard extension (thin glue around the web component).
 
 ## Commands
 
@@ -14,6 +15,9 @@ web component (any Node.js web app) and Power BI custom visual.
   install the released versions from public npm instead (after a release).
 - `npm start -w packages/powerbi-visual` serves the Power BI visual
   (`pbiviz start`); see packages/powerbi-visual/README.md.
+- `npm start -w packages/tableau-extension` serves the Tableau dashboard
+  extension at http://localhost:8765 for Tableau Desktop
+  (`value-chain-visualiser.dev.trex`); see packages/tableau-extension/README.md.
 - `npm run release` publishes to npm (maintainer only, after `npm login`).
   See docs/releasing.md.
 
@@ -21,7 +25,7 @@ web component (any Node.js web app) and Power BI custom visual.
 
 1. packages/core has no DOM, no framework, no Power BI imports.
 2. packages/renderer uses vanilla DOM/SVG/CSS only. No React, no Power BI imports.
-3. Only web-component, react and powerbi-visual know their host.
+3. Only web-component, react, powerbi-visual and tableau-extension know their host.
 4. No network calls at runtime in core, renderer or the Power BI/Tableau
    wrappers. The one exception is packages/web-component, which may fetch the
    URL its host page names in data-src. No eval, no innerHTML with data-derived

@@ -2,6 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 const port = 5173;
 const baseURL = `http://localhost:${port}`;
+const tableauURL = "http://localhost:8765";
 
 export default defineConfig({
   testDir: "apps/playground/e2e",
@@ -34,10 +35,28 @@ export default defineConfig({
         viewport: { width: 1440, height: 900 },
       },
     },
+    {
+      // The Tableau extension's page, from its dev server.
+      name: "tableau-extension",
+      testDir: "packages/tableau-extension/e2e",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1440, height: 900 },
+        baseURL: tableauURL,
+      },
+    },
   ],
-  webServer: {
-    command: `npm run dev -w apps/playground -- --port ${port} --strictPort`,
-    url: baseURL,
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: `npm run dev -w apps/playground -- --port ${port} --strictPort`,
+      url: baseURL,
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      // The port the .trex in packages/tableau-extension points at.
+      command: "npm start -w packages/tableau-extension",
+      url: tableauURL,
+      reuseExistingServer: !process.env.CI,
+    },
+  ],
 });

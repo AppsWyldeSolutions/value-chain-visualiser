@@ -8,3 +8,4 @@ fixtures/**
 **/.next
 **/.tmp
 **/webpack.statistics.*.html
+packages/tableau-extension/public/lib/**
