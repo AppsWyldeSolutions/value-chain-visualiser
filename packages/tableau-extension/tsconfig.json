@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Type checking only: Vite builds the extension.
+    "emitDeclarationOnly": true,
+    "outDir": ".tmp/tsc",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../web-component"
+    }
+  ]
+}

@@ -10,7 +10,7 @@
     "lint": "eslint . && prettier --check .",
     "typecheck": "tsc -b && npm run typecheck -w packages/powerbi-visual",
     "test": "vitest run",
-    "build": "npm run build -w packages/core -w packages/renderer -w packages/web-component -w packages/react -w packages/powerbi-visual",
+    "build": "npm run build -w packages/core -w packages/renderer -w packages/web-component -w packages/react -w packages/powerbi-visual -w packages/tableau-extension",
     "e2e": "playwright test",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
     "e2e:consumers": "node scripts/consumers.mjs",

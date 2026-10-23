@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 
 // npm runs `-w` workspaces in the order given, so the root build names them:
 // the Power BI visual bundles core and the renderer from their built dist,
-// so it builds after them.
+// so it builds after them, and the Tableau extension after the web component.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const build = (
   JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")) as {
@@ -31,5 +31,10 @@ describe("root build", () => {
     expect(at("powerbi-visual")).toBeGreaterThan(at("core"));
     expect(at("powerbi-visual")).toBeGreaterThan(at("renderer"));
     expect(at("renderer")).toBeGreaterThan(at("core"));
+  });
+
+  it("builds the Tableau extension after the web component it bundles", () => {
+    const at = (dir: string) => order.indexOf(`packages/${dir}`);
+    expect(at("tableau-extension")).toBeGreaterThan(at("web-component"));
   });
 });

@@ -5,6 +5,7 @@
     { "path": "packages/renderer" },
     { "path": "packages/react" },
     { "path": "packages/web-component" },
+    { "path": "packages/tableau-extension" },
     { "path": "apps/playground" }
   ]
 }

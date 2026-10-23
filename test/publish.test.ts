@@ -45,8 +45,9 @@ const manifests = new Map(
     return [dir, JSON.parse(readFileSync(file, "utf8")) as Manifest] as const;
   }),
 );
-// The Power BI visual ships as a .pbiviz file, never to npm.
-const PRIVATE = ["powerbi-visual"];
+// The Power BI visual ships as a .pbiviz file and the Tableau extension as a
+// hosted page with a .trex manifest, never to npm.
+const PRIVATE = ["powerbi-visual", "tableau-extension"];
 const packages = [...manifests].filter(([dir]) => !PRIVATE.includes(dir));
 const dirOf = new Map([...manifests].map(([dir, pkg]) => [pkg.name, dir]));
 
