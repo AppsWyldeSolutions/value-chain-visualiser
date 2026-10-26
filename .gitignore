@@ -156,3 +156,4 @@ packages/powerbi-visual/webpack.statistics.*.html
 
 # Tableau extension: TypeScript build info
 packages/tableau-extension/.tmp/
+packages/tableau-extension/value-chain-visualiser.dev.trex

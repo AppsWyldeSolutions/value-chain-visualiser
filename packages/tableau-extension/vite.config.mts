@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
+import { trexPlugin } from "./src/trexPlugin.js";
 
 const source = (file: string) =>
   fileURLToPath(new URL(`../${file}`, import.meta.url));
@@ -7,6 +8,12 @@ const source = (file: string) =>
 export default defineConfig(({ command }) => ({
   // Relative URLs, so the built dist/ works wherever it is hosted.
   base: "./",
+  // The .trex manifests: dist/value-chain-visualiser.trex at build (set
+  // TABLEAU_EXTENSION_URL to the hosted page), value-chain-visualiser.dev.trex
+  // when serving.
+  plugins: [
+    trexPlugin({ packageDir: fileURLToPath(new URL(".", import.meta.url)) }),
+  ],
   resolve: {
     // The dev server serves the packages straight from source, so edits to
     // the renderer show in Tableau on reload with no build. The build

@@ -55,6 +55,20 @@ describe("private packages", () => {
   it.each(PRIVATE)("%s is private, so npm never publishes it", (dir) => {
     expect(manifests.get(dir)?.private).toBe(true);
   });
+
+  it("are versioned by changesets, but never tagged, except the Power BI visual", () => {
+    // The Tableau extension's version is its .trex extension-version, so
+    // changesets bump it like any package. The Power BI visual keeps its
+    // own version in pbiviz.json, so changesets leave it alone.
+    const config = JSON.parse(
+      readFileSync(path.join(root, ".changeset/config.json"), "utf8"),
+    ) as {
+      ignore: string[];
+      privatePackages?: { version: boolean; tag: boolean };
+    };
+    expect(config.privatePackages).toEqual({ version: true, tag: false });
+    expect(config.ignore).toEqual([manifests.get("powerbi-visual")!.name]);
+  });
 });
 
 describe("publishable packages", () => {
