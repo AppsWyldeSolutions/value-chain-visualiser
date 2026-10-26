@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Configure Value Chain Visualiser</title>
+    <style>
+      /* Tableau's dialog chrome around a plain form; the visual's own theme
+         does not apply here. */
+      body {
+        margin: 0;
+        font:
+          13px/1.4 system-ui,
+          sans-serif;
+        color: #1f2933;
+        background: #ffffff;
+      }
+      main {
+        padding: 16px 20px;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 16px;
+      }
+      .help {
+        margin: 0 0 12px;
+        color: #52606d;
+      }
+      label {
+        display: grid;
+        grid-template-columns: 8em 5em 1fr;
+        align-items: center;
+        gap: 8px;
+        margin: 6px 0;
+      }
+      .required {
+        font-size: 11px;
+        color: #52606d;
+      }
+      .worksheet select {
+        grid-column: 2 / -1;
+      }
+      select {
+        min-width: 0;
+        padding: 3px 4px;
+        font: inherit;
+      }
+      fieldset {
+        margin: 12px 0;
+        padding: 4px 12px 8px;
+        border: 1px solid #cbd2d9;
+        border-radius: 4px;
+      }
+      .error {
+        color: #b42318;
+      }
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      button {
+        padding: 5px 14px;
+        font: inherit;
+      }
+    </style>
+    <!-- Tableau's own library, served from this extension's origin. -->
+    <script vite-ignore src="./lib/tableau.extensions.1.latest.js"></script>
+    <script type="module" src="./src/configMain.ts"></script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>

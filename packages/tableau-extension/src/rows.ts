@@ -21,7 +21,29 @@ export const FIELDS = [
   "budget",
 ] as const satisfies readonly (keyof KpiRow)[];
 
-type Field = (typeof FIELDS)[number];
+export type Field = (typeof FIELDS)[number];
+
+/**
+ * Which column holds each field, by its summary-data name, as the Configure
+ * dialog maps them (#62). A field left out is read by the convention's name.
+ */
+export type FieldColumns = Partial<Record<Field, string>>;
+
+/** Each field's name in the Configure dialog, as in Power BI's field wells. */
+export const FIELD_LABELS: Record<Field, string> = {
+  node: "Node",
+  nodeOrder: "Node order",
+  group: "Group",
+  subGroup: "Sub-group",
+  metric: "Metric",
+  operator: "Operator",
+  valueType: "Value type",
+  symbol: "Unit symbol",
+  year: "Year",
+  period: "Period",
+  actual: "Actual",
+  budget: "Budget",
+};
 
 /**
  * The fields a KPI needs, as in the Power BI visual: without the first five
@@ -49,33 +71,69 @@ export function fieldOf(fieldName: string): Field | undefined {
     : undefined;
 }
 
-/** Each field's column; the first wins if a field has two. */
-function columnsOf(table: DataTable): Map<Field, number> {
+/** The column the convention reads `field` from, among `columns`' names. */
+export function matchingColumn(
+  field: Field,
+  columns: readonly string[],
+): string | undefined {
+  return columns.find((name) => fieldOf(name) === field);
+}
+
+/**
+ * Each field's column: a mapped field's by its exact name, and the rest by
+ * the convention's names, the first winning if a field has two.
+ */
+function columnsOf(
+  table: DataTable,
+  mapped: FieldColumns = {},
+): Map<Field, number> {
   const columns = new Map<Field, number>();
   for (const column of table.columns) {
     const field = fieldOf(column.fieldName);
-    if (field && !columns.has(field)) columns.set(field, column.index);
+    if (field && !mapped[field] && !columns.has(field)) {
+      columns.set(field, column.index);
+    }
+  }
+  for (const [field, name] of Object.entries(mapped) as [Field, string][]) {
+    const column = table.columns.find((c) => c.fieldName === name);
+    if (column) columns.set(field, column.index);
   }
   return columns;
 }
 
 /** The required fields with no column, in the convention's order. */
-export function missingFields(table: DataTable): Field[] {
-  const columns = columnsOf(table);
+export function missingFields(
+  table: DataTable,
+  mapped?: FieldColumns,
+): Field[] {
+  const columns = columnsOf(table, mapped);
   return REQUIRED.filter((field) => !columns.has(field));
 }
 
-/** '"KPIs" needs fields named metric and budget.' */
+/** "metric, actual and budget", with `last` in place of "and". */
+const list = (items: readonly string[], last: string) =>
+  items.length > 1
+    ? `${items.slice(0, -1).join(", ")} ${last} ${items.at(-1)}`
+    : (items[0] ?? "");
+
+/**
+ * '"KPIs" needs fields named metric and budget.' With a mapping it names the
+ * mapped columns that are gone, and points at the Configure dialog.
+ */
 export function missingMessage(
   worksheet: string,
   missing: readonly Field[],
+  mapped?: FieldColumns,
 ): string {
-  const list =
-    missing.length > 1
-      ? `${missing.slice(0, -1).join(", ")} and ${missing.at(-1)}`
-      : (missing[0] ?? "");
-  const named = missing.length > 1 ? "fields named" : "a field named";
-  return `"${worksheet}" needs ${named} ${list}.`;
+  if (!mapped) {
+    const named = missing.length > 1 ? "fields named" : "a field named";
+    return `"${worksheet}" needs ${named} ${list(missing, "and")}.`;
+  }
+  const fields = missing.map((field) =>
+    mapped[field] ? `${field} (mapped to "${mapped[field]}")` : field,
+  );
+  const them = missing.length > 1 ? "them" : "it";
+  return `"${worksheet}" has no field for ${list(fields, "or")}. Use Configure… to map ${them}.`;
 }
 
 type Value = DataValue["nativeValue"];
@@ -94,14 +152,18 @@ const numberOrNull = (value: Value): number | null => {
 
 /**
  * Maps a worksheet's summary data to KpiRows, one per mark. Each field comes
- * from the column named after it, so column order does not matter and other
- * columns are ignored. Until every REQUIRED field has a column there are no
- * rows (see missingFields). Optional fields left out read as their defaults,
- * and blank figures as no data.
+ * from the column `mapped` names, or else the column named after it, so
+ * column order does not matter and other columns are ignored. Until every
+ * REQUIRED field has a column there are no rows (see missingFields).
+ * Optional fields left out read as their defaults, and blank figures as no
+ * data.
  */
-export function rowsFromSummaryData(table: DataTable): KpiRow[] {
-  if (missingFields(table).length > 0) return [];
-  const columns = columnsOf(table);
+export function rowsFromSummaryData(
+  table: DataTable,
+  mapped?: FieldColumns,
+): KpiRow[] {
+  if (missingFields(table, mapped).length > 0) return [];
+  const columns = columnsOf(table, mapped);
   return table.data.map((cells) => {
     const get = (field: Field): Value => {
       const index = columns.get(field);

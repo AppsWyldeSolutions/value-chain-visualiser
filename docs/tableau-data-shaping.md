@@ -1,11 +1,21 @@
 # Shaping KPI data for the Tableau extension
 
-The Value Chain Visualiser for Tableau draws the dashboard's first worksheet.
-That worksheet must have **one mark per KPI per period**, with a field named
-after each of the visual's fields: the same table the Power BI visual takes
-(see [powerbi-data-shaping.md](powerbi-data-shaping.md)). The KPI API
-returns **one record per KPI with a column per month** instead. This page
-shows how to get from either to the worksheet.
+The Value Chain Visualiser for Tableau draws a worksheet with **one mark per
+KPI per period**, holding each of the visual's fields: the same table the
+Power BI visual takes (see [powerbi-data-shaping.md](powerbi-data-shaping.md)).
+The KPI API returns **one record per KPI with a column per month** instead.
+This page shows how to get from either to the worksheet.
+
+The fields can have any names. Either:
+
+- **Map them** in the extension's **Configure** dialog (it opens when the
+  extension is added to a worksheet without the names below, and from
+  **Configure…** in the zone's menu): pick the worksheet, then the field
+  for each of the visual's. See
+  [packages/tableau-extension/README.md](../packages/tableau-extension/README.md#configure).
+- **Or name them as below**, and the extension reads them with no
+  configuring: it draws the dashboard's first worksheet. A field left
+  unmapped in the dialog is read by its name in the same way.
 
 ## The convention
 
@@ -25,9 +35,10 @@ shows how to get from either to the worksheet.
 | `budget`    | yes      | the period's budget; blank (null) is no data               |
 
 - **Names are exact**, case and all: `subGroup`, not `Sub Group` or
-  `subgroup`. The extension reads Tableau's summary data, which names a
-  measure after its aggregation, so `SUM(actual)` or `AVG(budget)` also
-  match. Anything else on the worksheet is ignored.
+  `subgroup` (or map them in the Configure dialog). The extension reads
+  Tableau's summary data, which names a measure after its aggregation, so
+  `SUM(actual)` or `AVG(budget)` also match. Anything else on the worksheet
+  is ignored.
 - **Missing fields:** until every required field is on the worksheet the
   extension draws nothing and says which to add, for example
   `"KPIs" needs fields named metric and budget.` Optional fields left out
@@ -77,7 +88,8 @@ actuals and `januaryBudget` … `decemberBudget` for budgets, beside `link`,
    **Pivot Field Names** and its value in **Pivot Field Values**.
 2. **Rename the fields** whose names differ (right-click → **Rename**):
    `link` → `node`, `kpiOperator` → `operator`, `metricValueType` →
-   `valueType`, `kpiSymbol` → `symbol`.
+   `valueType`, `kpiSymbol` → `symbol`. Or skip this step and map them in
+   the Configure dialog.
 3. **Add calculated fields** for the period and the two figures. A month's
    actual and budget come from two pivoted rows; on the worksheet, `SUM`
    adds each one to the null of the other, giving one mark per period.

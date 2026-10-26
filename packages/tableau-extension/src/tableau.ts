@@ -28,6 +28,7 @@ export interface Worksheet {
   name: string;
   getSummaryDataAsync(options?: {
     ignoreSelection?: boolean;
+    maxRows?: number;
   }): Promise<DataTable>;
   /** Returns a function that removes the listener. */
   addEventListener(
@@ -36,14 +37,48 @@ export interface Worksheet {
   ): () => boolean;
 }
 
+/** The extension's settings, saved in the workbook. Values are strings. */
+export interface Settings {
+  get(key: string): string | undefined;
+  set(key: string, value: string): void;
+  saveAsync(): Promise<unknown>;
+  addEventListener?(
+    type: string,
+    handler: (event: TableauEvent) => void,
+  ): () => boolean;
+}
+
+export interface DialogOptions {
+  width?: number;
+  height?: number;
+}
+
 export interface TableauApi {
   extensions: {
-    initializeAsync(): Promise<unknown>;
+    /** `configure` is called when the author picks Configure… in the zone's menu. */
+    initializeAsync(callbacks?: { configure?: () => void }): Promise<unknown>;
+    /** For a page opened with ui.displayDialogAsync, in place of initializeAsync. */
+    initializeDialogAsync?(): Promise<string>;
     dashboardContent?: { dashboard: { worksheets: Worksheet[] } };
+    settings?: Settings;
+    environment?: { mode: string };
+    ui?: {
+      /**
+       * Resolves with what the dialog passes closeDialog; rejects with
+       * errorCode "dialog-closed-by-user" when the author closes it.
+       */
+      displayDialogAsync(
+        url: string,
+        payload?: string,
+        options?: DialogOptions,
+      ): Promise<string>;
+      closeDialog(payload?: string): void;
+    };
   };
   TableauEventType: {
     FilterChanged: string;
     SummaryDataChanged?: string;
+    SettingsChanged?: string;
   };
 }
 
