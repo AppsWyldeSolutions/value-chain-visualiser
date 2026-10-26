@@ -7,7 +7,30 @@ through Tableau's Extensions API and sets it as the `rows` of a
 opens with compact cards.
 
 This package is private: it ships as a hosted page plus a `.trex` manifest,
-not to npm.
+not to npm. The page is hosted on GitHub Pages at
+https://appswyldesolutions.github.io/value-chain-visualiser/tableau/.
+
+## Add it to your dashboard
+
+1. Download the manifest,
+   [value-chain-visualiser.trex](https://appswyldesolutions.github.io/value-chain-visualiser/tableau/value-chain-visualiser.trex),
+   and keep it somewhere stable: Tableau remembers where it was opened from.
+2. Shape a worksheet as [docs/tableau-data-shaping.md](../../docs/tableau-data-shaping.md)
+   describes: one mark per KPI per period, with fields named `node`,
+   `group`, `metric`, `year`, `period`, `actual` and `budget` (and,
+   optionally, the rest).
+3. On a dashboard with that worksheet, drag **Extension** from **Objects**
+   onto it, choose **Access Local Extensions**, and open the `.trex`.
+   Tableau asks whether to allow the extension, which runs from the
+   GitHub Pages address above; choose **OK**.
+4. The visual draws the dashboard's first worksheet, and redraws as its
+   filters change. If a required field is missing it says which.
+
+To use it on Tableau Server or Tableau Cloud, a site administrator allows
+it first: in the site's extension settings, let extensions run, then add
+`https://appswyldesolutions.github.io` to the allowed list (or allow
+unknown extensions). Signing the extension and listing it on Tableau
+Exchange are not done yet.
 
 ## How it works
 
@@ -97,11 +120,22 @@ TABLEAU_EXTENSION_URL=https://example.com/vcv/index.html npm run build -w packag
 ```
 
 - `dist/value-chain-visualiser.trex` points at `TABLEAU_EXTENSION_URL`.
-  Without it, it points at a placeholder
-  (`https://example.invalid/value-chain-visualiser/index.html`) until the
-  extension is hosted. The build fails for a URL that is not https:
+  Without it, it points at the GitHub Pages page (`HOSTED_URL` in
+  `src/manifest.ts`). The build fails for a URL that is not https:
   Tableau loads plain http only from localhost.
 - The build bundles the web component's built `dist/`, not its source.
+- `npm run preview -w packages/tableau-extension` serves `dist/` from the
+  path GitHub Pages serves it from, at
+  http://localhost:4174/value-chain-visualiser/tableau/.
+
+## Deploy
+
+`.github/workflows/pages.yml` deploys the extension to GitHub Pages after
+every push to `main` that the `verify` workflow passes (and by hand, from the
+Actions tab). It builds core, the renderer, the web component and the
+extension for the Pages URL, then publishes `dist/` under `tableau/`. It
+never deploys a pull request's code. Pages is set to deploy from GitHub
+Actions (**Settings → Pages → Source**).
 
 ## Manifest
 
@@ -132,3 +166,9 @@ http://localhost:8765) when the dev server starts.
   loads the page from the dev server with Tableau's library swapped for a
   fake dashboard, and checks the real library loads and only starts inside
   Tableau.
+- `npx playwright test --project=tableau-hosted` (also part of
+  `npm run e2e`) does the same against the built `dist/`, served from its
+  Pages path, and checks the `.trex` it serves points at GitHub Pages. It
+  needs `npm run build` first.
+- `test/pages-workflow.test.ts` checks the deploy workflow: when it runs,
+  what it builds, and that it builds for `HOSTED_URL`.

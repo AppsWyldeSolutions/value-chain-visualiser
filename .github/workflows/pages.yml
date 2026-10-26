@@ -1,0 +1,63 @@
+name: pages
+
+# Deploys the Tableau extension to GitHub Pages, at
+# https://appswyldesolutions.github.io/value-chain-visualiser/tableau/, once
+# verify has passed on main. test/pages-workflow.test.ts checks this file.
+
+on:
+  workflow_run:
+    workflows: [verify]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer one waits rather than cancelling.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Only a push to this repository's main that verify passed: a pull
+    # request's verify run (even from a fork's "main") never deploys.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The commit verify checked, not whatever main is now.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - run: npm ci
+      - name: Build the extension
+        run: npm run build -w packages/core -w packages/renderer -w packages/web-component -w packages/tableau-extension
+        env:
+          TABLEAU_EXTENSION_URL: https://appswyldesolutions.github.io/value-chain-visualiser/tableau/index.html
+      - name: Stage the site, with the extension under tableau/
+        run: mkdir -p _site && cp -r packages/tableau-extension/dist _site/tableau
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}tableau/index.html
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

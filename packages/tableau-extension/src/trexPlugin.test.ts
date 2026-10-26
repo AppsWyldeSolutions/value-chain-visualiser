@@ -2,7 +2,7 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { DEV_URL, EXTENSION_ID, PLACEHOLDER_URL } from "./manifest.js";
+import { DEV_URL, EXTENSION_ID, HOSTED_URL } from "./manifest.js";
 import { DEV_MANIFEST, MANIFEST, trexPlugin } from "./trexPlugin.js";
 
 const packageDir = path.resolve(__dirname, "..");
@@ -57,9 +57,9 @@ describe("trexPlugin", () => {
     );
   });
 
-  it("points the hosted manifest at the placeholder until hosting exists", () => {
+  it("points the hosted manifest at GitHub Pages by default", () => {
     const [file] = run("build", {}, devDir);
-    expect(file?.source).toContain(`<url>${PLACEHOLDER_URL}</url>`);
+    expect(file?.source).toContain(`<url>${HOSTED_URL}</url>`);
   });
 
   it("fails the build for a URL Tableau would not load", () => {
