@@ -18,6 +18,10 @@
         flex: 1;
         min-height: 0;
       }
+      /* Outranks the element's own :host { display: block }. */
+      value-chain-visualiser[hidden] {
+        display: none;
+      }
       #status {
         padding: 8px 12px;
         font:

@@ -13,8 +13,7 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 8765 --strictPort",
-    "build": "vite build",
-    "sample": "node scripts/sample-csv.mjs"
+    "build": "vite build"
   },
   "dependencies": {
     "@appswyldesolutions/vcv-web-component": "^2.0.0"
