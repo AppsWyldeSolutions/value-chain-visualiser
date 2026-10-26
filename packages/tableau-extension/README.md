@@ -77,7 +77,8 @@ month-per-column records.
    describes.
 3. Make a dashboard, add the worksheet, then drag **Extension** from Objects
    onto it, choose **Access Local Extensions** and open
-   `value-chain-visualiser.dev.trex` from this folder.
+   `value-chain-visualiser.dev.trex` from this folder (the dev server
+   writes it when it starts).
 4. Change a filter on the worksheet: the visual redraws. To reload the page
    after a code change, use the extension zone's menu → **Reload**.
 
@@ -88,9 +89,40 @@ and open the page's console in Chromium.
 ## Build
 
 `npm run build -w packages/tableau-extension` (part of the root
-`npm run build`, after the web component) writes static files to `dist/`.
-The build bundles the web component's built `dist/`, not its source. Hosting
-them, and a `.trex` pointing at the hosted URL, are a separate issue.
+`npm run build` and `npm run verify`, after the web component) writes the
+static site to `dist/`, ready to host, with its manifest beside it:
+
+```sh
+TABLEAU_EXTENSION_URL=https://example.com/vcv/index.html npm run build -w packages/tableau-extension
+```
+
+- `dist/value-chain-visualiser.trex` points at `TABLEAU_EXTENSION_URL`.
+  Without it, it points at a placeholder
+  (`https://example.invalid/value-chain-visualiser/index.html`) until the
+  extension is hosted. The build fails for a URL that is not https:
+  Tableau loads plain http only from localhost.
+- The build bundles the web component's built `dist/`, not its source.
+
+## Manifest
+
+`src/manifest.ts` writes both `.trex` files, through the Vite plugin in
+`src/trexPlugin.ts`: the hosted one at build, and
+`value-chain-visualiser.dev.trex` (git-ignored, for
+http://localhost:8765) when the dev server starts.
+
+- **id** `com.wyldesolutions.valuechainvisualiser`, reverse-domain as
+  Tableau requires; the development one adds `.dev`, so both can be
+  installed side by side.
+- **extension-version** is this package's version. The package is private
+  and never published to npm, but changesets version it like the others
+  (`.changeset/config.json` `privatePackages`), so a release's changeset
+  bumps the manifest too.
+- **min-api-version** 1.4. Where the extension uses newer API, it falls
+  back: without `SummaryDataChanged` (1.9) it listens for `FilterChanged`.
+- **No permissions.** Tableau's only one, full data, is for the
+  underlying-data APIs; `getSummaryDataAsync` needs none.
+- **icon** `assets/icon.png`, the 70x70 PNG Tableau requires, rendered from
+  `assets/icon.svg` by `npm run icon -w packages/tableau-extension`.
 
 ## Test
 

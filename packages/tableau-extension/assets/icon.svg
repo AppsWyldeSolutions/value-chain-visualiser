@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70">
+  <!-- The extension's icon: a glass sphere, two-thirds full, on the ocean.
+       Colours are the renderer's default theme (fillColor, ocean). Rendered
+       to icon.png by scripts/icon.mjs. -->
+  <defs>
+    <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f6893" />
+      <stop offset="0.4" stop-color="#0a4d78" />
+      <stop offset="1" stop-color="#052a4c" />
+    </linearGradient>
+    <radialGradient id="glass" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.06" />
+    </radialGradient>
+    <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9e6fa" />
+      <stop offset="1" stop-color="#5fb8e4" />
+    </linearGradient>
+    <clipPath id="sphere">
+      <circle cx="35" cy="35" r="22" />
+    </clipPath>
+  </defs>
+  <rect width="70" height="70" rx="14" fill="url(#ocean)" />
+  <circle cx="35" cy="35" r="22" fill="url(#glass)" />
+  <rect x="13" y="28" width="44" height="30" fill="url(#fill)" clip-path="url(#sphere)" />
+  <path d="M13 28 Q24 25 35 28 T57 28" fill="none" stroke="#e6f7ff" stroke-opacity="0.8"
+    stroke-width="1.2" clip-path="url(#sphere)" />
+  <circle cx="35" cy="35" r="22" fill="none" stroke="#ffffff" stroke-opacity="0.75" stroke-width="2" />
+  <ellipse cx="27" cy="23" rx="7" ry="4" transform="rotate(-30 27 23)" fill="#ffffff" fill-opacity="0.55" />
+</svg>

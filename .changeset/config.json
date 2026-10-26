@@ -10,8 +10,12 @@
     }
   ],
   "commit": true,
-  "ignore": [],
+  "ignore": ["@appswyldesolutions/vcv-powerbi-visual"],
   "fixed": [],
   "linked": [],
-  "updateInternalDependencies": "patch"
+  "updateInternalDependencies": "patch",
+  "privatePackages": {
+    "version": true,
+    "tag": false
+  }
 }

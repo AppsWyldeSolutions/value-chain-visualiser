@@ -12,6 +12,17 @@ Four packages go to public npm under the `@appswyldesolutions` scope:
 Each has `publishConfig.access: "public"`, so anyone installs it with a plain
 `npm install`: no token, `.npmrc` or registry setup.
 
+The two host packages are private and never go to npm:
+
+- **`packages/tableau-extension`** is a hosted site plus a `.trex` manifest.
+  Changesets still version it (`privatePackages.version` in
+  `.changeset/config.json`): give it a changeset like any package, and
+  "Version Packages" bumps its version and `CHANGELOG.md`, which the
+  manifest's `extension-version` follows. It is not tagged
+  (`privatePackages.tag` is false) or published.
+- **`packages/powerbi-visual`** ships as a `.pbiviz` with its own version in
+  `pbiviz.json`; changesets ignore it.
+
 ## One-time setup
 
 1. Create the `appswyldesolutions` organisation on npmjs.com (the free plan
