@@ -8,14 +8,14 @@ import {
   EXTENSION_ID,
   manifest,
   MIN_API_VERSION,
-  PLACEHOLDER_URL,
+  HOSTED_URL,
   sourceUrl,
 } from "./manifest.js";
 
 const ICON = readFileSync(path.resolve(__dirname, "../assets/icon.png"));
 const options = {
   version: "1.2.3",
-  url: PLACEHOLDER_URL,
+  url: HOSTED_URL,
   icon: ICON.toString("base64"),
 };
 
@@ -65,7 +65,7 @@ describe("manifest", () => {
 
   it("points at the source location it is given", () => {
     const doc = parse(manifest(options));
-    expect(text(doc, "source-location url")).toBe(PLACEHOLDER_URL);
+    expect(text(doc, "source-location url")).toBe(HOSTED_URL);
   });
 
   it("carries the 70x70 PNG icon, base64-encoded", () => {
@@ -102,9 +102,12 @@ describe("manifest", () => {
 });
 
 describe("sourceUrl", () => {
-  it("takes the placeholder when no hosted URL is given", () => {
-    expect(sourceUrl(undefined)).toBe(PLACEHOLDER_URL);
-    expect(sourceUrl("")).toBe(PLACEHOLDER_URL);
+  it("takes the GitHub Pages URL when no other is given", () => {
+    expect(HOSTED_URL).toBe(
+      "https://appswyldesolutions.github.io/value-chain-visualiser/tableau/index.html",
+    );
+    expect(sourceUrl(undefined)).toBe(HOSTED_URL);
+    expect(sourceUrl("")).toBe(HOSTED_URL);
   });
 
   it("takes an https URL, and http only for localhost", () => {

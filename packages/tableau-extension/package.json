@@ -14,6 +14,7 @@
   "scripts": {
     "start": "vite --port 8765 --strictPort",
     "build": "vite build",
+    "preview": "vite preview --port 4174 --strictPort --base /value-chain-visualiser/tableau/",
     "icon": "node scripts/icon.mjs"
   },
   "dependencies": {

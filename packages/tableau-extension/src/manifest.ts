@@ -9,9 +9,12 @@ export const EXTENSION_ID = "com.wyldesolutions.valuechainvisualiser";
 /** The dev server's page (npm start -w packages/tableau-extension). */
 export const DEV_URL = "http://localhost:8765/index.html";
 
-/** Where the hosted build points until it has a home (the hosting issue). */
-export const PLACEHOLDER_URL =
-  "https://example.invalid/value-chain-visualiser/index.html";
+/**
+ * Where the extension is hosted: GitHub Pages, deployed from main by
+ * .github/workflows/pages.yml. The hosted build points here by default.
+ */
+export const HOSTED_URL =
+  "https://appswyldesolutions.github.io/value-chain-visualiser/tableau/index.html";
 
 /**
  * The oldest Extensions API the extension runs on. Its newer calls have
@@ -31,11 +34,11 @@ export interface ManifestOptions {
 }
 
 /**
- * The hosted page's URL, checked: the placeholder when none is given, and
+ * The hosted page's URL, checked: GitHub Pages when none is given, and
  * https only, as Tableau loads plain http from localhost alone.
  */
 export function sourceUrl(url: string | undefined): string {
-  if (!url) return PLACEHOLDER_URL;
+  if (!url) return HOSTED_URL;
   let parsed: URL;
   try {
     parsed = new URL(url);

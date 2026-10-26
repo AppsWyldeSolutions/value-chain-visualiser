@@ -19,8 +19,8 @@ export interface TrexPluginOptions {
 
 /**
  * Writes the extension's .trex manifests: `vite build` emits the hosted one
- * into dist/, pointed at TABLEAU_EXTENSION_URL (the placeholder without
- * it); the dev server writes the one for localhost into the package folder.
+ * into dist/, pointed at TABLEAU_EXTENSION_URL (GitHub Pages without it);
+ * the dev server writes the one for localhost into the package folder.
  * Both take extension-version from package.json, which changesets bump.
  */
 export function trexPlugin(options: TrexPluginOptions): Plugin {
