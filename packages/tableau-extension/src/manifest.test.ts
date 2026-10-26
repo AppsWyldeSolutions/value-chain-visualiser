@@ -79,6 +79,13 @@ describe("manifest", () => {
     expect(icon.readUInt32BE(20)).toBe(70);
   });
 
+  it("adds Configure… to the extension zone's menu", () => {
+    const items = parse(manifest(options)).querySelectorAll(
+      "dashboard-extension > context-menu > configure-context-menu-item",
+    );
+    expect(items).toHaveLength(1);
+  });
+
   it("asks for no permissions: summary data needs none", () => {
     expect(parse(manifest(options)).querySelector("permissions")).toBeNull();
   });

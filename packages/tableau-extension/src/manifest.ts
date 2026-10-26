@@ -83,6 +83,9 @@ export function manifest(options: ManifestOptions): string {
       <url>${escape(options.url)}</url>
     </source-location>
     <icon>${escape(options.icon)}</icon>
+    <context-menu>
+      <configure-context-menu-item/>
+    </context-menu>
   </dashboard-extension>
   <resources>
     <resource id="name">

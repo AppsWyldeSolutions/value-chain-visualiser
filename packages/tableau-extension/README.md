@@ -15,16 +15,49 @@ https://appswyldesolutions.github.io/value-chain-visualiser/tableau/.
 1. Download the manifest,
    [value-chain-visualiser.trex](https://appswyldesolutions.github.io/value-chain-visualiser/tableau/value-chain-visualiser.trex),
    and keep it somewhere stable: Tableau remembers where it was opened from.
-2. Shape a worksheet as [docs/tableau-data-shaping.md](../../docs/tableau-data-shaping.md)
-   describes: one mark per KPI per period, with fields named `node`,
-   `group`, `metric`, `year`, `period`, `actual` and `budget` (and,
-   optionally, the rest).
+2. Make a worksheet with one mark per KPI per period, as
+   [docs/tableau-data-shaping.md](../../docs/tableau-data-shaping.md)
+   describes. Its fields can have any names: you map them in step 4.
 3. On a dashboard with that worksheet, drag **Extension** from **Objects**
    onto it, choose **Access Local Extensions**, and open the `.trex`.
    Tableau asks whether to allow the extension, which runs from the
    GitHub Pages address above; choose **OK**.
-4. The visual draws the dashboard's first worksheet, and redraws as its
-   filters change. If a required field is missing it says which.
+4. If the worksheet's fields are not named after the visual's (`node`,
+   `group`, `metric`, `year`, `period`, `actual`, `budget`, …), the
+   **Configure** dialog opens: choose the worksheet, and the field that
+   holds each of the visual's, then **Save**. To change it later, use
+   **Configure…** in the extension zone's menu.
+5. The visual draws the worksheet, and redraws as its filters change. If a
+   required field is missing it says which.
+
+## Configure
+
+![The Configure dialog](../../docs/images/tableau-configure-dialog.png)
+
+**Configure…** in the zone's menu (the manifest's
+`<configure-context-menu-item/>`) opens `config.html` in a Tableau dialog
+(`tableau.extensions.ui.displayDialogAsync`):
+
+- **Worksheet:** any worksheet on the dashboard.
+- **Fields:** a column of that worksheet for each of the visual's fields,
+  by its summary-data name (`Process`, `SUM(Sales Actual)`). Each starts
+  from the saved mapping, or else the column with the field's own name.
+  **Save** stays disabled until every required field has one.
+- **Save** writes the mapping to the extension's settings
+  (`tableau.extensions.settings`, key `vcv.mapping`:
+  `{ "version": 1, "worksheet": …, "fields": { "node": "Process", … } }`),
+  which Tableau keeps in the workbook. The visual redraws with it straight
+  away, and reads it again whenever the workbook opens.
+
+Without a saved mapping the extension works as before: it draws the
+dashboard's first worksheet, reading each field by its own name. A field
+left unmapped is read the same way. The dialog opens by itself only for
+an author (not a viewer) who adds the extension to a worksheet without
+those names; after that, only from the menu.
+
+If a mapped worksheet or field is gone (renamed, or removed from the
+dashboard), the extension says which, for example
+`"KPIs" has no field for metric (mapped to "KPI Name"). Use Configure… to map it.`
 
 To use it on Tableau Server or Tableau Cloud, a site administrator allows
 it first: in the site's extension settings, let extensions run, then add

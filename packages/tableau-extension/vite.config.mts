@@ -11,6 +11,15 @@ export default defineConfig(({ command }) => ({
   // The .trex manifests: dist/value-chain-visualiser.trex at build (set
   // TABLEAU_EXTENSION_URL to the hosted page), value-chain-visualiser.dev.trex
   // when serving.
+  build: {
+    // Two pages: the extension, and its Configure dialog.
+    rolldownOptions: {
+      input: {
+        index: fileURLToPath(new URL("index.html", import.meta.url)),
+        config: fileURLToPath(new URL("config.html", import.meta.url)),
+      },
+    },
+  },
   plugins: [
     trexPlugin({ packageDir: fileURLToPath(new URL(".", import.meta.url)) }),
   ],

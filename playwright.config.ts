@@ -42,7 +42,7 @@ export default defineConfig({
       // The Tableau extension's page, from its dev server.
       name: "tableau-extension",
       testDir: "packages/tableau-extension/e2e",
-      testMatch: "extension.spec.ts",
+      testMatch: ["extension.spec.ts", "configure.spec.ts"],
       use: {
         ...devices["Desktop Chrome"],
         viewport: { width: 1440, height: 900 },

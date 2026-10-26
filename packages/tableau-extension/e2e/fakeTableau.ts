@@ -52,16 +52,29 @@ export function tableOf(
   };
 }
 
+/** What else the fake dashboard has, beyond one worksheet named "KPIs". */
+export interface FakeOptions {
+  /** environment.mode: "viewing" unless an author is editing. */
+  mode?: "authoring" | "viewing";
+  /** The extension's saved settings. */
+  settings?: Record<string, string>;
+}
+
 /**
  * A stand-in for window.tableau, as a script. `window.vcvTableau` lets the
- * test change the worksheet's data and raise SummaryDataChanged.
+ * test change the worksheet's data and raise SummaryDataChanged, and records
+ * the settings saved and the dialogs opened and closed.
  */
-export function fakeLibrary(table: Table): string {
+export function fakeLibrary(table: Table, options: FakeOptions = {}): string {
   return `(() => {
   const listeners = [];
   const control = (window.vcvTableau = {
     table: ${JSON.stringify(table)},
+    settings: ${JSON.stringify(options.settings ?? {})},
     reads: 0,
+    saves: 0,
+    dialogs: [],
+    closed: [],
     change(table) {
       control.table = table;
       listeners.forEach((listener) => listener({ type: "summary-data-changed" }));
@@ -71,9 +84,31 @@ export function fakeLibrary(table: Table): string {
     TableauEventType: {
       FilterChanged: "filter-changed",
       SummaryDataChanged: "summary-data-changed",
+      SettingsChanged: "settings-changed",
     },
     extensions: {
       initializeAsync: async () => {},
+      initializeDialogAsync: async () => "",
+      environment: { mode: ${JSON.stringify(options.mode ?? "viewing")} },
+      settings: {
+        get: (key) => control.settings[key],
+        set: (key, value) => {
+          control.settings[key] = value;
+        },
+        saveAsync: async () => {
+          control.saves++;
+          return control.settings;
+        },
+        addEventListener: () => () => true,
+      },
+      ui: {
+        // Records the dialog; Tableau would open it in its own window.
+        displayDialogAsync: (url, payload, options) => {
+          control.dialogs.push({ url, options });
+          return new Promise(() => {});
+        },
+        closeDialog: (payload) => control.closed.push(payload),
+      },
       dashboardContent: {
         dashboard: {
           worksheets: [
@@ -96,16 +131,41 @@ export function fakeLibrary(table: Table): string {
 })();`;
 }
 
-export async function open(page: Page, table = tableOf(lines)) {
+/** Opens `file` (the extension, or its Configure dialog) with the fake. */
+export async function open(
+  page: Page,
+  table = tableOf(lines),
+  options: FakeOptions = {},
+  file = "index.html",
+) {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.route(LIBRARY, (route) =>
-    route.fulfill({ contentType: "text/javascript", body: fakeLibrary(table) }),
+    route.fulfill({
+      contentType: "text/javascript",
+      body: fakeLibrary(table, options),
+    }),
   );
   // Relative, so it opens the page under whatever baseURL the project serves.
-  await page.goto("index.html");
+  await page.goto(file);
   return errors;
 }
+
+/** What the fake recorded: settings, saves, dialogs opened and closed. */
+export const recorded = (page: Page) =>
+  page.evaluate(() => {
+    const { settings, saves, dialogs, closed } = (
+      window as unknown as {
+        vcvTableau: {
+          settings: Record<string, string>;
+          saves: number;
+          dialogs: { url: string; options: unknown }[];
+          closed: string[];
+        };
+      }
+    ).vcvTableau;
+    return { settings, saves, dialogs, closed };
+  });
 
 export const change = (page: Page, table: Table) =>
   page.evaluate(

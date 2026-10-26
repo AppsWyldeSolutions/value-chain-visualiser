@@ -25,6 +25,12 @@ test("draws from the built site, under its Pages path", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test("serves the Configure dialog beside the page", async ({ request }) => {
+  const dialog = await request.get("config.html");
+  expect(dialog.ok()).toBe(true);
+  expect(await dialog.text()).toContain("tableau.extensions.1.latest.js");
+});
+
 test("serves Tableau's library beside the page", async ({ request }) => {
   const library = await request.get("lib/tableau.extensions.1.latest.js");
   expect(library.ok()).toBe(true);
